@@ -3,13 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 import SearchBar from './components/search_bar'
 import SermonList from './components/sermon_list'
+import SermonDetail from './components/sermon_detail'
 import AudioSearchService from './services/audio-search-service'
 
 class App extends Component {
   constructor(props){
     super(props);
 
-    this.state = { audioResults: [] };
+    this.state = { 
+      selectedSermon: null,
+      audioResults: [] 
+    };
+    
     this.audioSearchService = new AudioSearchService();
 
     this.getMostRecent(1);
@@ -27,7 +32,11 @@ class App extends Component {
     this.audioSearchService.getMostRecent(count)
       .then((results) => {
         console.log(results);
-        this.setState({audioResults: results.data});
+        this.setState(
+          { 
+            audioResults: this.state.audioResults,
+            selectedSermon: results.data[0],
+          });
       });
   }
 
@@ -41,6 +50,9 @@ class App extends Component {
         </header>
         <div>
           <SearchBar onSearchTermChanged={term => this.audioSearch(term)}/>
+        </div>
+        <div>
+          <SermonDetail sermon={this.state.selectedSermon}/>
         </div>
         <div>
           <SermonList sermons={this.state.audioResults}/>
