@@ -6,6 +6,18 @@ import SermonList from './components/sermon_list'
 import SermonDetail from './components/sermon_detail'
 import AudioSearchService from './services/audio-search-service'
 
+import _ from 'lodash';
+
+// import route Components here
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom'
+
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -17,13 +29,14 @@ class App extends Component {
     
     this.audioSearchService = new AudioSearchService();
 
-    this.getMostRecent(1);
+    this.getMostRecent(7);
 
   }
 
   audioSearch(term) {
     this.audioSearchService.freeTextSearch(term, 0, 10)
       .then((searchResult) => {
+        console.log(searchResult);
         this.setState({audioResults: searchResult.data.content});
       });
   }
@@ -31,30 +44,42 @@ class App extends Component {
   getMostRecent(count){
     this.audioSearchService.getMostRecent(count)
       .then((results) => {
-        console.log(results);
-        this.setState(
-          { 
-            audioResults: this.state.audioResults,
-            selectedSermon: results.data[0],
-          });
+        if(results != null && results.data != null){
+          this.setState({ 
+              audioResults: results.data,
+              selectedSermon: results.data[0],
+            });
+        }
       });
   }
 
 
 
   render() {
+
+    const audioSearchDebounced =  _.debounce((term) => { this.audioSearch(term) }, 300);
+
     return (
       <div className="App">
         <header className="App-header">
 
         </header>
-        <div>
-          <SearchBar onSearchTermChanged={term => this.audioSearch(term)}/>
+        <div className="hero-unit">
+          <div className="hero-title">
+            <h2>Faith Bible Church Audio Archive</h2>
+            <h5>Explore Audio tracks from Faith Bible Church</h5>
+            <div className="hero-button">
+              <div>Register for the Podcast</div>
+            </div>
+          </div>
+          
         </div>
-        <div>
-          <SermonDetail sermon={this.state.selectedSermon}/>
+        <div className="searchWrapper">
+          <SearchBar onSearchTermChanged={audioSearchDebounced}/>
         </div>
-        <div>
+
+        <div className="mostRecent">
+          <h2>Most Recent</h2>
           <SermonList sermons={this.state.audioResults}/>
         </div>
       </div>

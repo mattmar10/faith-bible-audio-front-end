@@ -9,7 +9,7 @@ const SermonList = (props) => {
     });
 
     return (
-        <ul className="col-md-8 list-group videolist">
+        <ul className="sermonList">
         {sermonItems}
         </ul>
     );

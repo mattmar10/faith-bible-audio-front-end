@@ -13,11 +13,15 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="searchBarWrapper">
+			<div className="searchBar">
 				<input 
+					placeholder = "Search for a Title, Series, Speaker."
 					value = {this.state.term}
 					onChange={event => this.onInputChange(event.target.value)} />
-				Search Term: {this.state.term}
+				<button className="searchBar_btn"></button>
+			</div>
+			
 			</div>
 		);
 	}
