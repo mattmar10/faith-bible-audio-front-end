@@ -27,21 +27,21 @@ export default class AudioSearchService {
             });
     }
 
-    getMostRecent(count: int) {
-        return this.apiGateway.get('http://localhost:8080/sermons/mostrecent',
-            {
-                count: count
-            })
-            .then((result) => {
-                if (hasErrors(result)) {
-                    console.log('errors fetching most recent results');
-                    //dispatch(actions.allProductModifiersLoadedFailed(result));
-                } else {
-                    console.log('success fetching most recent results');
-                    //dispatch(actions.allProductModifiersLoaded(result));
-                }
-                return result;
-            });
+    getMostRecentSeries(count: int) {
+        return this.apiGateway.get('http://localhost:8080/series/mostrecent', {
+            count: count
+        })
+        .then((result) => {
+            if (hasErrors(result)) {
+                console.log('errors fetching most recent results');
+                //dispatch(actions.allProductModifiersLoadedFailed(result));
+            } else {
+                console.log('success fetching most recent results');
+                //dispatch(actions.allProductModifiersLoaded(result));
+            }
+            return result;
+        });
     }
+
 }
 

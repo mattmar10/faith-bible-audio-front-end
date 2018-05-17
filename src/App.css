@@ -81,16 +81,19 @@ body{
 .mostRecent{
   margin-top: 35px;
   font-family: 'PT Sans', sans-serif;
+  background-color: #fafafa;
+  overflow:hidden;
 }
 
 .mostRecent h2{
-  font-family: 'PT Serif', serif;
+  font-family: 'PT Sans', sans-serif;
   font-weight: bold;
-  border-bottom: 1px solid #999999;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  margin-top:20px;
   margin-left: auto;
   margin-right: auto;
-  width: 20%;
+  width: 25%;
+
 }
 
 .App-title {
@@ -123,9 +126,11 @@ body{
 
 .sermon-list-item-heading{
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   display: inline-block;
-  width: 90%
+  width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .sermon-list-item-menu{
   display: inline-block;
@@ -133,6 +138,7 @@ body{
 
 .sermon-list-item-speaker{
   color: #666;
+
 }
 
 .sermon-list-item-time{
@@ -145,6 +151,23 @@ body{
   text-transform: uppercase; 
   margin-bottom: 15px;
   color: #666;
+}
+
+.most-recent-list{
+  width: 100%;
+  text-align: center;
+  list-style-type: none;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.most-recent-list li{
+  padding: 5px;
+
+}
+
+.most-recent-list li img{
+  width: 100%;
 }
 
 @keyframes App-logo-spin {

@@ -5,6 +5,8 @@ import SearchBar from './components/search_bar'
 import SermonList from './components/sermon_list'
 import SermonDetail from './components/sermon_detail'
 import AudioSearchService from './services/audio-search-service'
+import SearchResultList from './containers/search_results_list'
+import MostRecentSeriesGrid from './containers/most_recent_series_grid'
 
 import _ from 'lodash';
 
@@ -29,7 +31,7 @@ class App extends Component {
     
     this.audioSearchService = new AudioSearchService();
 
-    this.getMostRecent(7);
+    //this.getMostRecent(7);
 
   }
 
@@ -42,7 +44,7 @@ class App extends Component {
   }
 
   getMostRecent(count){
-    this.audioSearchService.getMostRecent(count)
+    this.audioSearchService.getMostRecentSerieses(count)
       .then((results) => {
         if(results != null && results.data != null){
           this.setState({ 
@@ -79,10 +81,13 @@ class App extends Component {
         </div>
 
         <div className="mostRecent">
-          <h2>Most Recent</h2>
-          <SermonList sermons={this.state.audioResults}/>
+            <SermonList sermons={this.state.audioResults}/>
+            <MostRecentSeriesGrid />
         </div>
+
+
       </div>
+        
     );
   }
 }

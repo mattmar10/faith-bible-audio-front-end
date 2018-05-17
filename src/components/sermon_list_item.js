@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SermonListItem = ({sermon}) => {
-    console.log(sermon);
     const title = sermon.title;
     const date = sermon.date;
     const series = sermon.series;
@@ -24,8 +23,8 @@ const SermonListItem = ({sermon}) => {
                     <div className="sermon-list-item-time">{date}</div>
                     <div className="sermon-list-item-series">{series}</div>
                     <div className="sermon-list-item-speaker">{speaker}</div>
-                    
-                    
+
+                    <audio src={mp3URL} controls></audio>
                     
                     {/*<div>Link: <a href={mp3URL}>Download</a></div>
                     <audio src={mp3URL} controls></audio>*/}
