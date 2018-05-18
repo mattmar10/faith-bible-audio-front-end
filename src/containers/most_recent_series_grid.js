@@ -11,14 +11,11 @@ const audioSearchService = new AudioSearchService();
 class MostRecentSeriesGrid extends Component{
 
     componentWillMount() {
-        // Injected by react-redux:
-        let { dispatch } = this.props
+       // this.props.mostRecentSeries = [];
 
-        audioSearchService.getMostRecentSeries(6)
-            .then((result) => {
-                //dispatch(mostRecentSeriesLoaded(result.data))
-                this.props.setMostRecentSerieses(result.data)
-            });
+        this.props.getMostRecentSeries();
+
+        
     }
 
     renderGrid() {
@@ -45,14 +42,18 @@ class MostRecentSeriesGrid extends Component{
 
 
 function mapStateToProps(state){
+    console.log(state);
     return{
         mostRecentSeries: state.mostRecentSeries
     };
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({setMostRecentSerieses: mostRecentSeriesLoaded}, dispatch);
+    return bindActionCreators({getMostRecentSeries: mostRecentSeriesLoaded}, dispatch);
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MostRecentSeriesGrid);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MostRecentSeriesGrid);            

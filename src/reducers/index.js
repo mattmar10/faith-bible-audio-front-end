@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import searchResultsReducer from './reducer_search_results_reducer'
+import searchResultsReducer from './reducer_recent_series_reducer'
 
 const rootReducer = combineReducers({
     mostRecentSeries: searchResultsReducer

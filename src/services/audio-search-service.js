@@ -33,10 +33,9 @@ export default class AudioSearchService {
         })
         .then((result) => {
             if (hasErrors(result)) {
-                console.log('errors fetching most recent results');
                 //dispatch(actions.allProductModifiersLoadedFailed(result));
             } else {
-                console.log('success fetching most recent results');
+               // console.log(result);
                 //dispatch(actions.allProductModifiersLoaded(result));
             }
             return result;
