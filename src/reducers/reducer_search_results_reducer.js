@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import * as actionTypes from "../actions/action-type";
 
-export default function(state: Array<Object> = [], action: Object) {
+export default function (state: Array<Object> = {}, action: Object) {
 
     const initialState = {
         data: [],
@@ -11,22 +12,22 @@ export default function(state: Array<Object> = [], action: Object) {
     }
 
     switch (action.type) {
-        case actionTypes.MOST_RECENT_SERIES_LOADED:
+        case actionTypes.SEARCH_RESULTS_LOADED:
+            const mapped = _.mapKeys(action.payload.data.content, 'id');
+            console.log(mapped);
             return {
                 ...state,
-                data: action.payload.data,
-                dataFetched: true,
                 isFetching: false,
                 error: false,
                 errorMessage: null,
+                data: mapped
             }
-        case actionTypes.MOST_RECENT_SERIES_ERROR:
+        case actionTypes.FETCH_SEARCH_RESULTS_ERROR:
             return {
                 ...state,
-                dataFetched: false,
                 isFetching: false,
                 error: true,
-                errorMessage: 'Error fetching the most recent series.',
+                errorMessage: "Error Fetching Search Results"
             }
         default:
             return state;

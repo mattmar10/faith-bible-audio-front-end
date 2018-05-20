@@ -4,16 +4,23 @@ import App from './App';
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import registerServiceWorker from './registerServiceWorker';
-
+import { BrowserRouter } from 'react-router-dom'
+import Main from './components/Main'
 import ReduxPromise from 'redux-promise'
+import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 
-const store = createStore(rootReducer, applyMiddleware(ReduxPromise))
+import registerServiceWorker from './registerServiceWorker';
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
+
+
 
 render(
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+            <Main />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );

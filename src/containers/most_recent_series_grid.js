@@ -7,23 +7,27 @@ import { bindActionCreators } from 'redux'
 
 import AudioSearchService from '../services/audio-search-service'
 
+import _ from 'lodash'
+
 const audioSearchService = new AudioSearchService();
 class MostRecentSeriesGrid extends Component{
 
     componentWillMount() {
-       // this.props.mostRecentSeries = [];
-
-        this.props.getMostRecentSeries();
-
-        
+        this.props.getMostRecentSeries(6);
     }
 
     renderGrid() {
-        return this.props.mostRecentSeries.map((result) => {
-            return (
-                <SeriesGridItem key={result.title} series={result} />
-            )
-        });
+
+        if(this.props.mostRecentSeries.error){
+            return(<div>{this.props.mostRecentSeries.errorMessage}</div>);
+        }
+        else if(!_.isEmpty(this.props.mostRecentSeries.data)){
+            return this.props.mostRecentSeries.data.map((result) => {
+                return (
+                    <SeriesGridItem key={result.title} series={result} />
+                )
+            });
+        }
     }
 
     render(){
@@ -42,14 +46,20 @@ class MostRecentSeriesGrid extends Component{
 
 
 function mapStateToProps(state){
-    console.log(state);
     return{
         mostRecentSeries: state.mostRecentSeries
     };
 }
 
-function mapDispatchToProps(dispatch){
+/*function mapDispatchToProps(dispatch){
     return bindActionCreators({getMostRecentSeries: mostRecentSeriesLoaded}, dispatch);
+}*/
+
+function mapDispatchToProps (dispatch) {
+    
+    return { 
+        getMostRecentSeries: (count) => dispatch(audioSearchService.getMostRecentSeries(count))
+    }
 }
 
 

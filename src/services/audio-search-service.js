@@ -1,45 +1,82 @@
 import ApiGateway from "../api/api-gateway";
 import hasErrors from "../utils/has-errors-util";
+import * as actions from "../actions/index"
+
+const baseUrl = 'http://localhost:8080';
 
 export default class AudioSearchService {
-    constructor(){
+    constructor() {
         this.apiGateway = new ApiGateway();
     }
 
-    freeTextSearch(searchQuery: string, pageNum: int, size: int) {
-        return this.apiGateway.get('http://localhost:8080/search',
-            {
-                q: searchQuery,
-                page: pageNum,
-                size: size
-            })
-            .then((result) => {
-                if (hasErrors(result)) {
-                    console.log('errors fetching search results');
-                    console.log(result);
-                    //dispatch(actions.allProductModifiersLoadedFailed(result));
-                } else {
-                    console.log('success fetching search results');
-                    console.log(result);
-                    //dispatch(actions.allProductModifiersLoaded(result));
-                }
-                return result;
-            });
+
+    freeTextSearch(searchQuery: string, pageNum: int = 0, size: int = 500) {
+
+        return (dispatch: Function) => {
+            return this.apiGateway.get(baseUrl + '/search',
+                {
+                    q: searchQuery,
+                    page: pageNum,
+                    size: size
+                })
+                .then((result) => {
+                    if (hasErrors(result)) {
+                        console.log('errors fetching search results');
+                        dispatch(actions.fetchSearchResultsError(result));
+                    } else {
+                        dispatch(actions.searchResultsLoaded(result));
+                    }
+                    return result;
+                });
+        }
+
     }
 
     getMostRecentSeries(count: int) {
-        return this.apiGateway.get('http://localhost:8080/series/mostrecent', {
-            count: count
-        })
-        .then((result) => {
-            if (hasErrors(result)) {
-                //dispatch(actions.allProductModifiersLoadedFailed(result));
-            } else {
-               // console.log(result);
-                //dispatch(actions.allProductModifiersLoaded(result));
-            }
-            return result;
-        });
+        return (dispatch: Function) => {
+            return this.apiGateway.get(baseUrl + '/series/mostrecent', {
+                count: count
+            })
+                .then((result) => {
+                    if (hasErrors(result)) {
+                        dispatch(actions.mostRecentSeriesLoadedError(result))
+                    } else {
+                        // console.log(result);
+                        dispatch(actions.mostRecentSeriesLoaded(result));
+                    }
+                    return result;
+                });
+        }
+    }
+
+    getSermonDetails(sermonId: string) {
+        return (dispatch: Function) => {
+            return this.apiGateway.get(baseUrl + '/sermon/' + sermonId)
+                .then((result) => {
+                    if (hasErrors(result)) {
+                        dispatch(actions.sermonDetailsLoadError(result))
+                    } else {
+                        // console.log(result);
+                        dispatch(actions.sermonDetailsLoaded(result));
+                    }
+                    return result;
+                });
+        }
+    }
+
+    getSeriesDetails(seriesId: string) {
+        return (dispatch: Function) => {
+            return this.apiGateway.get(baseUrl + '/series/' + seriesId)
+                .then((result) => {
+                    if (hasErrors(result)) {
+                        dispatch(actions.seriesDetailsLoadError(result))
+                    } else {
+                        // console.log(result);
+                        dispatch(actions.seriesDetailsLoaded(result));
+                    }
+                    return result;
+                });
+        }
     }
 
 }

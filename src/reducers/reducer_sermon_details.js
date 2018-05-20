@@ -1,9 +1,9 @@
 import * as actionTypes from "../actions/action-type";
 
-export default function(state: Array<Object> = [], action: Object) {
+export default function (state: Array<Object> = {}, action: Object) {
 
     const initialState = {
-        data: [],
+        sermon: null,
         dataFetched: false,
         isFetching: false,
         error: false,
@@ -11,22 +11,20 @@ export default function(state: Array<Object> = [], action: Object) {
     }
 
     switch (action.type) {
-        case actionTypes.MOST_RECENT_SERIES_LOADED:
+        case actionTypes.SERMON_DETAILS_LOADED:
             return {
                 ...state,
-                data: action.payload.data,
-                dataFetched: true,
                 isFetching: false,
                 error: false,
                 errorMessage: null,
+                sermon: action.payload.data
             }
-        case actionTypes.MOST_RECENT_SERIES_ERROR:
+        case actionTypes.SERMON_DETAILS_LOAD_ERROR:
             return {
                 ...state,
-                dataFetched: false,
                 isFetching: false,
                 error: true,
-                errorMessage: 'Error fetching the most recent series.',
+                errorMessage: "Error Fetching Sermon Details"
             }
         default:
             return state;
