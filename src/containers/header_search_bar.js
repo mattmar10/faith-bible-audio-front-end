@@ -5,15 +5,20 @@ import { bindActionCreators } from 'redux'
 
 class HeaderSearchBar extends Component {
 
+    onInputChange(term){
+        console.log(term);
+    }
+
     render() {
         return (
 
             <form>
+                <button className="headerSearchBar_btn"></button>
                 <input
                     placeholder="Search for a Title, Series, Speaker."
                     value={this.props.searchTerm}
-                    onChange={event => this.onInputChange(event.target.value)} />
-                <button className="searchBar_btn"></button>
+                    onChange={event => this.onInputChange(event.target.value)}
+                />
             </form>
 
         );
