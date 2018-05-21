@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 
 import AudioSearchService from '../services/audio-search-service'
 import SermonListItem from '../components/sermon_list_item'
+import Header from '../components/header'
 
 
 class SearchResultsPage extends Component{
@@ -32,6 +33,7 @@ class SearchResultsPage extends Component{
     render(){
         return(
             <div>
+                <Header/>
                 <h2>Search Results</h2>
                 {this.renderList()}
             </div>

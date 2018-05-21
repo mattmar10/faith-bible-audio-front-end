@@ -21,6 +21,31 @@ body{
   background-color: orangered;
 }
 
+.smallHeader{
+  background-color:#272727;
+  color: #555;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.headerSearchBar input{ 
+  padding: 12px 8px; 
+  color: #fafafa;
+  border: 0;
+  background: #363636; 
+  line-height: 12px; 
+  width: 80%; 
+  outline: 0;
+  border-radius: 4px;
+  font-family: 'PT Sans', sans-serif;
+}
+
+
+.seriesBanner{
+  margin-top: 50px;
+  text-align: left;
+}
+
 .hero-unit {
   height: 400px;
   opacity: .95;
