@@ -10,9 +10,12 @@ const SermonList = (props) => {
     });
 
     return (
-        <ul className="sermonList">
-        {sermonItems}
-        </ul>
+        <div>
+            <h2>Messages</h2>
+            <ul className='sermonList'>
+            {sermonItems}
+            </ul>
+        </div>
     );
 }
 

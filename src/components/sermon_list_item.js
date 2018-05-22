@@ -14,19 +14,22 @@ const SermonListItem = ({sermon}) => {
             <div className="media">
                 <div className="media-left">
                     <div className="imageWrapper">
-                        <img className="media-object" className="img-thumbnail" src={imageURL} />
+                        <img className="img-thumbnail" src={imageURL} />
                     </div>
                 </div>
                 <div className="media-body">
                     
                     <span className="sermon-list-item-heading">{title}</span>
                     <div className="sermon-list-item-time">{date}</div>
+
+
+
+                    
+                    {/*
                     <div className="sermon-list-item-series">{series}</div>
                     <div className="sermon-list-item-speaker">{speaker}</div>
-
                     <audio src={mp3URL} controls></audio>
-                    
-                    {/*<div>Link: <a href={mp3URL}>Download</a></div>
+                    <div>Link: <a href={mp3URL}>Download</a></div>
                     <audio src={mp3URL} controls></audio>*/}
                 </div>
                 

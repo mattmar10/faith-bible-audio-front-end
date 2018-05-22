@@ -37,11 +37,18 @@ class SeriesDetailPage extends Component{
                                     <img className='img-fluid' src={imageURL} />
                                 </div>
 
-
                             </div>
                         </div>
-                        <div className='row'>
-                            <SermonList sermons={sermonsList}/>
+                        <div className='row seriesContent'>
+
+                            <div className='col-sm-8 seriesSermonList' >
+
+                                <SermonList sermons={sermonsList}/>
+                            </div>
+
+                            <div className='col-sm-3 seriesRelated' >
+                                Content here
+                            </div>
                         </div>
                     </div>
 

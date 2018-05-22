@@ -1,5 +1,5 @@
 import React from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, BrowserRouter} from 'react-router-dom'
 import Homepage from '../containers/HomePage'
 import SermonDetailPage from '../containers/SermonDetailPage'
 import SeriesDetailPage from '../containers/SeriesDetailPage'
@@ -12,13 +12,15 @@ import SearchResultsPage from '../containers/SearchResultsPage'
 // when the pathname is exactly the string "/"
 const Main = () => (
     <main>
-        <Switch>
-            <Route path='/search' component={SearchResultsPage}/>
-            <Route path='/sermon/:sermonId' component={SermonDetailPage}/>
-            <Route path='/series/:seriesId' component={SeriesDetailPage}/>
-            <Route exact path='/' component={Homepage}/>
+        <BrowserRouter>
+            <Switch>
+                <Route path='/search' component={SearchResultsPage}/>
+                <Route path='/sermon/:sermonId' component={SermonDetailPage}/>
+                <Route path='/series/:seriesId' component={SeriesDetailPage}/>
+                <Route exact path='/' component={Homepage}/>
 
-        </Switch>
+            </Switch>
+        </BrowserRouter>
     </main>
 )
 

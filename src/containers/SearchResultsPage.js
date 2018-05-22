@@ -14,7 +14,7 @@ class SearchResultsPage extends Component{
 
     componentWillMount() {
         const values = queryString.parse(this.props.location.search);
-        this.props.fetchSearchResults(values.q);
+        //this.props.fetchSearchResults(values.q);
         
     }
 
