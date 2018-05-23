@@ -62,18 +62,33 @@ html, body {
 }
 
 .seriesBanner {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Arbutus Slab', sans-serif;
     text-align: left;
     padding-top: 25px;
     padding-bottom: 25px;
+    vertical-align: middle;
+}
+
+.seriesBannerTitle{
+    padding-left: 50px;
 }
 
 .seriesContent{
     padding-left: 30px;
     padding-right: 5px;
-    font-family: 'PT Sans', SansSerif;
     text-align: left;
     color: black;
+    font-family: 'Arbutus Slab', sans-serif;
+
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.seriesContent h3 {
+    color: #363636;
 }
 
 .seriesRelated{
@@ -208,7 +223,6 @@ html, body {
 }
 
 .sermon-list-item-heading {
-    font-family: 'PT Sans', sans-serif;
     color: #272727;
     font-size: 14px;
     display: inline-block;

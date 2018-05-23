@@ -11,7 +11,7 @@ const SermonList = (props) => {
 
     return (
         <div>
-            <h2>Messages</h2>
+            <h3>Messages</h3>
             <ul className='sermonList'>
             {sermonItems}
             </ul>

@@ -34,7 +34,7 @@ class SearchResultsPage extends Component{
         return(
             <div>
                 <Header/>
-                <h2>Search Results</h2>
+                <h3>Search Results</h3>
                 {this.renderList()}
             </div>
         );

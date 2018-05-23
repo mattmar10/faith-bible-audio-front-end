@@ -27,9 +27,9 @@ class SeriesDetailPage extends Component{
                 return (
                     <div className='container-fluid'>
                         <div className='seriesBanner'>
-                            <div className='row'>
+                            <div className='row vertical-align'>
 
-                                <div className='col-sm-5'>
+                                <div className='col-sm-5 seriesBannerTitle'>
                                     <h2>{series.title}</h2>
                                     <p>Some text here.</p>
                                 </div>
