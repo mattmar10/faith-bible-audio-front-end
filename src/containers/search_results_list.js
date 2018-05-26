@@ -6,7 +6,7 @@ class SearchResultList extends Component{
     renderList() {
         return this.props.searchResults.map((result) => {
             return (
-                <li key={result.title} className="list-group-item">{result.title}</li>
+                <li key={result.slug} className="list-group-item">{result.title}</li>
             )
         });
     }

@@ -6,7 +6,7 @@ const SeriesGridItem = ({series}) => {
     const imageURL = series.imageURI != null ? series.imageURI : "http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Headphones-Apollo-icon.png";
     
     return (
-        <Link to={`/series/${series.id}`}>
+        <Link to={`/series/${series.slug}`}>
         <li className="col-md-4" >
             <div>
                 <img className="img-thumbnail" src={imageURL} />

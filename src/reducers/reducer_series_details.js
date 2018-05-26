@@ -17,7 +17,7 @@ export default function (state: Array<Object> = {}, action: Object) {
                 isFetching: false,
                 error: false,
                 errorMessage: null,
-                series: action.payload.data
+                series: action.payload.data.body
             }
         case actionTypes.SERIES_DETAILS_LOAD_ERROR:
             return {

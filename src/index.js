@@ -1,12 +1,10 @@
 import React from 'react';
 import './index.css';
-import App from './App';
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import Main from './components/Main'
-import ReduxPromise from 'redux-promise'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 

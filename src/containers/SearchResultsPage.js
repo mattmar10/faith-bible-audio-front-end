@@ -1,32 +1,40 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import queryString from 'query-string'
+import qs from 'qs'
 import _ from 'lodash'
 import { fetchSearchResults } from '../actions/index'
 import { bindActionCreators } from 'redux'
 
 import AudioSearchService from '../services/audio-search-service'
-import SermonListItem from '../components/sermon_list_item'
+import SermonList from '../components/sermon_list'
 import Header from '../components/header'
 
 
 class SearchResultsPage extends Component{
 
     componentWillMount() {
-        const values = queryString.parse(this.props.location.search);
-        //this.props.fetchSearchResults(values.q);
+        const values = qs.parse(this.props.location.search.slice(1));
+        this.props.fetchSearchResults(values.q);
         
     }
 
     renderList() {
-    
+
+
        if(!_.isEmpty(this.props.searchResults.data)){
-           return Object.keys(this.props.searchResults.data).map(result => {
+           console.log('here');
+           const sermonsList = Object.keys(this.props.searchResults.data).map(result => {
+               return this.props.searchResults.data[result];
+           });
+           return(
+               <SermonList sermons={sermonsList}/>
+           );
+           /*return Object.keys(this.props.searchResults.data).map(result => {
                 const sermon = this.props.searchResults.data[result];
                 return (
-                    <SermonListItem key={sermon.title} sermon={sermon} />
+                    <SermonListItem key={sermon.id} sermon={sermon} />
                 )
-           })
+           })*/
        } 
     }
 
@@ -34,8 +42,24 @@ class SearchResultsPage extends Component{
         return(
             <div>
                 <Header/>
-                <h3>Search Results</h3>
-                {this.renderList()}
+                <div className='container-fluid searchContentsPanel' >
+                    <div className='row'>
+                        <div className='col-sm-12 searchResultsHeading'>
+                            <h1>Results: {this.props.searchTerm}</h1>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-sm-4 '>
+                            Menu Here
+                        </div>
+                        <div className='col-sm-8 searchResultsList '>
+
+                            {this.renderList()}
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         );
     }
@@ -43,7 +67,8 @@ class SearchResultsPage extends Component{
 
 function mapStateToProps(state){
     return{
-        searchResults: state.searchResults
+        searchResults: state.searchResults,
+        searchTerm: state.searchResults.searchTerm
     };
 }
 

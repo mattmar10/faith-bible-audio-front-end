@@ -1,5 +1,5 @@
 html, body {
-    background: #eee;
+    background: #fff;
     text-align: center;
     margin: 0px;
     padding: 0px;
@@ -11,7 +11,7 @@ html, body {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 85%;
+    width: 100%;
     background-color: white;
 }
 
@@ -25,31 +25,62 @@ html, body {
     text-align: left;
     font-family: 'Arbutus Slab', serif;
     background-color: orangered;
+
+}
+
+#logoImg{
+    width: 56px;
+}
+
+.logoText span{
+    padding-top:12px;
+    text-align: left;
+    padding-left: 22px;
+    font-family: 'PT Sans';
+    font-size: 18px;
 }
 
 .smallHeader {
-    background-color: #272727;
-    color: #555;
-    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    color: #272727;
+
 }
 
 .smallHeaderSearchWrapper{
-    border-right: 1px solid #272727;
-    border-left: 1px solid #272727;
+    border-right: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
     text-align: left;
-    background-color: #363636;
+
+}
+
+.smallHeaderLeft{
+    padding-top: 12px;
+    padding-left: 35px;
+    text-align: left;
+}
+
+.smallHeaderRight{
+    padding-top: 12px;
+    text-align: center;
+    padding-right:30px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+}
+
+.smallHeaderRight a, a:hover, a:visited {
+    color: #272727;
+    text-decoration: none;
 }
 
 .headerSearchBar input {
     padding: 12px 12px;
-    color: #fafafa;
+    color: #000;
     border: none;
     line-height: 24px;
     width: 80%;
     outline: 0;
     border-radius: 1px;
     font-family: 'PT Sans', sans-serif;
-    background-color: #363636;
 }
 
 .headerSearchBar_btn {
@@ -114,7 +145,7 @@ html, body {
 
 .hero-title {
     padding-top: 50px;
-    font-family: 'Arbutus Slab', serif;
+    font-family: 'PT Sans', sans-serif;
     color: white;
 }
 
@@ -191,6 +222,7 @@ html, body {
     padding-left: 7px;
     padding-top: 7px;
     list-style-type: none;
+    font-family: 'Arbutus Slab', sans-serif;
 }
 
 .sermonList li{
@@ -210,6 +242,19 @@ html, body {
 
 }
 
+.searchContentsPanel{
+    width: 80%;
+    font-family: 'Arbutus Slab', sans-serif;
+}
+
+.searchResultsHeading{
+    padding-top: 30px;
+    text-align: left;
+}
+
+.searchResultsList{
+    border-top: 1px solid #f2f2f2;
+}
 
 .imageWrapper {
     width: 100px;

@@ -19,11 +19,20 @@ export function mostRecentSeriesLoadedError(errors: Array<Object>){
     }
 }
 
-export function searchResultsLoaded(results: Object){
+export function searchStarted(searchTerm: string){
+
+    return {
+        type: actionTypes.SEARCH_STARTED,
+        payload: searchTerm
+    }
+}
+
+export function searchResultsLoaded(searchTerm: string, results: Object){
 
     return {
         type: actionTypes.SEARCH_RESULTS_LOADED,
-        payload: results
+        payload: results,
+        searchTerm: searchTerm
     }
 }
 

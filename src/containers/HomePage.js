@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-
+import '../App.css';
 import { bindActionCreators } from 'redux'
 import MostRecentSeriesGrid from './most_recent_series_grid'
 import SearchBar from '../components/search_bar'
@@ -31,7 +31,7 @@ class HomePage extends Component{
                 </header>
                 <div className="hero-unit">
                     <div className="hero-title">
-                        <h2>Faith Bible Church Audio Archive</h2>
+                        <h1>Faith Bible Church Audio Archive</h1>
                         <h5>Explore Audio tracks from Faith Bible Church</h5>
                         <div className="hero-button">
                             <div>Register for the Podcast</div>

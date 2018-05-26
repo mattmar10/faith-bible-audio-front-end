@@ -2,7 +2,8 @@ import ApiGateway from "../api/api-gateway";
 import hasErrors from "../utils/has-errors-util";
 import * as actions from "../actions/index"
 
-const baseUrl = 'http://localhost:8080';
+const baseUrl = 'http://fbc-media-dev-lb-772092556.us-east-1.elb.amazonaws.com';
+//const baseUrl = 'http://localhost:8080';
 
 export default class AudioSearchService {
     constructor() {
@@ -24,7 +25,7 @@ export default class AudioSearchService {
                         console.log('errors fetching search results');
                         dispatch(actions.fetchSearchResultsError(result));
                     } else {
-                        dispatch(actions.searchResultsLoaded(result));
+                        dispatch(actions.searchResultsLoaded(searchQuery, result));
                     }
                     return result;
                 });
@@ -64,14 +65,13 @@ export default class AudioSearchService {
         }
     }
 
-    getSeriesDetails(seriesId: string) {
+    getSeriesDetails(slug: string) {
         return (dispatch: Function) => {
-            return this.apiGateway.get(baseUrl + '/series/' + seriesId)
+            return this.apiGateway.get(baseUrl + '/series/slug/' + slug)
                 .then((result) => {
                     if (hasErrors(result)) {
                         dispatch(actions.seriesDetailsLoadError(result))
                     } else {
-                        // console.log(result);
                         dispatch(actions.seriesDetailsLoaded(result));
                     }
                     return result;

@@ -31,7 +31,6 @@ class App extends Component {
     
     this.audioSearchService = new AudioSearchService();
 
-    //this.getMostRecent(7);
 
   }
 
@@ -58,8 +57,7 @@ class App extends Component {
 
 
   render() {
-
-    const audioSearchDebounced =  _.debounce((term) => { this.audioSearch(term) }, 300);
+      const audioSearchDebounced =  _.debounce((term) => { this.audioSearch(term) }, 300);
 
     return (
       <div className="App">
