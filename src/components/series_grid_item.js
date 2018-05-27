@@ -6,18 +6,20 @@ const SeriesGridItem = ({series}) => {
     const imageURL = series.imageURI != null ? series.imageURI : "http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Headphones-Apollo-icon.png";
     
     return (
-        <Link to={`/series/${series.slug}`}>
+        
         <div>
             <div className='seriesCard'>
-                <div>
-                    <img className="" src={imageURL} />
-                </div>
-                <div>
-                    <span className="sermon-list-item-heading">{title}</span>
-                </div>
+                <Link to={`/series/${series.slug}`}>
+                    <div>
+                        <img className="" src={imageURL} />
+                    </div>
+                    <div className='sermon-list-item-heading'>
+                        <span>{title}</span>
+                    </div>
+                </Link>
             </div>
         </div>
-        </Link>
+        
     );
 };
 

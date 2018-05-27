@@ -48,8 +48,9 @@ class MostRecentSeriesGrid extends Component{
     render(){
         return(
             <div className="most-recent-wrapper">
-                <h4>Recent Series</h4>
-                    {this.renderGrid()}
+                <h3>Recent Series</h3>
+
+                {this.renderGrid()}
             </div>
         );
     }
