@@ -32,18 +32,24 @@ class HeaderSearchBar extends Component {
 
     render() {
 
+        if("/" == this.props.location['pathname']){
+            return(<div></div>);
+        }
+        else{
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <button className="headerSearchBar_btn"></button>
+                    <input
+                        placeholder="Search for a Title, Series, Speaker."
+                        value={this.props.searchTerm}
+                        onChange={event => this.onInputChange(event.target.value)}
+                    />
+                </form>
 
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <button className="headerSearchBar_btn"></button>
-                <input
-                    placeholder="Search for a Title, Series, Speaker."
-                    value={this.props.searchTerm}
-                    onChange={event => this.onInputChange(event.target.value)}
-                />
-            </form>
+            );
+        }
 
-        );
+
     }
 }
 

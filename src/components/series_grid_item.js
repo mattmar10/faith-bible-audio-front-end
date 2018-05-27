@@ -7,14 +7,16 @@ const SeriesGridItem = ({series}) => {
     
     return (
         <Link to={`/series/${series.slug}`}>
-        <li className="col-md-4" >
-            <div>
-                <img className="img-thumbnail" src={imageURL} />
+        <div>
+            <div className='seriesCard'>
+                <div>
+                    <img className="" src={imageURL} />
+                </div>
+                <div>
+                    <span className="sermon-list-item-heading">{title}</span>
+                </div>
             </div>
-            <div>
-                <span className="sermon-list-item-heading">{title}</span>
-            </div>
-        </li>
+        </div>
         </Link>
     );
 };

@@ -1,3 +1,7 @@
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 html, body {
     background: #fff;
     text-align: center;
@@ -5,6 +9,7 @@ html, body {
     padding: 0px;
     width: 100%;
     overflow-x: hidden;
+    box-sizing: inherit;
 }
 
 .App {
@@ -29,7 +34,7 @@ html, body {
 }
 
 #logoImg{
-    width: 56px;
+    width: 115px;
 }
 
 .logoText span{
@@ -54,15 +59,16 @@ html, body {
 }
 
 .smallHeaderLeft{
-    padding-top: 12px;
-    padding-left: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
     text-align: left;
 }
 
 .smallHeaderRight{
-    padding-top: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     text-align: center;
-    padding-right:30px;
     font-family: 'PT Sans', sans-serif;
     font-size: 16px;
 }
@@ -79,7 +85,7 @@ html, body {
     line-height: 24px;
     width: 80%;
     outline: 0;
-    border-radius: 1px;
+    border-radius: 3px;
     font-family: 'PT Sans', sans-serif;
 }
 
@@ -130,81 +136,6 @@ html, body {
     border-top: 1px solid #f2f2f2;
     padding-top: 15px;
     margin-right: 30px;
-
-}
-
-.hero-unit {
-    height: 400px;
-    opacity: .95;
-    background-image: url('images/listen.jpg');
-    background-size: cover;
-    border-bottom: 1px solid #544543;
-    text-align: left;
-    padding-left: 50px;
-}
-
-.hero-title {
-    padding-top: 50px;
-    font-family: 'PT Sans', sans-serif;
-    color: white;
-}
-
-.hero-button {
-    margin-top: 170px;
-    background: orangered;
-    border-radius: 5px;
-    text-align: center;
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 8px;
-    color: white;
-    font-family: 'PT Sans', sans-serif;
-}
-
-.searchBarWrapper {
-    margin-top: 40px;
-    position: relative;
-    background: #eee;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.searchBar input {
-    padding: 15px 10px;
-    border: 0;
-    background: #eee;
-    line-height: 16px;
-    width: 92%;
-    outline: 0;
-    border-radius: 4px;
-    font-family: 'PT Sans', sans-serif;
-}
-
-.searchBar_btn {
-    border: 0;
-    padding: 0;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjE1cHgiIGhlaWdodD0iMTVweCIgdmlld0JveD0iMCAwIDE1IDE1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4yLjIgKDk5ODMpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPgogICAgPHRpdGxlPlNlYXJjaDwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJUb3AtQmFyIiBza2V0Y2g6dHlwZT0iTVNBcnRib2FyZEdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjAzNi4wMDAwMDAsIC03MDEuMDAwMDAwKSIgZmlsbD0iIzY2NjY2NiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMDQ1LjQ4MzI1LDcxMS44ODU5NjEgTDIwNDguOTEyNDksNzE1LjMxNTIwNyBDMjA0OS4yOTg3Niw3MTUuNzAxNDc2IDIwNDkuOTIzMiw3MTUuNzAzMzAyIDIwNTAuMzEzMjUsNzE1LjMxMzI1MiBDMjA1MC43MDA2LDcxNC45MjU5MDMgMjA1MC42OTY4MSw3MTQuMjk0MDk2IDIwNTAuMzE1MjEsNzEzLjkxMjQ5MSBMMjA0Ni44ODU5Niw3MTAuNDgzMjQ2IEMyMDQ3LjU4NzMzLDcwOS41MDExOTIgMjA0OCw3MDguMjk4Nzg4IDIwNDgsNzA3IEMyMDQ4LDcwMy42ODYyOTIgMjA0NS4zMTM3MSw3MDEgMjA0Miw3MDEgQzIwMzguNjg2MjksNzAxIDIwMzYsNzAzLjY4NjI5MiAyMDM2LDcwNyBDMjAzNiw3MTAuMzEzNzA4IDIwMzguNjg2MjksNzEzIDIwNDIsNzEzIEMyMDQzLjI5ODc5LDcxMyAyMDQ0LjUwMTE5LDcxMi41ODczMzIgMjA0NS40ODMyNSw3MTEuODg1OTYxIEwyMDQ1LjQ4MzI1LDcxMS44ODU5NjEgWiBNMjAzOCw3MDcgQzIwMzgsNzA0Ljc5MDg2MSAyMDM5Ljc5MDg2LDcwMyAyMDQyLDcwMyBDMjA0NC4yMDkxNCw3MDMgMjA0Niw3MDQuNzkwODYxIDIwNDYsNzA3IEMyMDQ2LDcwOS4yMDkxMzkgMjA0NC4yMDkxNCw3MTEgMjA0Miw3MTEgQzIwMzkuNzkwODYsNzExIDIwMzgsNzA5LjIwOTEzOSAyMDM4LDcwNyBaIiBpZD0iU2VhcmNoIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj48L3BhdGg+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=) 0 0 no-repeat;
-    width: 15px;
-    height: 15px;
-}
-
-.mostRecent {
-    margin-top: 35px;
-    font-family: 'PT Sans', sans-serif;
-    background-color: #fafafa;
-    overflow: hidden;
-}
-
-.mostRecent h2 {
-    font-family: 'PT Sans', sans-serif;
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 25%;
 
 }
 
@@ -267,14 +198,6 @@ html, body {
     display: block;
 }
 
-.sermon-list-item-heading {
-    color: #272727;
-    font-size: 14px;
-    display: inline-block;
-    width: 90%;
-    overflow: hidden;
-    white-space: nowrap;
-}
 
 .sermon-list-item-menu {
     display: inline-block;
@@ -297,22 +220,6 @@ html, body {
     color: #666;
 }
 
-.most-recent-list {
-    width: 100%;
-    text-align: center;
-    list-style-type: none;
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-.most-recent-list li {
-    padding: 5px;
-
-}
-
-.most-recent-list li img {
-    width: 100%;
-}
 
 @keyframes App-logo-spin {
     from {

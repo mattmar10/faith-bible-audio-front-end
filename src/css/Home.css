@@ -1,0 +1,148 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
+@media only screen and (max-width: 600px)  {
+    .hero-title {
+        width: 93%;
+        text-align: center;
+    }
+
+    .most-recent-column {
+        flex: 98%;
+        max-width: 98%;
+        padding: 0 4px;
+    }
+}
+
+@media only screen and (min-width: 600px)  {
+    .hero-title {
+        width: 66%;
+        text-align: left;
+    }
+
+    .most-recent-column {
+        flex: 32%;
+        max-width: 32%;
+        padding: 0 7px;
+    }
+}
+
+
+.hero-unit {
+    height: 450px;
+    opacity: .95;
+    background-image: url('../images/home-hero.jpg');
+    background-size: cover;
+    border-bottom: 1px solid #544543;
+}
+
+.hero-title {
+    padding-top: 10%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: white;
+
+    margin: auto;
+}
+
+.hero-subheading{
+    font-weight: 400;
+}
+
+.hero-button {
+    margin-top: 170px;
+    background: orangered;
+    border-radius: 5px;
+    text-align: center;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+}
+
+
+.searchBarWrapper {
+    padding: 6px 10px 6px 10px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #272727;
+    border-radius: 7px;
+
+    background-color: #f2f2f2;
+}
+
+.searchBar{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search{
+    flex: 1;
+}
+
+.searchBar input {
+    padding: 10px 10px;
+    border: 0;
+    background: #f2f2f2;
+    line-height: 14px;
+    outline: 0;
+    font-weight: normal;
+    width: 100%;
+}
+
+.mostRecent {
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+
+}
+
+.most-recent-wrapper{
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.mostRecent h4 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.most-recent-column img {
+    vertical-align: middle;
+    width: 100%;
+
+}
+
+.most-recent-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.seriesCard{
+    padding-bottom: 10px;
+
+}
+
+
+.sermon-list-item-heading {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    overflow: hidden;
+    font-size: 16px;
+    white-space: pre;
+
+}

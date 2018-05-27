@@ -22,21 +22,34 @@ class MostRecentSeriesGrid extends Component{
             return(<div>{this.props.mostRecentSeries.errorMessage}</div>);
         }
         else if(!_.isEmpty(this.props.mostRecentSeries.data)){
-            return this.props.mostRecentSeries.data.map((result) => {
-                return (
-                    <SeriesGridItem key={result.title} series={result} />
-                )
-            });
+
+            const mapped = this.props.mostRecentSeries.data;
+
+            return(
+                <div className="most-recent-row">
+                    <div className='most-recent-column'>
+                        <SeriesGridItem series={mapped[0]} />
+                        <SeriesGridItem series={mapped[3]} />
+                    </div>
+                    <div className='most-recent-column'>
+                        <SeriesGridItem series={mapped[1]} />
+                        <SeriesGridItem series={mapped[4]} />
+                    </div>
+                    <div className='most-recent-column'>
+                        <SeriesGridItem series={mapped[2]} />
+                        <SeriesGridItem series={mapped[5]} />
+                    </div>
+                </div>
+            );
+
         }
     }
 
     render(){
         return(
-            <div>
-                <h2>Recent Series</h2>
-                <ul className="most-recent-list col-sm-4">
+            <div className="most-recent-wrapper">
+                <h4>Recent Series</h4>
                     {this.renderGrid()}
-                </ul>
             </div>
         );
     }
