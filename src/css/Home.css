@@ -40,8 +40,11 @@
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     color: white;
-
     margin: auto;
+}
+.hero-title h1 {
+    font-weight: bold;
+    font-size: 42px;
 }
 
 .hero-subheading{
