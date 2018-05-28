@@ -137,7 +137,8 @@
     flex-grow: 1;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    padding-right: 45px;
+    font-size: 14px;
+    padding-right: 25px;
     text-align: right;
     color: #555;
 }
