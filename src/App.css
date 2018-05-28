@@ -35,6 +35,7 @@ html, body {
 
 #logoImg{
     width: 115px;
+    margin-right: 10px;
 }
 
 .logoText span{
@@ -43,19 +44,6 @@ html, body {
     padding-left: 22px;
     font-family: 'PT Sans';
     font-size: 18px;
-}
-
-.smallHeader {
-    background-color: #fff;
-    color: #272727;
-
-}
-
-.smallHeaderSearchWrapper{
-    border-right: 1px solid #dddddd;
-    border-left: 1px solid #dddddd;
-    text-align: left;
-
 }
 
 .smallHeaderLeft{
@@ -76,17 +64,6 @@ html, body {
 .smallHeaderRight a, a:hover, a:visited {
     color: #272727;
     text-decoration: none;
-}
-
-.headerSearchBar input {
-    padding: 12px 12px;
-    color: #000;
-    border: none;
-    line-height: 24px;
-    width: 80%;
-    outline: 0;
-    border-radius: 3px;
-    font-family: 'PT Sans', sans-serif;
 }
 
 .headerSearchBar_btn {

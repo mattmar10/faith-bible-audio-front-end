@@ -1,0 +1,36 @@
+#bmenu_ellipse{
+  width: 100px;
+}
+
+.bmenu{
+  position: absolute;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 170px;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #f2f2f2;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.bmenu li {
+  display: block;
+  padding: 7px;
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.bmenu a{
+  display: block;
+}
+
+.bmenu a, a:hover, a:visited{
+  color: #555;
+}
+
+.menuIcon{
+  font-size: 1.2em;
+}

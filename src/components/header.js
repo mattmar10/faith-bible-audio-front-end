@@ -1,32 +1,54 @@
-import React from 'react';
+
+import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import HeaderSearchBar from '../containers/header_search_bar'
 import logo from '../images/logo.png'
+import HeaderRightMenu from '../containers/header-right-menu';
 
-const SeriesGridItem = () => {
+class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            width: window.innerWidth,
+        };
+    }
 
-    return (
-        <div className="smallHeader">
-            <div className="row ">
+    componentWillMount() {
+        window.addEventListener('resize', this.handleWindowSizeChange);
+    }
+
+    // make sure to remove the listener
+    // when the component is not mounted anymore
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
+
+    handleWindowSizeChange = () => {
+        this.setState({ width: window.innerWidth });
+    };
+
+    render() {
+
+        const { width } = this.state;
+        const isMobile = width <= 500;
+
+        return (
+            <div className="smallHeader">
                 <Link to={'/'}>
-                    <div className="col-sm-5 smallHeaderLeft">
-
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-sm-1">
-                                    <img id="logoImg" src={logo}/>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <img id="logoImg" src={logo} />
                     </div>
+
                 </Link>
-                <div className="col-sm-4 smallHeaderSearchWrapper">
-                    <div className="headerSearchBar"> {<HeaderSearchBar />}</div>
-                </div>
+
+                {<HeaderSearchBar isMobile={isMobile} />}
+
+                {<HeaderRightMenu isMobile={isMobile}/>}
 
             </div>
-        </div>
-    );
-};
 
-export default SeriesGridItem;
+        );
+    }
+}
+
+export default Header;

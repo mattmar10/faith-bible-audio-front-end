@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import { bindActionCreators } from 'redux'
 import AudioSearchService from "../services/audio-search-service";
@@ -10,6 +10,8 @@ class HeaderSearchBar extends Component {
 
     constructor(props){
         super(props);
+        console.log(this.props.isMobile);
+
         this.handleSubmit= this.handleSubmit.bind(this);
         this.state = {term: ''}
     }
@@ -36,17 +38,35 @@ class HeaderSearchBar extends Component {
             return(<div></div>);
         }
         else{
-            return (
-                <form onSubmit={this.handleSubmit}>
-                    <button className="headerSearchBar_btn"></button>
-                    <input
-                        placeholder="Search for a Title, Series, Speaker."
-                        value={this.props.searchTerm}
-                        onChange={event => this.onInputChange(event.target.value)}
-                    />
-                </form>
 
-            );
+            if(this.props.isMobile){
+                return(
+                    <div />
+                );
+            }
+            else{
+                return (
+                    <div className='headerSearchBarWrapper'>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="headerSearchBar">
+                                <div>
+                                    <span className="fa fa-search"/>
+                                </div>
+                                <div className="headerSearch">
+                                    <input
+                                        placeholder = "Search by Title, Series, etc..."
+                                        value = {this.state.term}
+                                        onChange={event => this.onInputChange(event.target.value)} />
+    
+                                </div>
+                                
+                            </div>
+                            
+                        </form>
+                    
+                    </div>
+                );
+            }
         }
 
 
