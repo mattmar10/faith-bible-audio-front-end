@@ -1,9 +1,8 @@
+import { API_ROOT } from '../api/api-config';
 import ApiGateway from "../api/api-gateway";
 import hasErrors from "../utils/has-errors-util";
 import * as actions from "../actions/index"
 
-const baseUrl = 'http://fbc-media-dev-lb-772092556.us-east-1.elb.amazonaws.com';
-//const baseUrl = 'http://localhost:8080';
 
 export default class AudioSearchService {
     constructor() {
@@ -14,7 +13,7 @@ export default class AudioSearchService {
     freeTextSearch(searchQuery: string, pageNum: int = 0, size: int = 500) {
 
         return (dispatch: Function) => {
-            return this.apiGateway.get(baseUrl + '/search',
+            return this.apiGateway.get(API_ROOT + '/search',
                 {
                     q: searchQuery,
                     page: pageNum,
@@ -35,7 +34,7 @@ export default class AudioSearchService {
 
     getMostRecentSeries(count: int) {
         return (dispatch: Function) => {
-            return this.apiGateway.get(baseUrl + '/series/mostrecent', {
+            return this.apiGateway.get(API_ROOT + '/series/mostrecent', {
                 count: count
             })
                 .then((result) => {
@@ -52,7 +51,7 @@ export default class AudioSearchService {
 
     getSermonDetails(sermonId: string) {
         return (dispatch: Function) => {
-            return this.apiGateway.get(baseUrl + '/sermon/' + sermonId)
+            return this.apiGateway.get(API_ROOT + '/sermon/' + sermonId)
                 .then((result) => {
                     if (hasErrors(result)) {
                         dispatch(actions.sermonDetailsLoadError(result))
@@ -67,7 +66,7 @@ export default class AudioSearchService {
 
     getSeriesDetails(slug: string) {
         return (dispatch: Function) => {
-            return this.apiGateway.get(baseUrl + '/series/slug/' + slug)
+            return this.apiGateway.get(API_ROOT + '/series/slug/' + slug)
                 .then((result) => {
                     if (hasErrors(result)) {
                         dispatch(actions.seriesDetailsLoadError(result))
