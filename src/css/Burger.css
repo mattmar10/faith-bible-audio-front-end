@@ -28,8 +28,12 @@
   display: block;
 }
 
-.bmenu a, a:hover, a:visited{
-  color: #555;
+.bmenu a, .bmenu a:hover {
+  color: #777;
+}
+
+.bmenu a:hover{
+  color: #272727;
 }
 
 .menuIcon{
