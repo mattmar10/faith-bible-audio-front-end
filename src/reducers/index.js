@@ -3,13 +3,15 @@ import mostRecentSeriesReducer from './reducer_recent_series_reducer'
 import searchResultsReducer from './reducer_search_results_reducer'
 import seriesDetailsReducer from './reducer_series_details'
 import sermonDetailsReducer from './reducer_sermon_details'
+import playSermonReducer from './reducer_play_sermon_audio'
 
 
 const rootReducer = combineReducers({
     mostRecentSeries: mostRecentSeriesReducer,
     searchResults: searchResultsReducer,
     seriesDetails: seriesDetailsReducer,
-    sermonDetails: sermonDetailsReducer
+    sermonDetails: sermonDetailsReducer,
+    sermonForAudio: playSermonReducer
 });
 
 export default rootReducer;

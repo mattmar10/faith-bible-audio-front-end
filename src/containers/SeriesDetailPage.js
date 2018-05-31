@@ -1,19 +1,38 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
 import AudioSearchService from '../services/audio-search-service'
-import SermonList from '../components/sermon_list'
+import SermonList from '../containers/sermon_list_container'
+import SeriesBanner from '../components/series_banner'
 import Header from '../components/header'
+import FooterPlayer from '../containers/footer_player'
 import _ from 'lodash'
+
+import loading from '../images/ajax-loader.gif'
 
 class SeriesDetailPage extends Component{
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            width: window.innerWidth,
+        };
+    }
+
     componentWillMount() {
+        window.addEventListener('resize', this.handleWindowSizeChange);
+
         const seriesId = this.props.match.params['seriesId']
         this.props.getSeriesDetails(seriesId);
     }
 
-    renderSeries(){
+    // make sure to remove the listener
+    // when the component is not mounted anymore
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
+
+
+    renderSeries(isMobile: boolean){
         if(this.props.seriesDetails.error){
             return(<div>{this.props.seriesDetails.errorMessage}</div>);
         }
@@ -25,25 +44,14 @@ class SeriesDetailPage extends Component{
                 const imageURL = series.imageURI != null ? series.imageURI : "http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Headphones-Apollo-icon.png";
     
                 return (
-                    <div className='container-fluid'>
-                        <div className='seriesBanner'>
-                            <div className='row vertical-align'>
+                    <div >
+                        <SeriesBanner series={series} isMobile={isMobile}/>
 
-                                <div className='col-sm-5 seriesBannerTitle'>
-                                    <h2>{series.title}</h2>
-                                    <p>Some text here.</p>
-                                </div>
-                                <div className='col-sm-7 '>
-                                    <img className='img-fluid' src={imageURL} />
-                                </div>
-
-                            </div>
-                        </div>
                         <div className='row seriesContent'>
 
                             <div className='col-sm-8 seriesSermonList' >
                                 <h3>Messages</h3>
-                                <SermonList sermons={sermonsList}/>
+                                <SermonList sermons={sermonsList} />
                             </div>
 
                             <div className='col-sm-3 seriesRelated' >
@@ -58,7 +66,7 @@ class SeriesDetailPage extends Component{
             else{
                 return(
                     <div>
-                        <h2>Series Detail Page</h2>
+                        <img src={loading} />
                     </div>
                 );
             }
@@ -68,13 +76,16 @@ class SeriesDetailPage extends Component{
 
     render(){
 
+        const { width } = this.state;
+        const isMobile = width <= 768;
+
         return(
             <div>
-                <Header/>
-                <div className='App'>
-
-                    {this.renderSeries()}
+                <div>
+                    <Header/>
+                    {this.renderSeries(isMobile)}
                 </div>
+                <FooterPlayer/>
             </div>
         );
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import { withRouter, Link } from "react-router-dom";
 
-import { bindActionCreators } from 'redux'
 import AudioSearchService from "../services/audio-search-service";
 import {connect} from "react-redux";
 
@@ -10,8 +9,6 @@ class HeaderSearchBar extends Component {
 
     constructor(props){
         super(props);
-        console.log(this.props.isMobile);
-
         this.handleSubmit= this.handleSubmit.bind(this);
         this.state = {term: ''}
     }
@@ -75,7 +72,7 @@ class HeaderSearchBar extends Component {
 
 function mapStateToProps(state) {
     return {
-        searchTerm: state.searchTerm
+        searchTerm: state.searchResults.searchTerm
     };
 }
 

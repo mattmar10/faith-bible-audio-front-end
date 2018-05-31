@@ -1,0 +1,14 @@
+#stickyFooter{
+    width:100%;
+    height:44px;
+    padding-top:20px;
+    background: #f2f2f2;
+    text-align:center;
+    position:fixed;    /*Here's what sticks it*/
+    bottom:0;          /*to the bottom of the window*/
+    left:0;            /*and to the left of the window.*/
+}
+
+#stickyFooter i:hover{
+    cursor: pointer;
+}

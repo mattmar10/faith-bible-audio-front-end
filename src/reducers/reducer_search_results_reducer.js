@@ -16,6 +16,7 @@ export default function (state: Array<Object> = {}, action: Object) {
         case actionTypes.SEARCH_RESULTS_LOADED:
             const mapped = _.mapKeys(action.payload.data.content, 'id');
             return {
+                ...state,
                 isFetching: false,
                 error: false,
                 errorMessage: null,

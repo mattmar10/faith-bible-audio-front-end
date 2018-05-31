@@ -70,3 +70,10 @@ export function sermonDetailsLoadError(errors: Array<Object>){
         payload: errors
     }
 }
+
+export function playSermonAudio(sermon: Object){
+    return {
+        type: actionTypes.PLAY_SERMON_AUDIO,
+        payload: sermon
+    }
+}
