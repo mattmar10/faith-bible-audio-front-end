@@ -78,27 +78,46 @@ class FooterPlayer extends Component {
 
     }
 
+
+
     render(){
 
+        function str_pad_left(string, pad, length) {
+            return (new Array(length+1).join(pad)+string).slice(-length);
+        }
 
         if(this.props.sermon) {
             const src = this.props.sermon['mp3URI'];
 
+            var minutes = Math.floor(this.state.duration / 60);
+            var seconds = this.state.duration - minutes * 60;
+
+            var timeDisplay = str_pad_left(minutes,'0',2)+':'+str_pad_left(seconds,'0',2);
 
             return (
                 <div id='stickyFooter'>
-                    <i className="material-icons" onClick={ this.handlePlay.bind(this) }>play_circle_outline</i>
-                    <i className="material-icons" onClick={ this.handleStop.bind(this) }>pause</i>
+                    <div className={"playerWrapper"}>
+                        <div className={"controls"}>
+                            <i className="material-icons" onClick={ this.handlePlay.bind(this) }>play_circle_outline</i>
+                            <i className="material-icons" onClick={ this.handleStop.bind(this) }>pause</i>
+                        </div>
 
-                    <audio ref={(audio) => { this.audio = audio }} src={src} autoPlay={true}/>
+                        <div className={"audio"}>
+                            <audio ref={(audio) => { this.audio = audio }} src={src} autoPlay={true}/>
+                        </div>
 
-                    <p><input ref={(slider) => {
-                        this.slider = slider }}
-                              type="range"
-                              name="points"
-                              value={this.state.currentTime}
-                              onChange={this.seekToTime.bind(this)}
-                              min="0" max={this.state.duration} /> </p>
+
+                        <div className={"progressBar"}>
+                            <p><input ref={(slider) => {
+                                this.slider = slider }}
+                                      type="range"
+                                      name="points"
+                                      value={this.state.currentTime}
+                                      onChange={this.seekToTime.bind(this)}
+                                      min="0" max={this.state.duration} /> </p>
+                        </div>
+                        <div className={"duration"}>{timeDisplay}</div>
+                    </div>
                 </div>
 
 
