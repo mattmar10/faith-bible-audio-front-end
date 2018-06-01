@@ -6,8 +6,9 @@ import { fetchSearchResults } from '../actions/index'
 import { bindActionCreators } from 'redux'
 
 import AudioSearchService from '../services/audio-search-service'
-import SermonList from '../components/sermon_list'
+import SermonList from '../containers/sermon_list_container'
 import Header from '../components/header'
+import FooterPlayer from '../containers/footer_player'
 
 
 class SearchResultsPage extends Component{
@@ -59,6 +60,7 @@ class SearchResultsPage extends Component{
                     </div>
 
                 </div>
+                <FooterPlayer />
 
             </div>
         );
