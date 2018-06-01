@@ -29,7 +29,6 @@ class FooterPlayer extends Component {
 
 
     seekToTime(e){
-        console.log(e.target.value);
         this.audio.currentTime = e.target.value;
 
     }
@@ -82,17 +81,22 @@ class FooterPlayer extends Component {
 
     render(){
 
-        function str_pad_left(string, pad, length) {
-            return (new Array(length+1).join(pad)+string).slice(-length);
-        }
+        function pad(str, size=2) {
+            while (str.length < (size)) {str = "0" + str;}
+            return str;
+          }
+          
 
         if(this.props.sermon) {
             const src = this.props.sermon['mp3URI'];
 
-            var minutes = Math.floor(this.state.duration / 60);
-            var seconds = this.state.duration - minutes * 60;
+            var current_min = Math.floor(this.state.currentTime / 60);
+            var current_seconds = Math.round((this.state.currentTime - current_min * 60));
+            var currentDisplay = `${pad(current_min.toString())}:${pad(current_seconds.toString())}`;
 
-            var timeDisplay = str_pad_left(minutes,'0',2)+':'+str_pad_left(seconds,'0',2);
+            var duration_min = Math.floor(this.state.duration / 60);
+            var duration_seconds = Math.round((this.state.duration - duration_min * 60));
+            var durationDisplay = `${pad(duration_min.toString())}:${pad(duration_seconds.toString())}`;
 
             return (
                 <div id='stickyFooter'>
@@ -106,7 +110,7 @@ class FooterPlayer extends Component {
                             <audio ref={(audio) => { this.audio = audio }} src={src} autoPlay={true}/>
                         </div>
 
-
+                        <div className={"currentTime"}>{currentDisplay}</div>
                         <div className={"progressBar"}>
                             <p><input ref={(slider) => {
                                 this.slider = slider }}
@@ -116,7 +120,7 @@ class FooterPlayer extends Component {
                                       onChange={this.seekToTime.bind(this)}
                                       min="0" max={this.state.duration} /> </p>
                         </div>
-                        <div className={"duration"}>{timeDisplay}</div>
+                        <div className={"duration"}>{durationDisplay}</div>
                     </div>
                 </div>
 
