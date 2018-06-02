@@ -60,7 +60,6 @@ class SearchResultsPage extends Component{
                     </div>
 
                 </div>
-                <FooterPlayer />
 
             </div>
         );

@@ -23,7 +23,6 @@ class FooterPlayer extends Component {
 
     handleStop() {
         //this.audio.currentTime = 0;
-        this.slider.value = 0;
         this.audio.pause();
     }
 

@@ -4,7 +4,6 @@ import AudioSearchService from '../services/audio-search-service'
 import SermonList from '../containers/sermon_list_container'
 import SeriesBanner from '../components/series_banner'
 import Header from '../components/header'
-import FooterPlayer from '../containers/footer_player'
 import _ from 'lodash'
 
 import loading from '../images/ajax-loader.gif'
@@ -80,13 +79,12 @@ class SeriesDetailPage extends Component{
         const isMobile = width <= 768;
 
         return(
+            
             <div>
-                <div>
-                    <Header/>
-                    {this.renderSeries(isMobile)}
-                </div>
-                <FooterPlayer/>
+                <Header/>
+                {this.renderSeries(isMobile)}
             </div>
+                
         );
 
         

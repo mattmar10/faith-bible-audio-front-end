@@ -12,8 +12,6 @@ import SearchResultsPage from '../containers/SearchResultsPage'
 // when the pathname is exactly the string "/"
 class Main extends Component {
 
-    
-
     render() {
         return (
             <main>
@@ -23,7 +21,6 @@ class Main extends Component {
                         <Route path='/sermon/:sermonId' component={SermonDetailPage} />
                         <Route path='/series/:seriesId' component={SeriesDetailPage} />
                         <Route exact path='/' component={Homepage} />
-
                     </Switch>
                 </BrowserRouter>
             </main>
