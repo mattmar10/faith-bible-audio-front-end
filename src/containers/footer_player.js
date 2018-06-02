@@ -52,7 +52,7 @@ class FooterPlayer extends Component {
 
     renderMobileFooter(currentDisplay, durationDisplay){
         const src = this.props.sermon['mp3URI'];
-        const imageURL = this.props.sermon.imageURI != null ? this.props.sermon.imageURI : "http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Headphones-Apollo-icon.png";
+        const imageURL = this.props.sermon.imageURI != null ? this.props.sermon.imageURI : "http://faithbibleok.com/wp-content/uploads/FB-Logo-2.png";
 
 
         var title = (this.props.sermon.title.length > 45) ?
@@ -113,7 +113,7 @@ class FooterPlayer extends Component {
     renderDesktopFooter(currentDisplay, durationDisplay){
 
         const src = this.props.sermon['mp3URI'];
-        const imageURL = this.props.sermon.imageURI != null ? this.props.sermon.imageURI : "http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Headphones-Apollo-icon.png";
+        const imageURL = this.props.sermon.imageURI != null ? this.props.sermon.imageURI : "http://faithbibleok.com/wp-content/uploads/FB-Logo-2.png";
 
         return (
             <div id='stickyFooter'>
