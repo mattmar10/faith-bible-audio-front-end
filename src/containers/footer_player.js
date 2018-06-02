@@ -99,6 +99,7 @@ class FooterPlayer extends Component {
 
             return (
                 <div id='stickyFooter'>
+                <div className='playerTitle'>{this.props.sermon.title}</div>
                     <div className={"playerWrapper"}>
                         <div className={"controls"}>
                             <i className="material-icons" onClick={ this.handlePlay.bind(this) }>play_circle_outline</i>
@@ -108,9 +109,10 @@ class FooterPlayer extends Component {
                         <div className={"audio"}>
                             <audio ref={(audio) => { this.audio = audio }} src={src} autoPlay={true}/>
                         </div>
-
+                        
                         <div className={"currentTime"}>{currentDisplay}</div>
                         <div className={"progressBar"}>
+                            
                             <p><input ref={(slider) => {
                                 this.slider = slider }}
                                       type="range"

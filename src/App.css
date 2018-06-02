@@ -117,19 +117,6 @@ html, body {
 
 }
 
-.searchContentsPanel{
-    width: 80%;
-    font-family: 'Arbutus Slab', sans-serif;
-}
-
-.searchResultsHeading{
-    padding-top: 30px;
-    text-align: left;
-}
-
-.searchResultsList{
-    border-top: 1px solid #f2f2f2;
-}
 
 .imageWrapper {
     width: 100px;

@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import '../css/Search.css'
 import qs from 'qs'
 import _ from 'lodash'
 import { fetchSearchResults } from '../actions/index'
@@ -11,48 +12,77 @@ import Header from '../components/header'
 import FooterPlayer from '../containers/footer_player'
 
 
-class SearchResultsPage extends Component{
+class SearchResultsPage extends Component {
+
+    constructor(props){
+        super(props);
+        this.handleSubmit= this.handleSubmit.bind(this);
+        this.onInputChange = this.onInputChange.bind(this);
+
+        if(this.props.searchTerm){
+            this.state = {term: this.props.searchTerm}
+        }
+        else{
+            this.state = {term: ''};
+        }
+    }
 
     componentWillMount() {
         const values = qs.parse(this.props.location.search.slice(1));
-        this.props.fetchSearchResults(values.q);
         
+        if(values.q){
+            this.props.fetchSearchResults(values.q);
+            this.setState({term: values.q});
+        }
+    }
+
+    componentDidMount(){
+        this.searchInput.focus();
+    }
+
+    onInputChange(event) {
+        this.setState({term: event.target.value});
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.fetchSearchResults(this.state.term);
     }
 
     renderList() {
 
 
-       if(!_.isEmpty(this.props.searchResults.data)){
-           console.log('here');
-           const sermonsList = Object.keys(this.props.searchResults.data).map(result => {
-               return this.props.searchResults.data[result];
-           });
-           return(
-               <SermonList sermons={sermonsList}/>
-           );
-           /*return Object.keys(this.props.searchResults.data).map(result => {
-                const sermon = this.props.searchResults.data[result];
-                return (
-                    <SermonListItem key={sermon.id} sermon={sermon} />
-                )
-           })*/
-       } 
+        if (!_.isEmpty(this.props.searchResults.data)) {
+            const sermonsList = Object.keys(this.props.searchResults.data).map(result => {
+                return this.props.searchResults.data[result];
+            });
+            return (
+                <SermonList sermons={sermonsList} />
+            );
+   
+        }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
-                <Header/>
+                <Header />
                 <div className='container-fluid searchContentsPanel' >
                     <div className='row'>
                         <div className='col-sm-12 searchResultsHeading'>
-                            <h1>Results: {this.props.searchTerm}</h1>
+                            
+                            <form onSubmit={this.handleSubmit}>
+                                <div className="search cursor">
+                                    <input type="text" 
+                                        placeholder = 'Search'
+                                        ref={(input) => { this.searchInput = input; }} 
+                                        onChange={this.onInputChange} 
+                                        value = {this.state.term} />
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div className='row'>
-                        <div className='col-sm-4 '>
-                            Menu Here
-                        </div>
                         <div className='col-sm-8 searchResultsList '>
 
                             {this.renderList()}
@@ -66,8 +96,8 @@ class SearchResultsPage extends Component{
     }
 }
 
-function mapStateToProps(state){
-    return{
+function mapStateToProps(state) {
+    return {
         searchResults: state.searchResults,
         searchTerm: state.searchResults.searchTerm
     };
@@ -77,9 +107,9 @@ function mapStateToProps(state){
     return bindActionCreators({fetchSearchResults: fetchSearchResults}, dispatch);
 }*/
 
-function mapDispatchToProps (dispatch) {
-    
-    return { 
+function mapDispatchToProps(dispatch) {
+
+    return {
         fetchSearchResults: (query) => dispatch(audioSearchService.freeTextSearch(query))
     }
 }
@@ -89,5 +119,5 @@ const audioSearchService = new AudioSearchService();
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(SearchResultsPage);            
+)(SearchResultsPage);
 

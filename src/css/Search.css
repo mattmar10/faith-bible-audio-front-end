@@ -1,0 +1,52 @@
+.searchContentsPanel{
+    width: 85%;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.searchResultsHeading{
+    padding-top: 10px;
+    text-align: left;
+}
+
+.searchResultsList{
+    border-top: 1px solid #f2f2f2;
+}
+
+.search{
+    width: 100%;
+}
+
+.search input[type=text]{
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-top: 10px;
+    font-size: 22px;
+    color: black;
+}
+
+.cursor {
+    position: relative;
+}
+.cursor i {
+    position: absolute;
+    width: 1px;
+    height: 70%;
+    background-color: black;
+    left: 5px;
+    top: 10%;
+    animation-name: blink;
+    animation-duration: 800ms;
+    animation-iteration-count: infinite;
+    opacity: 1;
+}
+
+.cursor input:focus + i {
+    display: none;
+}
+
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
