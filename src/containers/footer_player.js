@@ -7,10 +7,13 @@ class FooterPlayer extends Component {
     constructor(props) {
         super(props);
 
+        this.toggleFooterHeight= this.toggleFooterHeight.bind(this);
+
         this.state = {
             duration: null,
             currentTime: 0,
             width: window.innerWidth,
+            collapsed: false
         }
     }
 
@@ -38,7 +41,7 @@ class FooterPlayer extends Component {
         if (this.audio) {
             this.audio.onplay = () => {
                 this.currentTimeInterval = setInterval(() => {
-                    this.setState({duration: this.audio.duration, currentTime: this.audio.currentTime});
+                    this.setState( {duration: this.audio.duration, currentTime: this.audio.currentTime});
                 }, 500);
             };
 
@@ -50,6 +53,12 @@ class FooterPlayer extends Component {
         //this.audio = null;
     }
 
+    toggleFooterHeight(){
+
+        this.setState({collapsed: !this.state.collapsed})
+    }
+
+
     renderMobileFooter(currentDisplay, durationDisplay){
         const src = this.props.sermon['mp3URI'];
         const imageURL = this.props.sermon.imageURI != null ? this.props.sermon.imageURI : "http://faithbibleok.com/wp-content/uploads/FB-Logo-2.png";
@@ -59,31 +68,39 @@ class FooterPlayer extends Component {
             this.props.sermon.title.substring(0, 45) + "..." :
             this.props.sermon.title;
 
+        var heightStyle = this.state.collapsed ?  {height: '23px'} : {height: '80px'};
+
+        const toggleText = this.state.collapsed ? "expand_less" : "expand_more";
+
         return(
-            <div id='stickyFooterMobile'>
+            <div id='stickyFooterMobile' style={heightStyle}>
                 <div>
                     <div className={"playerWrapperMobile"}>
-                        <div className={"playerImg"}>
-                            <img className='img-fluid' src={imageURL}/>
+                        <div className={"controlsMobile"}>
+                            <i className="material-icons md-36" onClick={this.handlePlay.bind(this)}>play_circle_outline</i>
+                            <i className="material-icons md-36" onClick={this.handleStop.bind(this)}>pause</i>
                         </div>
 
-                        <div>
+                        <div className={"playerSermonDetailsWrapper"}>
 
                             <div className={"playerSermonDetails"}>
-                                <div className={'playerSeries'}>{this.props.sermon.series}</div>
+                                <div className={'playerSeries'}>{this.props.sermon.series} ({this.props.sermon.date})</div>
                                 <div className='playerTitle'>{title}</div>
                                 <div className={'playerSpeaker'}>{this.props.sermon.speaker}</div>
 
                             </div>
 
                         </div>
+                        <div className={"playerExpandToggle"} onClick={this.toggleFooterHeight}>
+                            <i className="material-icons">
+                                {toggleText}
+                            </i>
+                        </div>
+
 
                     </div>
                     <div className={"playerMobileControlsWrapper"}>
-                        <div className={"controlsMobile"}>
-                            <i className="material-icons md-22" onClick={this.handlePlay.bind(this)}>play_circle_outline</i>
-                            <i className="material-icons md-22" onClick={this.handleStop.bind(this)}>pause</i>
-                        </div>
+
                         <div className={"audio"}>
                             <audio ref={(audio) => {
                                 this.audio = audio
