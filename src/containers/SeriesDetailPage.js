@@ -48,14 +48,11 @@ class SeriesDetailPage extends Component{
 
                         <div className='row seriesContent'>
 
-                            <div className='col-sm-8 seriesSermonList' >
-                                <h3>Messages</h3>
+                            <div className='seriesSermonList' >
                                 <SermonList sermons={sermonsList} />
                             </div>
 
-                            <div className='col-sm-3 seriesRelated' >
-                                Content here
-                            </div>
+
                         </div>
                     </div>
 

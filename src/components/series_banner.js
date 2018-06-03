@@ -9,8 +9,6 @@ class SeriesBanner extends Component {
 
     render(){
 
-        console.log('series banner');
-        console.log(this.props.isMobile);
         const imageURL = this.props.series.imageURI != null ? this.props.series.imageURI : "http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Headphones-Apollo-icon.png";
 
         if(this.props.isMobile){
@@ -24,6 +22,12 @@ class SeriesBanner extends Component {
         else{
             return(
                 <div className='seriesBanner'>
+                    <div className={'seriesBannerTitle'}>
+                        <h1>{this.props.series.title}</h1>
+                    </div>
+                    <div className={'seriesBannerHeroImage'}>
+                        <img className='img-fluid' src={imageURL}/>
+                    </div>
                 </div>
             );
         }

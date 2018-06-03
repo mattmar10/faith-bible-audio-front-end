@@ -44,8 +44,9 @@ const SermonListItem = ({sermon, playSermonHandler}) => {
             </div>*/}
 
             <div className="seriesSermonListRow">
-                <div><span className="">{title}</span></div>
-                <i onClick={() => playSermonHandler(sermon)} className="material-icons">play_circle_outline</i>
+                <div><img src={imageURL} /></div>
+                <div className={"sermonRowTitle"}>{title}</div>
+                <i onClick={() => playSermonHandler(sermon)} className="material-icons md-36">play_circle_outline</i>
             </div>
 
         </li>
