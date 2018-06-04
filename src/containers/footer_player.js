@@ -43,8 +43,9 @@ class FooterPlayer extends Component {
                 this.currentTimeInterval = setInterval(() => {
                     this.setState( ...this.state, {duration: this.audio.duration, currentTime: this.audio.currentTime});
                 }, 500);
+                this.setState(...this.state, {playing: true});
             };
-
+            
         }
     }
 
@@ -86,7 +87,7 @@ class FooterPlayer extends Component {
                 <div>
                     <div className={"playerWrapperMobile"}>
                         <div className={"controlsMobile"}>
-                            <i className="materiagit l-icons md-50" onClick={this.togglePlayPause}>{playPauseToggle}</i>
+                            <i className="material-icons md-50" onClick={this.togglePlayPause}>{playPauseToggle}</i>
                         </div>
 
 

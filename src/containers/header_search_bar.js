@@ -52,7 +52,7 @@ class HeaderSearchBar extends Component {
                                 <div className="headerSearch">
                                     <input
                                         placeholder = "Search by Title, Series, etc..."
-                                        value = {this.state.term}
+                                        value = {this.props.searchTerm}
                                         onChange={event => this.onInputChange(event.target.value)} />
     
                                 </div>
