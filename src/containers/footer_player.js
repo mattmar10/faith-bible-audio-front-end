@@ -86,7 +86,7 @@ class FooterPlayer extends Component {
                 <div>
                     <div className={"playerWrapperMobile"}>
                         <div className={"controlsMobile"}>
-                            <i className="material-icons md-50" onClick={this.togglePlayPause}>{playPauseToggle}</i>
+                            <i className="materiagit l-icons md-50" onClick={this.togglePlayPause}>{playPauseToggle}</i>
                         </div>
 
 
