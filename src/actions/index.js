@@ -77,3 +77,10 @@ export function playSermonAudio(sermon: Object){
         payload: sermon
     }
 }
+
+export function showAudioPlayer(showPlayer: boolean){
+    return {
+        type: actionTypes.SHOW_AUDIO_PLAYER,
+        payload: showPlayer
+    }
+}

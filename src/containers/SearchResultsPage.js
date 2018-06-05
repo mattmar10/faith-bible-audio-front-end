@@ -103,10 +103,6 @@ function mapStateToProps(state) {
     };
 }
 
-/*function mapDispatchToProps(dispatch){
-    return bindActionCreators({fetchSearchResults: fetchSearchResults}, dispatch);
-}*/
-
 function mapDispatchToProps(dispatch) {
 
     return {

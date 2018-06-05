@@ -43,7 +43,11 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 
     return {
-        playSermon: (sermon) => dispatch(actions.playSermonAudio(sermon))
+        playSermon: (sermon) => {
+            dispatch(actions.showAudioPlayer(true));
+            dispatch(actions.playSermonAudio(sermon))
+        }
+
     }
 }
 

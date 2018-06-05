@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import * as actions from "../actions/index"
 import '../css/Footer.css'
 import logo from '../images/FBC_Logo.png'
 
@@ -9,6 +10,7 @@ class FooterPlayer extends Component {
 
         this.toggleFooterHeight = this.toggleFooterHeight.bind(this);
         this.togglePlayPause = this.togglePlayPause.bind(this);
+        this.handleClose = this.handleClose.bind(this);
 
         this.state = {
             duration: null,
@@ -60,13 +62,17 @@ class FooterPlayer extends Component {
     }
 
     togglePlayPause(){
-        console.log(this.state.playing);
         if(this.state.playing){
             this.handleStop()
         }
         else {
             this.handlePlay()
         };
+    }
+
+    handleClose(){
+        this.handleStop();
+        this.props.hideAudioPlayer();
     }
 
 
@@ -78,12 +84,16 @@ class FooterPlayer extends Component {
         var title = this.props.sermon.title;
 
         var heightStyle = this.state.collapsed ?  {height: '47px'} : {height: '80px'};
+        var displayStyle = this.props.showAudioPlayer ? {visibility: 'visible'} : {visibility: 'hidden'};
+        const mergedStyle = Object.assign({}, heightStyle, displayStyle);
 
         const toggleText = this.state.collapsed ? "expand_less" : "expand_more";
         const playPauseToggle = this.state.playing ? "pause_circle_outline" : "play_circle_outline";
 
+        const closeStyle = {marginTop: "-5px"};
+
         return(
-            <div id='stickyFooterMobile' style={heightStyle}>
+            <div id='stickyFooterMobile' style={mergedStyle}>
                 <div>
                     <div className={"playerWrapperMobile"}>
                         <div className={"controlsMobile"}>
@@ -100,9 +110,12 @@ class FooterPlayer extends Component {
                         </div>
 
 
-                        <div className={"playerExpandToggle"} onClick={this.toggleFooterHeight}>
-                            <i className="material-icons">
+                        <div className={"playerExpandToggle"}>
+                            <i className="material-icons  md-32" onClick={this.toggleFooterHeight}>
                                 {toggleText}
+                            </i>
+                            <i className="material-icons md-22" onClick={this.handleClose}>
+                                close
                             </i>
                         </div>
 
@@ -142,9 +155,10 @@ class FooterPlayer extends Component {
         const src = this.props.sermon['mp3URI'];
         const imageURL = this.props.sermon.imageURI != null ? this.props.sermon.imageURI : "http://faithbibleok.com/wp-content/uploads/FB-Logo-2.png";
         const playPauseToggle = this.state.playing ? "pause_circle_outline" : "play_circle_outline";
+        var displayStyle = this.props.showAudioPlayer ? {visibility: 'visible'} : {visibility: 'hidden'};
 
         return (
-            <div id='stickyFooter'>
+            <div id='stickyFooter' style={displayStyle}>
 
                 <div className={"playerWrapper"}>
                     <div className={"playerImg"}>
@@ -156,6 +170,11 @@ class FooterPlayer extends Component {
                         <div className={'playerSpeaker'}>{this.props.sermon.speaker}</div>
 
                     </div>
+
+                    <div className={"socialActions"}>
+
+                    </div>
+
                     <div className={"controls"}>
                         <i className="material-icons md-50" onClick={this.togglePlayPause}>{playPauseToggle}</i>
                     </div>
@@ -166,19 +185,28 @@ class FooterPlayer extends Component {
                         }} src={src} autoPlay={true}/>
                     </div>
 
+                    
                     <div className={"currentTime"}>{currentDisplay}</div>
                     <div className={"progressBar"}>
 
                         <p><input ref={(slider) => {
                             this.slider = slider
                         }}
-                                  type="range"
-                                  name="points"
-                                  value={this.state.currentTime}
-                                  onChange={this.seekToTime.bind(this)}
-                                  min="0" max={this.state.duration}/></p>
+                                type="range"
+                                name="points"
+                                value={this.state.currentTime}
+                                onChange={this.seekToTime.bind(this)}
+                                min="0" max={this.state.duration}/></p>
                     </div>
                     <div className={"duration"}>{durationDisplay}</div>
+                    
+
+                    <div className={"playerClose"}>
+
+                            <i className="material-icons md-22" onClick={this.handleClose}>
+                                close
+                            </i>
+                        </div>
                 </div>
             </div>
 
@@ -225,14 +253,17 @@ class FooterPlayer extends Component {
 function mapStateToProps(state) {
 
     return {
-        sermon: state.sermonForAudio.sermon
+        sermon: state.sermonForAudio.sermon,
+        showAudioPlayer: state.showAudioPlayer.value
     };
 }
 
 
 function mapDispatchToProps(dispatch) {
 
-    return {}
+    return {
+        hideAudioPlayer: () => dispatch(actions.showAudioPlayer(false))
+    }
 }
 
 export default connect(

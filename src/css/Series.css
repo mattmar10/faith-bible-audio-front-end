@@ -5,23 +5,26 @@
 
 .seriesBanner {
     font-family: 'Arbutus Slab', sans-serif;
-    text-align: left;
     padding-top: 25px;
     padding-bottom: 25px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .seriesBannerTitle{
     text-align: center;
-    flex-basis: 50%;
     padding-left: 20px;
     padding-right: 20px;
-    flex-basis: 50%;
+    flex-basis: 80%;
+}
+
+.seriesHeader{
+    font-size: 44px;
 }
 
 .seriesContent{
-    padding-left: 30px;
+    padding-left: 15px;
     padding-right: 5px;
     text-align: left;
     color: black;

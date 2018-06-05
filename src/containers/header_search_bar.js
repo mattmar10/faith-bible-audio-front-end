@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { withRouter, Link } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 
 import AudioSearchService from "../services/audio-search-service";
 import {connect} from "react-redux";
@@ -10,11 +10,12 @@ class HeaderSearchBar extends Component {
     constructor(props){
         super(props);
         this.handleSubmit= this.handleSubmit.bind(this);
+        this.onInputChange = this.onInputChange.bind(this);
         this.state = {term: ''}
     }
 
-    onInputChange(term){
-        this.setState({term: term});
+    onInputChange(e){
+        this.setState({term: e.target.value});
     }
 
     handleSubmit(e) {
@@ -53,7 +54,7 @@ class HeaderSearchBar extends Component {
                                     <input
                                         placeholder = "Search by Title, Series, etc..."
                                         value = {this.props.searchTerm}
-                                        onChange={event => this.onInputChange(event.target.value)} />
+                                        onChange={this.onInputChange} />
     
                                 </div>
                                 

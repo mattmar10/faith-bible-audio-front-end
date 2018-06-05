@@ -11,6 +11,14 @@ class SeriesBanner extends Component {
 
         const imageURL = this.props.series.imageURI != null ? this.props.series.imageURI : "http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Headphones-Apollo-icon.png";
 
+        const sermonCountStyle = {
+            fontSize: '18px',
+            color: 'white',
+            background: '#272727',
+            padding: '5px',
+            marginTop: '10px'
+        };
+
         if(this.props.isMobile){
 
             return(
@@ -23,7 +31,8 @@ class SeriesBanner extends Component {
             return(
                 <div className='seriesBanner'>
                     <div className={'seriesBannerTitle'}>
-                        <h1>{this.props.series.title}</h1>
+                        <span className='seriesHeader'>{this.props.series.title}</span>
+                        <p style= {{marginTop: '10px'}}><span style={sermonCountStyle}>{this.props.series.sermons.length} Sermons</span></p>
                     </div>
                     <div className={'seriesBannerHeroImage'}>
                         <img className='img-fluid' src={imageURL}/>

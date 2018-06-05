@@ -4,6 +4,7 @@ import searchResultsReducer from './reducer_search_results_reducer'
 import seriesDetailsReducer from './reducer_series_details'
 import sermonDetailsReducer from './reducer_sermon_details'
 import playSermonReducer from './reducer_play_sermon_audio'
+import showAudioPlayer from './reducer_show_audio_player'
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     searchResults: searchResultsReducer,
     seriesDetails: seriesDetailsReducer,
     sermonDetails: sermonDetailsReducer,
-    sermonForAudio: playSermonReducer
+    sermonForAudio: playSermonReducer,
+    showAudioPlayer: showAudioPlayer
 });
 
 export default rootReducer;
