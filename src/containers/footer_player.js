@@ -46,7 +46,7 @@ class FooterPlayer extends Component {
                 this.currentTimeInterval = setInterval(() => {
                     this.setState( ...this.state, {duration: this.audio.duration, currentTime: this.audio.currentTime});
                 }, 500);
-
+                this.setState(...this.state, {playing: true});
                 this.props.updatePlayCount(this.props.sermon.id);
             };
 
