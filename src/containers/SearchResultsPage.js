@@ -20,10 +20,16 @@ class SearchResultsPage extends Component {
         this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
 
         if(this.props.searchTerm){
-            this.state = {term: this.props.searchTerm}
+            this.state = {
+                term: this.props.searchTerm,
+                width: window.innerWidth
+            }
         }
         else{
-            this.state = {term: ''};
+            this.state = {
+                term: '',
+                width: window.innerWidth
+            };
         }
     }
 

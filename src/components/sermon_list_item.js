@@ -14,41 +14,49 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
         const shareCount = sermon.stats != null ? sermon.stats.shares : "";
 
         const styles = {
-            seriesTitle: {
-                textTransform: "uppercase",
-                fontSize: "13px",
-                color: "#777"
+            seriesTitleMobile: {
+                fontSize: "12px",
+                color: "#888",
+                display: 'flex',
+                justifyContent: 'space-between',
+                textTransform: 'uppercase'
             },
             seriesSpeaker: {
-                fontSize: "13px",
-                color: "#777"
+                fontSize: "12px",
+                color: "#888"
             },
             sermonTitle: {
-                fontSize: "14px"
+                fontSize: "14px",
             },
             mobileImagePart: {
                 display: 'flex',
-                flexDirection: 'column'
-            }
+                flexDirection: 'column',
+                width: '80px'
+            },
+
         };
 
         if (isMobile) {
+            const backgroundStyle = {background: `url(${imageURL}) 50% 50% no-repeat`, backgroundSize: 'cover', height: '80px', width: '80x'};
             return (
                 <li className="sermon-list-item">
 
                     <div className="seriesSermonListRow" onClick={() => playSermonHandler(sermon)}>
                         <div style={styles.mobileImagePart}>
-                            <img src={imageURL}/>
-                            <div className={"seriesMobileSocialRow"}>
-                                <div className={"sermonSocialStatsMobile"}>{likeCount} <i className="fa fa-heart" aria-hidden="true"></i></div>
-                                <div className={"sermonSocialStatsMobile"}>{shareCount} <i className="fa fa-share " aria-hidden="true"></i></div>
-                                <div className={"sermonSocialStatsMobile"}>{playCount} <i className="fa fa-play" aria-hidden="true"></i></div>
-                            </div>
+                            <div style={backgroundStyle} />
+
                         </div>
                         <div className={"sermonRowDetails"}>
-                            <div style={styles.seriesTitle}>{date}</div>
+                            <div style={styles.seriesTitleMobile}>
+                                <div>{date}</div>
+                                <div>{series}</div>
+                            </div>
                             <div style={styles.sermonTitle}>{title}</div>
                             <div style={styles.seriesSpeaker}>{speaker}</div>
+                            <div className={"seriesMobileSocialRow"}>
+
+                                <div className={"sermonSocialStatsMobile"}><i className="fa fa-play" aria-hidden="true"></i> {playCount} </div>
+                            </div>
                         </div>
 
                     </div>

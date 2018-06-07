@@ -13,31 +13,11 @@ class HeaderRightMenu extends Component {
         super(props);
     }
 
-
-
     render() {
         if (this.props.isMobile) {
             return (
                 <div className='headerRightMenu'>
-                    {/*<div>
-                        <Link to='/search'>
-                            <span className="fa fa-search" />
-                        </Link>
-                    </div>
-                     <Popup
-                        modal
-                        overlayStyle={{ background: "rgba(0,0,0,0.9" }}
-                        contentStyle={contentStyle}
-                        closeOnDocumentClick={false}
-                        trigger={open => <BurgerMenu open={open} />}
-                    >
-                        {close => <BurgerMenuList close={close} />}
-                    </Popup>
-                    
-                    */
-                    }
                     <BurgerMenu />
-                   
                 </div>
             );
         }
@@ -50,8 +30,6 @@ class HeaderRightMenu extends Component {
                         <li><a href="http://www.faithbibleok.com">Main Site</a></li>
                     </ul>
                 </div>
-
-
 
             );
         }
