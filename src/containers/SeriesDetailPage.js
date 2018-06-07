@@ -15,6 +15,8 @@ class SeriesDetailPage extends Component{
         this.state = {
             width: window.innerWidth,
         };
+
+        this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
     }
 
     componentWillMount() {
@@ -28,6 +30,18 @@ class SeriesDetailPage extends Component{
     // when the component is not mounted anymore
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
+
+
+    handleWindowSizeChange(){
+        var w = window,
+            d = document,
+            documentElement = d.documentElement,
+            body = d.getElementsByTagName('body')[0],
+            width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+            height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+
+        this.setState({width: width, height: height});
     }
 
 
@@ -49,7 +63,7 @@ class SeriesDetailPage extends Component{
                         <div className='row seriesContent'>
 
                             <div className='seriesSermonList' >
-                                <SermonList sermons={sermonsList} />
+                                <SermonList sermons={sermonsList} isMobile={isMobile}/>
                             </div>
 
 

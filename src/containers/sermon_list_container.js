@@ -19,7 +19,7 @@ class SermonList extends Component {
     render() {
 
         const sermonItems = this.props.sermons.map((sermon) => {
-            return <SermonListItem key={sermon.id} sermon={sermon} playSermonHandler={this.playSermon}/>
+            return <SermonListItem key={sermon.id} sermon={sermon} isMobile={this.props.isMobile} playSermonHandler={this.playSermon}/>
         });
 
         if (this.props.sermons) {

@@ -4,7 +4,6 @@ import '../css/Search.css'
 import qs from 'qs'
 import _ from 'lodash'
 import { fetchSearchResults } from '../actions/index'
-import { bindActionCreators } from 'redux'
 
 import AudioSearchService from '../services/audio-search-service'
 import SermonList from '../containers/sermon_list_container'
@@ -18,6 +17,7 @@ class SearchResultsPage extends Component {
         super(props);
         this.handleSubmit= this.handleSubmit.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
+        this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
 
         if(this.props.searchTerm){
             this.state = {term: this.props.searchTerm}
@@ -27,7 +27,19 @@ class SearchResultsPage extends Component {
         }
     }
 
+    handleWindowSizeChange(){
+        var w = window,
+            d = document,
+            documentElement = d.documentElement,
+            body = d.getElementsByTagName('body')[0],
+            width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+            height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+
+        this.setState({width: width, height: height});
+    }
+
     componentWillMount() {
+        window.addEventListener('resize', this.handleWindowSizeChange);
         const values = qs.parse(this.props.location.search.slice(1));
         
         if(values.q){
@@ -51,19 +63,22 @@ class SearchResultsPage extends Component {
 
     renderList() {
 
+        const { width } = this.state;
+        const isMobile = width <= 768;
 
         if (!_.isEmpty(this.props.searchResults.data)) {
             const sermonsList = Object.keys(this.props.searchResults.data).map(result => {
                 return this.props.searchResults.data[result];
             });
             return (
-                <SermonList sermons={sermonsList} />
+                <SermonList sermons={sermonsList} isMobile={isMobile} />
             );
    
         }
     }
 
     render() {
+
         return (
             <div>
                 <Header />

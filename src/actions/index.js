@@ -64,6 +64,20 @@ export function sermonDetailsLoaded(result: Object){
     }
 }
 
+export function sermonDetailsUpdatedSuccessfully(result: Object){
+    return {
+        type: actionTypes.SERMON_DETAILS_UPDATED_SUCCESSFULLY,
+        payload: result
+    }
+}
+
+export function sermonDetailsUpdateFailed(result: Object){
+    return {
+        type: actionTypes.SERMON_DETAILS_UPDATE_FAILED,
+        payload: result
+    }
+}
+
 export function sermonDetailsLoadError(errors: Array<Object>){
     return {
         type: actionTypes.SERMON_DETAILS_LOAD_ERROR,
