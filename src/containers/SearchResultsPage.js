@@ -95,7 +95,7 @@ class SearchResultsPage extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <div className="search cursor">
                                     <input type="text" 
-                                        placeholder = 'Search'
+                                        placeholder = 'Search Media'
                                         ref={(input) => { this.searchInput = input; }} 
                                         onChange={this.onInputChange} 
                                         value = {this.state.term} />

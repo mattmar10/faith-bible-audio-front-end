@@ -1,8 +1,7 @@
-import { API_ROOT } from '../api/api-config';
 import ApiGateway from "../api/api-gateway";
+import {API_ROOT} from "../api/api-config"
 import hasErrors from "../utils/has-errors-util";
 import * as actions from "../actions/index"
-
 
 export default class AudioSearchService {
     constructor() {

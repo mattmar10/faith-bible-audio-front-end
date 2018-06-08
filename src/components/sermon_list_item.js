@@ -21,16 +21,25 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                 justifyContent: 'space-between',
                 textTransform: 'uppercase'
             },
+            seriesTitle: {
+                color: "#888",
+                fontSize: "12px",
+            },
             seriesSpeaker: {
                 fontSize: "12px",
                 color: "#888"
             },
             sermonTitle: {
                 fontSize: "14px",
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                paddingTop: '3px'
             },
             mobileImagePart: {
                 display: 'flex',
                 flexDirection: 'column',
+                flexShrink: 0,
                 width: '80px'
             },
 
@@ -78,9 +87,8 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                             <div style={styles.seriesSpeaker}>{speaker}</div>
                         </div>
                         <div className={"seriesSocialRow"}>
-                            <div className={"sermonSocialStats"}>{likeCount} <i className="fa fa-heart" aria-hidden="true"></i></div>
-                            <div className={"sermonSocialStats"}>{shareCount} <i className="fa fa-share " aria-hidden="true"></i></div>
-                            <div className={"sermonSocialStats"}>{playCount} <i className="fa fa-play" aria-hidden="true"></i></div>
+                            <div className={"sermonSocialStats"}><i className="fa fa-share " aria-hidden="true"></i>{shareCount}</div>
+                            <div className={"sermonSocialStats"}><i className="fa fa-play" aria-hidden="true"></i>{playCount}</div>
                         </div>
                     </div>
 
