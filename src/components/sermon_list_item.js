@@ -24,6 +24,7 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
             seriesTitle: {
                 color: "#888",
                 fontSize: "12px",
+                textTransform: 'uppercase'
             },
             seriesSpeaker: {
                 fontSize: "12px",
@@ -57,8 +58,8 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                         </div>
                         <div className={"sermonRowDetails"}>
                             <div style={styles.seriesTitleMobile}>
-                                <div>{date}</div>
                                 <div>{series}</div>
+                                <div>{date}</div>    
                             </div>
                             <div style={styles.sermonTitle}>{title}</div>
                             <div style={styles.seriesSpeaker}>{speaker}</div>
@@ -82,14 +83,16 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                     <div className="seriesSermonListRow" onClick={() => playSermonHandler(sermon)}>
                         <div><img src={imageURL}/></div>
                         <div className={"sermonRowDetails"}>
-                            <div style={styles.seriesTitle}>{date}</div>
+                            <div style={styles.seriesTitle}>{series} - {date}</div> 
                             <div style={styles.sermonTitle}>{title}</div>
                             <div style={styles.seriesSpeaker}>{speaker}</div>
                         </div>
+                        
                         <div className={"seriesSocialRow"}>
                             <div className={"sermonSocialStats"}><i className="fa fa-share " aria-hidden="true"></i>{shareCount}</div>
                             <div className={"sermonSocialStats"}><i className="fa fa-play" aria-hidden="true"></i>{playCount}</div>
                         </div>
+                        
                     </div>
 
                 </li>

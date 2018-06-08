@@ -91,7 +91,7 @@ class SeriesDetailPage extends Component{
 
         return(
             
-            <div>
+            <div style={{paddingBottom: '75px'}}>
                 <Header/>
                 {this.renderSeries(isMobile)}
             </div>
