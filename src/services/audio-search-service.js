@@ -31,6 +31,28 @@ export default class AudioSearchService {
 
     }
 
+    freeTextSeriesSearch(searchQuery: string, pageNum: int = 0, size: int = 500) {
+
+        return (dispatch: Function) => {
+            return this.apiGateway.get(API_ROOT + '/series/search',
+                {
+                    q: searchQuery,
+                    page: pageNum,
+                    size: size
+                })
+                .then((result) => {
+                    if (hasErrors(result)) {
+                        console.log('errors fetching search results');
+                        dispatch(actions.seriesSearchResultsError(result));
+                    } else {
+                        dispatch(actions.seriesSearchResultsLoaded(searchQuery, result));
+                    }
+                    return result;
+                });
+        }
+
+    }
+
     getMostRecentSeries(count: int) {
         return (dispatch: Function) => {
             return this.apiGateway.get(API_ROOT + '/series/mostrecent', {

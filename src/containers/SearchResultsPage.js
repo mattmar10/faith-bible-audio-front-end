@@ -72,9 +72,9 @@ class SearchResultsPage extends Component {
         const { width } = this.state;
         const isMobile = width <= 768;
 
-        if (!_.isEmpty(this.props.searchResults.data)) {
-            const sermonsList = Object.keys(this.props.searchResults.data).map(result => {
-                return this.props.searchResults.data[result];
+        if (!_.isEmpty(this.props.searchResults.sermons)) {
+            const sermonsList = Object.keys(this.props.searchResults.sermons).map(result => {
+                return this.props.searchResults.sermons[result];
             });
             return (
                 <SermonList sermons={sermonsList} isMobile={isMobile} />
@@ -127,7 +127,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 
     return {
-        fetchSearchResults: (query) => dispatch(audioSearchService.freeTextSearch(query))
+        fetchSearchResults: (query) => {
+            dispatch(audioSearchService.freeTextSearch(query));
+            dispatch(audioSearchService.freeTextSeriesSearch(query));
+        }
     }
 }
 

@@ -1,6 +1,5 @@
 
 import * as actionTypes from "./action-type";
-import AudioSearchService from '../services/audio-search-service'
 
 export function mostRecentSeriesLoaded(series: Array<Object>){
 
@@ -36,9 +35,25 @@ export function searchResultsLoaded(searchTerm: string, results: Object){
     }
 }
 
+export function seriesSearchResultsLoaded(searchTerm: string, results: Object){
+
+    return {
+        type: actionTypes.SERIES_SEARCH_RESULTS_LOADED,
+        payload: results,
+        searchTerm: searchTerm
+    }
+}
+
 export function fetchSearchResultsError(errors: Array<Object>){
     return {
         type: actionTypes.FETCH_SEARCH_RESULTS_ERROR,
+        payload: errors
+    }
+}
+
+export function seriesSearchResultsError(errors: Array<Object>){
+    return {
+        type: actionTypes.SERIES_SEARCH_RESULTS_ERROR,
         payload: errors
     }
 }

@@ -103,6 +103,11 @@
     font-family: 'Arbutus Slab', sans-serif;
 }
 
+.sermonList a, a:hover, a:visited{
+    text-decoration: none;
+    color: #888888;
+}
+
 .sermonList li{
     border-bottom: 1px solid #f2f2f2;
     padding-top: 6px;

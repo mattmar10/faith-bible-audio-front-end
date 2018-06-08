@@ -1,9 +1,11 @@
 import React from 'react';
+import { withRouter, Link} from "react-router-dom";
 
 const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
         const title = sermon.title;
         const date = sermon.date;
         const series = sermon.series;
+        const seriesSlug = sermon.seriesSlug;
         const speaker = sermon.speaker;
         const mp3URL = sermon.mp3URI;
         const pdfURL = sermon.pdfURI;
@@ -13,13 +15,22 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
         const playCount = sermon.stats != null ? sermon.stats.plays : "";
         const shareCount = sermon.stats != null ? sermon.stats.shares : "";
 
+        const seriesLink = `/series/${seriesSlug}`
+
         const styles = {
-            seriesTitleMobile: {
+            seriesTitleMobileWrapper: {
                 fontSize: "12px",
                 color: "#888",
                 display: 'flex',
                 justifyContent: 'space-between',
                 textTransform: 'uppercase'
+            },
+            seriesTitleMobile:{
+                whiteSpace: 'nowrap',
+                minWidth: 0,
+                flex: 1,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'
             },
             seriesTitle: {
                 color: "#888",
@@ -57,9 +68,9 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
 
                         </div>
                         <div className={"sermonRowDetails"}>
-                            <div style={styles.seriesTitleMobile}>
-                                <div>{series}</div>
-                                <div>{date}</div>    
+                            <div style={styles.seriesTitleMobileWrapper}>
+                                <div style={styles.seriesTitleMobile}><Link to={seriesLink}>{series}</Link></div>
+                                <div style={{flexShrink: 0, marginLeft: '10px'}}>{date}</div>
                             </div>
                             <div style={styles.sermonTitle}>{title}</div>
                             <div style={styles.seriesSpeaker}>{speaker}</div>
@@ -83,7 +94,9 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                     <div className="seriesSermonListRow" onClick={() => playSermonHandler(sermon)}>
                         <div><img src={imageURL}/></div>
                         <div className={"sermonRowDetails"}>
-                            <div style={styles.seriesTitle}>{series} - {date}</div> 
+                            <Link to={seriesLink}>
+                                <div style={styles.seriesTitle}>{series} - {date}</div>
+                            </Link>
                             <div style={styles.sermonTitle}>{title}</div>
                             <div style={styles.seriesSpeaker}>{speaker}</div>
                         </div>
@@ -104,4 +117,4 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
 
 
 
-export default SermonListItem;
+export default withRouter(SermonListItem);

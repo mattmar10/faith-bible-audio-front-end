@@ -81,7 +81,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps (dispatch) {
 
     return {
-        fetchSearchResults: (query) => dispatch(audioSearchService.freeTextSearch(query))
+        fetchSearchResults: (query) => {
+            dispatch(audioSearchService.freeTextSearch(query));
+            dispatch(audioSearchService.freeTextSeriesSearch(query));
+        }
     }
 }
 
