@@ -41,7 +41,10 @@ class Header extends Component {
 
                 </Link>
 
-                {<HeaderSearchBar isMobile={isMobile} />}
+                <HeaderSearchBar 
+                    isMobile={isMobile} 
+                    searchTerm={this.props.searchTerm} 
+                    onSearch={this.props.onSearch} />
 
                 {<HeaderRightMenu isMobile={isMobile}/>}
 

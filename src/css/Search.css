@@ -1,13 +1,26 @@
 .searchContentsPanel{
-    width: 85%;
+    width: 91%;
     font-family: 'Roboto', sans-serif;
     text-align: center;
     padding-bottom: 75px;
 }
 
+.searchContentsPanel *:focus{
+    outline: none;
+}
+
 .searchResultsHeading{
-    padding-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: left;
+    color: #272727;
+    font-size: 22px;
+}
+
+.searchResultsHeading span{
+    font-weight: 700;
+    color: #272727;
+ 
 }
 
 .searchResultsList{

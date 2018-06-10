@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import { render } from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import FooterPlayer from './containers/footer_player'
@@ -12,7 +12,10 @@ import rootReducer from './reducers'
 
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(applyMiddleware(thunk)))
+
+//const store = createStore(rootReducer, applyMiddleware(thunk))
 
 
 

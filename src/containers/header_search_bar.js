@@ -11,11 +11,25 @@ class HeaderSearchBar extends Component {
         super(props);
         this.handleSubmit= this.handleSubmit.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
-        this.state = {term: ''}
+        
+        if(this.props.searchTerm){
+            this.state = {
+                term: this.props.searchTerm
+            }
+        }
+        else{
+            this.state = {
+                width: window.innerWidth
+            };
+        }
     }
 
     onInputChange(e){
         this.setState({term: e.target.value});
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({term: nextProps.searchTerm});
     }
 
     handleSubmit(e) {
@@ -72,6 +86,7 @@ class HeaderSearchBar extends Component {
 }
 
 function mapStateToProps(state) {
+
     return {
         searchTerm: state.searchResults.searchTerm
     };

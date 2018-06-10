@@ -3,6 +3,7 @@
 
 }
 
+
 .seriesBanner {
     font-family: 'Arbutus Slab', sans-serif;
     padding-top: 25px;
@@ -42,8 +43,8 @@
 .seriesSermonList{
     border-top: 1px solid #f2f2f2;
     padding-top: 10px;
-    padding-left: 20px;
-    padding-right: 30px;
+    padding-left: 10px;
+    padding-right: 25px;
 }
 
 .seriesSermonListRow{
@@ -98,14 +99,14 @@
 .sermonList {
     text-align: left;
     list-style-type: none;
-    padding-left: 7px;
-    list-style-type: none;
-    font-family: 'Arbutus Slab', sans-serif;
+    padding-left: 1px;
+    margin-top: 15px;
+    
 }
 
-.sermonList a, a:hover, a:visited{
+.sermonList a, .sermonList a:hover, .sermonList a:visited{
     text-decoration: none;
-    color: #888888;
+    color: #272727;
 }
 
 .sermonList li{

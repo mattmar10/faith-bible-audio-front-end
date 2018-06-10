@@ -19,9 +19,13 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "REACT_APP_API_ROOT=http://localhost:8080 react-scripts start",
+    "predeploy": "REACT_APP_API_ROOT=http://fbc-media-dev-lb-772092556.us-east-1.elb.amazonaws.com npm run build",
+    "deploy": "aws s3 sync build/ s3://fbc-media-archive-site",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }
+
+

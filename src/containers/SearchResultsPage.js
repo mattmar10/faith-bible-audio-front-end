@@ -10,6 +10,8 @@ import SermonList from '../containers/sermon_list_container'
 import Header from '../components/header'
 import FooterPlayer from '../containers/footer_player'
 
+import CustomizedTabs from '../components/tabs'
+
 
 class SearchResultsPage extends Component {
 
@@ -55,7 +57,13 @@ class SearchResultsPage extends Component {
     }
 
     componentDidMount(){
-        this.searchInput.focus();
+        if(this.searchInput){
+            this.searchInput.focus();
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState(...this.state, {term: nextProps.searchTerm});
     }
 
     onInputChange(event) {
@@ -67,10 +75,7 @@ class SearchResultsPage extends Component {
         this.props.fetchSearchResults(this.state.term);
     }
 
-    renderList() {
-
-        const { width } = this.state;
-        const isMobile = width <= 768;
+    renderList(isMobile) {
 
         if (!_.isEmpty(this.props.searchResults.sermons)) {
             const sermonsList = Object.keys(this.props.searchResults.sermons).map(result => {
@@ -83,9 +88,26 @@ class SearchResultsPage extends Component {
         }
     }
 
-    render() {
+    hasSearchResults(){
+        var hasResults = this.props.searchResults.sermons || this.props.searchResults.series
 
-        return (
+        if(hasResults){
+            hasResults = ! _.isEmpty(hasResults);
+        }
+
+        return hasResults;
+    }
+
+    renderMobile(){
+
+        const tabs = (this.hasSearchResults()) 
+            ? <CustomizedTabs 
+                sermons = {this.props.searchResults.sermons} 
+                series = {this.props.searchResults.series}
+                isMobile = {true}/>
+            : <div/>;
+
+        return(
             <div>
                 <Header />
                 <div className='container-fluid searchContentsPanel' >
@@ -102,18 +124,57 @@ class SearchResultsPage extends Component {
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col-sm-8 searchResultsList '>
+                    </div> 
 
-                            {this.renderList()}
-                        </div>
-                    </div>
+                    {tabs}
 
                 </div>
 
             </div>
         );
+    }
+
+    renderDesktop(){
+
+        const tabs = (this.hasSearchResults()) 
+            ? <CustomizedTabs 
+                sermons = {this.props.searchResults.sermons} 
+                series = {this.props.searchResults.series}
+                isMobile = {false}/>
+            : <div/>;
+
+        const resultsString = (this.state.term != null && this.state.term != "") ? 
+            <div>Search results for: <span>{this.state.term}</span></div> : 
+            "";
+
+        return(
+            <div>
+                <Header />
+                <div className='container-fluid searchContentsPanel' >
+                    <div className='row'>
+                        <div className='col-sm-12 searchResultsHeading'>
+                            {resultsString}
+                        </div>
+                    </div>
+                    
+                    {tabs}
+
+                </div>
+
+            </div>
+        );
+    }
+
+    render() {
+        const { width } = this.state;
+        const isMobile = width <= 768;
+
+        if(isMobile){
+            return this.renderMobile();
+        }
+        else{
+            return this.renderDesktop();
+        }
     }
 }
 

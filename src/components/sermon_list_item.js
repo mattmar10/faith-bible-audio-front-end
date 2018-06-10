@@ -34,15 +34,15 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
             },
             seriesTitle: {
                 color: "#888",
-                fontSize: "12px",
+                fontSize: "13px",
                 textTransform: 'uppercase'
             },
             seriesSpeaker: {
-                fontSize: "12px",
+                fontSize: "13px",
                 color: "#888"
             },
             sermonTitle: {
-                fontSize: "14px",
+                fontSize: "15px",
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
@@ -81,9 +81,6 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                         </div>
 
                     </div>
-
-
-
                 </li>
             );
         }

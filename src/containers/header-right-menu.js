@@ -25,7 +25,7 @@ class HeaderRightMenu extends Component {
             return (
                 <div className='headerRightMenu'>
                     <ul>
-                        <li><a href="/search">Explore</a></li>
+                        <li><Link to='/search'>Explore</Link></li>
                         <li><a href="mailto:fbc@faithbibleok.com">Contact Us</a></li>
                         <li><a href="http://www.faithbibleok.com">Main Site</a></li>
                     </ul>
