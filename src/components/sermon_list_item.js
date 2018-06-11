@@ -69,7 +69,7 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                         </div>
                         <div className={"sermonRowDetails"}>
                             <div style={styles.seriesTitleMobileWrapper}>
-                                <div style={styles.seriesTitleMobile}><Link to={seriesLink}>{series}</Link></div>
+                                <div style={styles.seriesTitleMobile}><Link to={seriesLink} style={{color: '#888888'}}>{series}</Link></div>
                                 <div style={{flexShrink: 0, marginLeft: '10px'}}>{date}</div>
                             </div>
                             <div style={styles.sermonTitle}>{title}</div>
