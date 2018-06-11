@@ -17,11 +17,8 @@ class SearchResultsPage extends Component {
 
     constructor(props){
         super(props);
-        this.handleSubmit= this.handleSubmit.bind(this);
-        this.onInputChange = this.onInputChange.bind(this);
-        this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
-
-        if(this.props.searchTerm){
+ 
+        if(this.props.searchTerm && this.props.searchTerm != ''){
             this.state = {
                 term: this.props.searchTerm,
                 width: window.innerWidth
@@ -33,6 +30,12 @@ class SearchResultsPage extends Component {
                 width: window.innerWidth
             };
         }
+
+        this.handleSubmit= this.handleSubmit.bind(this);
+        this.onInputChange = this.onInputChange.bind(this);
+        this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+
+        
     }
 
     handleWindowSizeChange(){
@@ -43,7 +46,7 @@ class SearchResultsPage extends Component {
             width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
             height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
 
-        this.setState({width: width, height: height});
+        this.setState(...this.state, {width: width, height: height});
     }
 
     componentWillMount() {
@@ -52,7 +55,7 @@ class SearchResultsPage extends Component {
         
         if(values.q){
             this.props.fetchSearchResults(values.q);
-            this.setState({term: values.q});
+            this.setState(...this.state, {term: values.q});
         }
     }
 
@@ -63,11 +66,13 @@ class SearchResultsPage extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState(...this.state, {term: nextProps.searchTerm});
+        if(nextProps.searchTerm){
+            this.setState(...this.state, {term: nextProps.searchTerm});
+        }
     }
 
     onInputChange(event) {
-        this.setState({term: event.target.value});
+        this.setState(...this.state, {term: event.target.value});
     }
 
     handleSubmit(e) {

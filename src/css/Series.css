@@ -84,6 +84,10 @@
     min-width: 0;
 }
 
+.sermonRowDetails a:link, .sermonRowDetails a:hover, .sermonRowDetails a:visited {
+    color: #888888;
+}
+
 .sermonSocialStats{
     color: #888888;
     display: flex;

@@ -76,38 +76,42 @@ const SeriesList = ({series, isMobile}) => {
             if(isMobile){
                 return (
                     <li key={series.id} className='sermon-list-item'>
-                        <div className="seriesSermonListRow" >
-                            <div style={styles.mobileImagePart}>
-                                <div style={backgroundStyle} />
+                        <Link to={seriesLink}> 
+                            <div className="seriesSermonListRow" >
+                                <div style={styles.mobileImagePart}>
+                                    <div style={backgroundStyle} />
 
-                            </div>
-                            <div className={"sermonRowDetails"}>
-                                <div style={styles.seriesTitleMobileWrapper}>
-                                    <div style={styles.seriesTitleMobile}>{speakerString}</div>
-                                    <div style={{flexShrink: 0, marginLeft: '10px'}}>{sermonsLength} Sermons</div>
                                 </div>
-                                <Link to={seriesLink}> <div style={styles.title}>{series.title}</div></Link>
-                                
-                            </div>
+                                <div className={"sermonRowDetails"}>
+                                    <div style={styles.seriesTitleMobileWrapper}>
+                                        <div style={styles.seriesTitleMobile}>{speakerString}</div>
+                                        <div style={{flexShrink: 0, marginLeft: '10px'}}>{sermonsLength} Sermons</div>
+                                    </div>
+                                    <div style={styles.title}>{series.title}</div>
+                                    
+                                </div>
 
-                        </div>
+                            </div>
+                        </Link> 
                     </li>);
             }
             else{
                 return (
                     <li key={series.id} className='sermon-list-item'>
-                        <div className="seriesSermonListRow" >
-                            <div><img src={imageURL}/></div>
-                            <div className={"sermonRowDetails"}>
-                                <div style={styles.seriesTitleMobileWrapper}>
-                                    <div style={styles.seriesTitleMobile}>{speakerString}</div>
-                                    <div style={{flexShrink: 0, marginLeft: '10px'}}>{sermonsLength} Sermons</div>
+                        <Link to={seriesLink}>
+                            <div className="seriesSermonListRow" >
+                                <div><img src={imageURL}/></div>
+                                <div className={"sermonRowDetails"}>
+                                    <div style={styles.seriesTitleMobileWrapper}>
+                                        <div style={styles.seriesTitleMobile}>{speakerString}</div>
+                                        <div style={{flexShrink: 0, marginLeft: '10px'}}>{sermonsLength} Sermons</div>
+                                    </div>
+                                    <div style={styles.title}>{series.title}</div>
+                                    
                                 </div>
-                                <div style={styles.title}><Link to={seriesLink}>{series.title}</Link></div>
-                                
-                            </div>
 
-                        </div>
+                            </div>
+                        </Link>
                     </li>);
             }
         });

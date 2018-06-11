@@ -37,7 +37,7 @@ export default function (state: Array<Object> = {}, action: Object) {
             }
         case actionTypes.SERMON_DETAILS_UPDATED_SUCCESSFULLY:
             const updated = action.payload.data.body;
-            const sermons = state.data;
+            const sermons = state.sermons;
 
             if(sermons){
                 var toUpdate = sermons[updated.id]
