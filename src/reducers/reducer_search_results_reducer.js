@@ -3,7 +3,6 @@ import * as actionTypes from "../actions/action-type";
 
 export default function (state: Array<Object> = {}, action: Object) {
 
-
     switch (action.type) {
         case actionTypes.SEARCH_RESULTS_LOADED:
             const mapped = _.mapKeys(action.payload.data.content, 'id');
@@ -12,7 +11,7 @@ export default function (state: Array<Object> = {}, action: Object) {
                 isFetching: false,
                 error: false,
                 errorMessage: null,
-                sermons: mapped,
+                sermons: action.payload.data.content,
                 searchTerm: action.searchTerm
             }
         case actionTypes.FETCH_SEARCH_RESULTS_ERROR:
@@ -27,7 +26,7 @@ export default function (state: Array<Object> = {}, action: Object) {
             return {
                 ...state,
                 seriesError: false,
-                series: series_mapped
+                series: action.payload.data.body.content
             }
         case actionTypes.SERIES_SEARCH_RESULTS_ERROR:
             return {

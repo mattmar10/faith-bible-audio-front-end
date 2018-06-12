@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import '../css/Search.css'
 import qs from 'qs'
 import _ from 'lodash'
-import { fetchSearchResults } from '../actions/index'
-
+import * as actions from "../actions/index"
 import AudioSearchService from '../services/audio-search-service'
 import SermonList from '../containers/sermon_list_container'
 import Header from '../components/header'
-import FooterPlayer from '../containers/footer_player'
 
 import CustomizedTabs from '../components/tabs'
 
@@ -34,6 +32,7 @@ class SearchResultsPage extends Component {
         this.handleSubmit= this.handleSubmit.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+        this.loadSeries = this.loadSeries.bind(this);
 
         
     }
@@ -80,6 +79,10 @@ class SearchResultsPage extends Component {
         this.props.fetchSearchResults(this.state.term);
     }
 
+    loadSeries(seriesId) {
+        this.props.loadSeries(seriesId);
+    }
+
     renderList(isMobile) {
 
         if (!_.isEmpty(this.props.searchResults.sermons)) {
@@ -89,7 +92,6 @@ class SearchResultsPage extends Component {
             return (
                 <SermonList sermons={sermonsList} isMobile={isMobile} />
             );
-   
         }
     }
 
@@ -109,6 +111,7 @@ class SearchResultsPage extends Component {
             ? <CustomizedTabs 
                 sermons = {this.props.searchResults.sermons} 
                 series = {this.props.searchResults.series}
+                loadSeriesHandler = {this.loadSeries}
                 isMobile = {true}/>
             : <div/>;
 
@@ -145,6 +148,7 @@ class SearchResultsPage extends Component {
             ? <CustomizedTabs 
                 sermons = {this.props.searchResults.sermons} 
                 series = {this.props.searchResults.series}
+                loadSeriesHandler = {this.loadSeries}
                 isMobile = {false}/>
             : <div/>;
 
@@ -196,6 +200,10 @@ function mapDispatchToProps(dispatch) {
         fetchSearchResults: (query) => {
             dispatch(audioSearchService.freeTextSearch(query));
             dispatch(audioSearchService.freeTextSeriesSearch(query));
+        },
+        loadSeries: (seriesId) => {
+            dispatch(actions.loadSeriesDetails({series: seriesId}));
+            dispatch(audioSearchService.getSeriesDetails(seriesId));
         }
     }
 }

@@ -47,7 +47,7 @@ const styles = {
 
 };
 
-const SeriesList = ({series, isMobile}) => {
+const SeriesList = ({series, isMobile, loadSeriesHandler}) => {
 
     if(!series){
         return <div>Sorry, we didn't find any series.</div>;
@@ -75,7 +75,7 @@ const SeriesList = ({series, isMobile}) => {
 
             if(isMobile){
                 return (
-                    <li key={series.id} className='sermon-list-item'>
+                    <li key={series.id} className='sermon-list-item' onClick={loadSeriesHandler(series.slug)}>
                         <Link to={seriesLink}> 
                             <div className="seriesSermonListRow" >
                                 <div style={styles.mobileImagePart}>
@@ -97,7 +97,7 @@ const SeriesList = ({series, isMobile}) => {
             }
             else{
                 return (
-                    <li key={series.id} className='sermon-list-item'>
+                    <li key={series.id} className='sermon-list-item' onClick={loadSeriesHandler(series.slug)}>
                         <Link to={seriesLink}>
                             <div className="seriesSermonListRow" >
                                 <div><img src={imageURL}/></div>

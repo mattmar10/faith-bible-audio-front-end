@@ -86,7 +86,10 @@ class CustomizedTabs extends React.Component {
             
             return (
                 
-                <SeriesList series={seriesList} isMobile={this.props.isMobile} />
+                <SeriesList
+                    series={seriesList}
+                    isMobile={this.props.isMobile}
+                    loadSeriesHandler={this.props.loadSeriesHandler}/>
             );
         }
         else {

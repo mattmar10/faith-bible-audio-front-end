@@ -65,6 +65,13 @@ export function seriesDetailsLoaded(result: Object){
     }
 }
 
+export function loadSeriesDetails(data){
+    return {
+        type: actionTypes.LOAD_SERIES_DETAILS,
+        payload: data
+    }
+}
+
 export function seriesDetailsLoadError(errors: Array<Object>){
     return {
         type: actionTypes.SERIES_DETAILS_LOAD_ERROR,

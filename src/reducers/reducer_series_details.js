@@ -12,6 +12,14 @@ export default function (state: Array<Object> = {}, action: Object) {
     }
 
     switch (action.type) {
+        case actionTypes.LOAD_SERIES_DETAILS:
+            return {
+                ...state,
+                isFetching: true,
+                error: false,
+                errorMessage: null,
+                series: null
+            }
         case actionTypes.SERIES_DETAILS_LOADED:
             return {
                 ...state,
