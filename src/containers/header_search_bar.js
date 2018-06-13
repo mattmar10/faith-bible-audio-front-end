@@ -38,10 +38,10 @@ class HeaderSearchBar extends Component {
 
         const location = this.props.location;
 
-        if(!location['pathname'].endsWith('search')) {
+        //if(!location['pathname'].endsWith('search')) {
             this.props.history.push(`/search?q=${this.state.term}`);
         }
-    }
+    //}
 
 
     render() {

@@ -15,7 +15,6 @@ class SearchResultsPage extends Component {
 
     constructor(props){
         super(props);
- 
         if(this.props.searchTerm && this.props.searchTerm != ''){
             this.state = {
                 term: this.props.searchTerm,
