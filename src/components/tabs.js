@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import _ from 'lodash';
 import SermonList from '../containers/sermon_list_container'
 import SeriesList from '../components/series_list'
@@ -88,8 +87,7 @@ class CustomizedTabs extends React.Component {
                 
                 <SeriesList
                     series={seriesList}
-                    isMobile={this.props.isMobile}
-                    loadSeriesHandler={this.props.loadSeriesHandler}/>
+                    isMobile={this.props.isMobile}/>
             );
         }
         else {

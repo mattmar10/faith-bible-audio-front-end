@@ -65,10 +65,9 @@ export function seriesDetailsLoaded(result: Object){
     }
 }
 
-export function loadSeriesDetails(data){
+export function clearSeriesDetails(){
     return {
-        type: actionTypes.LOAD_SERIES_DETAILS,
-        payload: data
+        type: actionTypes.CLEAR_SERIES_DETAILS
     }
 }
 

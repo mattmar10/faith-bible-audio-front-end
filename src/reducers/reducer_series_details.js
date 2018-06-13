@@ -12,7 +12,7 @@ export default function (state: Array<Object> = {}, action: Object) {
     }
 
     switch (action.type) {
-        case actionTypes.LOAD_SERIES_DETAILS:
+        case actionTypes.CLEAR_SERIES_DETAILS:
             return {
                 ...state,
                 isFetching: true,

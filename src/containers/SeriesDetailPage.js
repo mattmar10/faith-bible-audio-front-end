@@ -4,6 +4,7 @@ import AudioSearchService from '../services/audio-search-service'
 import SermonList from '../containers/sermon_list_container'
 import SeriesBanner from '../components/series_banner'
 import Header from '../components/header'
+import * as actions from "../actions/index"
 import _ from 'lodash'
 
 import loading from '../images/ajax-loader.gif'
@@ -18,9 +19,12 @@ class SeriesDetailPage extends Component{
         };
 
         this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+
     }
 
     componentWillMount() {
+
+        this.props.clear();
         window.addEventListener('resize', this.handleWindowSizeChange);
 
         const seriesId = this.props.match.params['seriesId']
@@ -112,7 +116,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return { 
-        getSeriesDetails: (seriesId) => dispatch(audioSearchService.getSeriesDetails(seriesId))
+        getSeriesDetails: (seriesId) => dispatch(audioSearchService.getSeriesDetails(seriesId)),
+        clear: () => dispatch(actions.clearSeriesDetails())
     }
 }
 

@@ -31,9 +31,7 @@ class SearchResultsPage extends Component {
         this.handleSubmit= this.handleSubmit.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
-        this.loadSeries = this.loadSeries.bind(this);
 
-        
     }
 
     handleWindowSizeChange(){
@@ -78,10 +76,6 @@ class SearchResultsPage extends Component {
         this.props.fetchSearchResults(this.state.term);
     }
 
-    loadSeries(seriesId) {
-        this.props.loadSeries(seriesId);
-    }
-
     renderList(isMobile) {
 
         if (!_.isEmpty(this.props.searchResults.sermons)) {
@@ -110,7 +104,6 @@ class SearchResultsPage extends Component {
             ? <CustomizedTabs 
                 sermons = {this.props.searchResults.sermons} 
                 series = {this.props.searchResults.series}
-                loadSeriesHandler = {this.loadSeries}
                 isMobile = {true}/>
             : <div/>;
 
@@ -199,10 +192,6 @@ function mapDispatchToProps(dispatch) {
         fetchSearchResults: (query) => {
             dispatch(audioSearchService.freeTextSearch(query));
             dispatch(audioSearchService.freeTextSeriesSearch(query));
-        },
-        loadSeries: (seriesId) => {
-            dispatch(actions.loadSeriesDetails({series: seriesId}));
-            dispatch(audioSearchService.getSeriesDetails(seriesId));
         }
     }
 }

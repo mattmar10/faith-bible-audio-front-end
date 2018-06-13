@@ -21,6 +21,7 @@
   },
   "scripts": {
     "start": "REACT_APP_API_ROOT=http://localhost:8080 react-scripts start",
+    "start-local-fe": "REACT_APP_API_ROOT=http://media.faithbibleok.com:8080 react-scripts start",
     "predeploy": "REACT_APP_API_ROOT=http://media.faithbibleok.com:8080 npm run build",
     "deploy": "aws s3 sync build/ s3://fbc-media-archive-site",
     "build": "react-scripts build",
