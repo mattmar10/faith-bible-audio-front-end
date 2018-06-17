@@ -22,7 +22,7 @@ class SermonDetailPage extends Component{
         };
 
         this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
-
+        this.favoriteSermonHandler = this.favoriteSermonHandler.bind(this);
     }
 
     componentWillMount() {
@@ -52,6 +52,12 @@ class SermonDetailPage extends Component{
             height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
 
         this.setState(...this.state, {width: width, height: height});
+    }
+
+    favoriteSermonHandler(sermonId: string){
+        if(!this.props.favoriteSermons.sermons || !this.props.favoriteSermons.sermons.includes(sermonId)){
+            this.props.favoriteSermon(sermonId);
+        }
     }
 
     renderMobile(sermon: Object){
@@ -129,6 +135,10 @@ class SermonDetailPage extends Component{
             playCountText += 's'
         }
 
+        const favoriteIcon = (this.props.favoriteSermons.sermons && this.props.favoriteSermons.sermons.includes(sermon.id)) ? 
+            <i className="fa fa-heart"></i> : 
+            <i className="fa fa-heart-o"></i>;
+
         return(
             <div style={mobStyles.sermonDetailPage}>
                 <SermonBanner sermon={sermon} isMobile={true}/>
@@ -138,14 +148,17 @@ class SermonDetailPage extends Component{
                 <div style={mobStyles.speaker}>{sermon.speaker}</div>
                 <div style={{display: 'flex', justifyContent: 'space-between', paddingRight: '15px'}}>
                     <div style={mobStyles.date}>{sermon.date}</div>
-                    <div style={mobStyles.date}>
+                    <div style={mobStyles.date} onClick= {() => this.props.showPlayer()}>
                         <i className="fa fa-play" aria-hidden="true"></i>
                         <span style={{paddingLeft: '3px'}}> {playCount}</span>
                     </div>
                 </div>
 
                 <div style={mobStyles.socialActionsWrapper}>
-                    <div style={mobStyles.socialActionButton}><i className="fa fa-heart-o"></i><p style={mobStyles.actionDescription}>Like</p></div>
+                    <div style={mobStyles.socialActionButton} onClick={() => this.favoriteSermonHandler(sermon.id)}>
+                        {favoriteIcon}
+                        <p style={mobStyles.actionDescription}>Favorite</p>
+                    </div>
                     <div style={mobStyles.socialActionButton}><i className="fas fa-share"></i><p style={mobStyles.actionDescription}>Share</p></div>
                     <a href={sermon.mp3URI} download={`${sermon.title}.mp3`} target={'blank'}>
                         <div style={mobStyles.socialActionButton}>
@@ -232,19 +245,24 @@ const audioSearchService = new AudioSearchService();
 function mapStateToProps(state){
     return{
         sermonDetails: state.sermonDetails,
-        seriesDetails: state.seriesDetails
+        seriesDetails: state.seriesDetails,
+        favoriteSermons: state.favoriteSermons
     };
 }
 
 function mapDispatchToProps(dispatch){
     return { 
         getSermonDetails: (sermonSlug) => dispatch(sermonService.getSermonDetailsBySlug(sermonSlug)),
-
         clear: () => dispatch(actions.clearSermonDetails()),
         playSermon: (sermon) => {
             dispatch(actions.showAudioPlayer(true));
             dispatch(actions.playSermonAudio(sermon));
             dispatch(audioSearchService.getSeriesDetails(sermon.seriesSlug));
+        },
+        showPlayer: () => dispatch(actions.showAudioPlayer(true)),
+        favoriteSermon: (sermonId) => {
+            dispatch(actions.favoriteSermon(sermonId));
+            dispatch(sermonService.incrementFavoriteCount(sermonId));
         }
     }
 }

@@ -23,10 +23,10 @@ export default class SermonService {
                     return result;
                 });
         }
-
+        14
     }
 
-    incrementLikeCount(sermonId: int) {
+    incrementFavoriteCount(sermonId: int) {
 
         return (dispatch: Function) => {
             return this.apiGateway.put(API_ROOT + `/sermon/${sermonId}/like`, {})

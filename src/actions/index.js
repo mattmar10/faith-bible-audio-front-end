@@ -125,3 +125,10 @@ export function showAudioPlayer(showPlayer: boolean){
         payload: showPlayer
     }
 }
+
+export function favoriteSermon(sermonId: string){
+    return{
+        type: actionTypes.FAVORITE_SERMON,
+        payload: sermonId
+    }
+}
