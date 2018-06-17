@@ -106,6 +106,12 @@ export function sermonDetailsLoadError(errors: Array<Object>){
     }
 }
 
+export function clearSermonDetails(){
+    return {
+        type: actionTypes.CLEAR_SERMON_DETAILS
+    }
+}
+
 export function playSermonAudio(sermon: Object){
     return {
         type: actionTypes.PLAY_SERMON_AUDIO,

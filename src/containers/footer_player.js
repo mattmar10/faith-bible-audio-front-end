@@ -18,7 +18,7 @@ class FooterPlayer extends Component {
             currentTime: 0,
             width: window.innerWidth,
             collapsed: false,
-            playing: true
+            playing: false
         }
     }
 
@@ -121,7 +121,7 @@ class FooterPlayer extends Component {
                         <div className={"audio"}>
                             <audio ref={(audio) => {
                                 this.audio = audio
-                            }} src={src} autoPlay={true}/>
+                            }} src={src} autoPlay={false}/>
                         </div>
                         <div className={"currentTime"}>{currentDisplay}</div>
                         <div className={"progressBar"}>
@@ -173,7 +173,7 @@ class FooterPlayer extends Component {
                     <div className={"audio"}>
                         <audio ref={(audio) => {
                             this.audio = audio
-                        }} src={src} autoPlay={true}/>
+                        }} src={src} autoPlay={false}/>
                     </div>
 
                     <div className={"currentTime"}>{currentDisplay}</div>

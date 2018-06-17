@@ -18,7 +18,7 @@ class Main extends Component {
                 <BrowserRouter>
                     <Switch>
                         <Route path='/search' component={SearchResultsPage} />
-                        <Route path='/sermon/:sermonId' component={SermonDetailPage} />
+                        <Route path='/sermon/:sermonSlug' component={SermonDetailPage} />
                         <Route path='/series/:seriesId' component={SeriesDetailPage} />
                         <Route exact path='/' component={Homepage} />
                     </Switch>

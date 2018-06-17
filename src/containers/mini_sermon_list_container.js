@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import * as actions from "../actions/index"
-import SermonListItem from '../components/sermon_list_item'
 
+import MiniSermonListItem from '../components/mini_sermon_list_item'
 
-class SermonList extends Component {
+class MiniSermonList extends Component {
 
     constructor(props) {
         super(props);
@@ -14,13 +14,14 @@ class SermonList extends Component {
 
     playSermon(sermon){
         //this.props.playSermon(sermon);
-        this.props.history.push(`/sermon/${sermon.slug}`)
+        this.props.history.push(`/sermon/${sermon.slug}`);
+        window.location.reload();
     }
 
     render() {
 
         const sermonItems = this.props.sermons.map((sermon) => {
-            return <SermonListItem key={sermon.id} sermon={sermon} isMobile={this.props.isMobile} playSermonHandler={this.playSermon}/>
+            return <MiniSermonListItem key={sermon.id} sermon={sermon} isMobile={this.props.isMobile} playSermonHandler={this.playSermon}/>
         });
 
         if (this.props.sermons) {
@@ -37,24 +38,5 @@ class SermonList extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {};
-}
-
-function mapDispatchToProps(dispatch) {
-
-    return {
-        playSermon: (sermon) => {
-            dispatch(actions.showAudioPlayer(true));
-            dispatch(actions.playSermonAudio(sermon))
-        }
-
-    }
-}
-
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withRouter(SermonList));
+export default withRouter(MiniSermonList);
 

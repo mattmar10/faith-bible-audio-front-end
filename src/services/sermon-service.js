@@ -42,4 +42,34 @@ export default class SermonService {
         }
 
     }
+
+    getSermonById(sermonId: string) {
+        return (dispatch: Function) => {
+            return this.apiGateway.get(API_ROOT + '/sermon/' + sermonId)
+                .then((result) => {
+                    if (hasErrors(result)) {
+                        dispatch(actions.sermonDetailsLoadError(result))
+                    } else {
+                        // console.log(result);
+                        dispatch(actions.sermonDetailsLoaded(result));
+                    }
+                    return result;
+                });
+        }
+    }
+
+    getSermonDetailsBySlug(sermonSlug: string) {
+        return (dispatch: Function) => {
+            return this.apiGateway.get(API_ROOT + '/sermon/slug/' + sermonSlug)
+                .then((result) => {
+                    if (hasErrors(result)) {
+                        dispatch(actions.sermonDetailsLoadError(result))
+                    } else {
+                        // console.log(result);
+                        dispatch(actions.sermonDetailsLoaded(result));
+                    }
+                    return result;
+                });
+        }
+    }
 }

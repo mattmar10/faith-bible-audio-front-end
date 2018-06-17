@@ -46,7 +46,7 @@ class SeriesDetailPage extends Component{
             width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
             height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
 
-        this.setState({width: width, height: height});
+        this.setState(...this.state, {width: width, height: height});
     }
 
 

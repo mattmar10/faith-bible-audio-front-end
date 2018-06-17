@@ -11,6 +11,7 @@
     "react": "^16.4.0",
     "react-burger-menu": "^2.4.4",
     "react-dom": "^16.4.0",
+    "react-player": "^1.6.4",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
@@ -21,8 +22,8 @@
   },
   "scripts": {
     "start": "REACT_APP_API_ROOT=http://localhost:8080 react-scripts start",
-    "start-local-fe": "REACT_APP_API_ROOT=http://media.faithbibleok.com:8080 react-scripts start",
-    "predeploy": "REACT_APP_API_ROOT=http://media.faithbibleok.com:8080 npm run build",
+    "start-local-fe": "REACT_APP_API_ROOT=http://api.faithbibleok.com:8080 react-scripts start",
+    "predeploy": "REACT_APP_API_ROOT=http://api.faithbibleok.com:8080 npm run build",
     "deploy": "aws s3 sync build/ s3://fbc-media-archive-site",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

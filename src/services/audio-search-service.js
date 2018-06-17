@@ -70,21 +70,6 @@ export default class AudioSearchService {
         }
     }
 
-    getSermonDetails(sermonId: string) {
-        return (dispatch: Function) => {
-            return this.apiGateway.get(API_ROOT + '/sermon/' + sermonId)
-                .then((result) => {
-                    if (hasErrors(result)) {
-                        dispatch(actions.sermonDetailsLoadError(result))
-                    } else {
-                        // console.log(result);
-                        dispatch(actions.sermonDetailsLoaded(result));
-                    }
-                    return result;
-                });
-        }
-    }
-
     getSeriesDetails(slug: string) {
         return (dispatch: Function) => {
             return this.apiGateway.get(API_ROOT + '/series/slug/' + slug)
