@@ -119,6 +119,7 @@ class SermonDetailPage extends Component{
         let otherSermons = []
         if(this.props.seriesDetails.series){
             otherSermons = _.values(this.props.seriesDetails.series.sermons)
+            _.remove(otherSermons, (item) => item.id === sermon.id);
         }
 
         const playCount = sermon.stats != null ? sermon.stats.plays : 1;
