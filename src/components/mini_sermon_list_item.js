@@ -45,6 +45,8 @@ const MiniSermonListItem = ({sermon, playSermonHandler, isMobile}) => {
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
+            color: '#272727',
+            fontWeight: 500
         },
         mobileImagePart: {
             display: 'flex',

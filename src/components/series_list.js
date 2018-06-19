@@ -36,7 +36,8 @@ const styles = {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         paddingTop: '3px',
-        color: '#272727'
+        color: '#272727',
+        fontWeight: 500
     },
     mobileImagePart: {
         display: 'flex',

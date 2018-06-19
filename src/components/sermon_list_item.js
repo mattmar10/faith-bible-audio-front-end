@@ -46,7 +46,9 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
-                paddingTop: '3px'
+                paddingTop: '3px',
+                color: '#272727',
+                fontWeight: 500
             },
             mobileImagePart: {
                 display: 'flex',

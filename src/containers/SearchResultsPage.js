@@ -61,12 +61,6 @@ class SearchResultsPage extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps.searchTerm){
-            this.setState(...this.state, {term: nextProps.searchTerm});
-        }
-    }
-
     onInputChange(event) {
         this.setState(...this.state, {term: event.target.value});
     }
@@ -74,7 +68,10 @@ class SearchResultsPage extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.fetchSearchResults(this.state.term);
+        this.props.history.push(`/search?q=${this.state.term}`);
+
     }
+
 
     renderList(isMobile) {
 
