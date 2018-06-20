@@ -20,6 +20,20 @@ class FooterPlayer extends Component {
             collapsed: false,
             playing: false
         }
+
+        this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+
+    }
+
+    handleWindowSizeChange(){
+        var w = window,
+            d = document,
+            documentElement = d.documentElement,
+            body = d.getElementsByTagName('body')[0],
+            width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+            height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+
+        this.setState(...this.state, {width: width, height: height});
     }
 
     handlePlay() {
@@ -108,7 +122,7 @@ class FooterPlayer extends Component {
                             <i className="material-icons  md-32" onClick={this.toggleFooterHeight}>
                                 {toggleText}
                             </i>
-                            <i className="material-icons md-22" onClick={this.handleClose}>
+                            <i className="material-icons md-18" onClick={this.handleClose}>
                                 close
                             </i>
                         </div>
@@ -191,7 +205,7 @@ class FooterPlayer extends Component {
 
                     <div className={"playerClose"}>
 
-                            <i className="material-icons md-22" onClick={this.handleClose}>
+                            <i className="material-icons md-18" onClick={this.handleClose}>
                                 close
                             </i>
                         </div>

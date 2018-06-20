@@ -184,12 +184,100 @@ class SermonDetailPage extends Component{
     }
 
     renderDesktop(sermon: Object){
+
+        const desktopStyles = {
+            bottomWrapper: {
+                display: 'flex',
+                paddingLeft: '20px',
+                paddingRight: '20px',
+                paddingTop: '15px',
+                justifyContent: 'space-between',
+                fontFamily: 'Roboto, sans-serif'
+            },
+            leftColumn: {
+                textAlign: 'left',
+                flex: 1
+            },
+            sermonTitle: {
+                
+                fontWeight: 500,
+                fontSize: '22px'
+            },
+            sermonSpeaker: {
+                paddingTop: '5px',
+                color: '#888888',
+                fontSize: '15px'
+            },
+            socialActionsWrapper: {
+                paddingTop: '5px',
+                display: 'flex',
+                justifyContent: 'space-between'
+            },
+            socialActionsLeft:{
+                display: 'flex'
+            },
+            socialActionsRight:{
+                display: 'flex',
+            },
+            socialActionButton:{
+                fontSize: "16px",
+                color: "#999999",
+                paddingTop: "5px",
+                marginLeft: '10px'
+            },
+            actionDescription: {
+                fontSize: "16px",
+                marginLeft: '5px'
+            }
+        }
+
+        const favoriteIcon = (this.props.favoriteSermons.sermons && this.props.favoriteSermons.sermons.includes(sermon.id)) ? 
+            <i className="fa fa-heart"></i> : 
+            <i className="fa fa-heart-o"></i>;
+
+        const playCount = sermon.stats != null ? sermon.stats.plays : 1;
+        console.log(sermon.stats);
+        const favoriteCount = sermon.stats != null ? sermon.stats.likes : "Be the First";
+        
+
         return(
             <div>
                 <SermonBanner sermon={sermon} isMobile={false}/>
-                <div>{sermon.date}</div>
-                <div>{sermon.series}</div>
-                <div>{sermon.speaker}</div>
+                <div style={desktopStyles.bottomWrapper}>
+                    <div style={desktopStyles.leftColumn}>
+                        <div style={{borderBottom: '1px solid #f2f2f2', paddingBottom: '10px'}}>
+                            <div style={desktopStyles.sermonTitle}>{sermon.title}</div>
+                            <div style={desktopStyles.sermonSpeaker}>
+                                <div>{sermon.speaker} | {sermon.date}</div>
+                            </div>
+                        </div>
+                        <div style={desktopStyles.socialActionsWrapper}>
+                            <div style={desktopStyles.socialActionsLeft}>
+                                <div style={desktopStyles.socialActionButton} onClick={() => this.favoriteSermonHandler(sermon.id)}>
+                                    {favoriteIcon}
+                                    <span style={desktopStyles.actionDescription}>{favoriteCount}</span>
+                                </div>
+                                <div style={desktopStyles.socialActionButton} onClick= {() => this.props.showPlayer()}>
+                                    <i className="fa fa-play" aria-hidden="true"></i>
+                                    <span style={desktopStyles.actionDescription}> {playCount}</span>
+                                </div>                                       
+                            </div>
+                            <div style={desktopStyles.socialActionsRight}>
+                                <div> 
+                                    <i className="fas fa-file"></i>
+                                    <span>Sernmon Notes</span>
+                                </div>
+                                <div> 
+                                    <i className="fas fa-download"></i>
+                                    <span>Audio Download</span>
+                                </div>
+                            </div>
+                            <div style={desktopStyles.socialActionsRight } ></div>
+                        </div>
+                    </div>
+                    <div>Tags</div>
+                </div>
+                
             </div>
         );
     }

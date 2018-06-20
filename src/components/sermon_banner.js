@@ -42,6 +42,19 @@ class SermonBanner extends Component {
             }
         }
 
+        const desktopStyles = {
+            wrapper : {
+                maxHeight: "450px",
+                backgroundColor: "#272727",
+                overflow: "hidden",
+            },
+            wrapperContent: {
+                maxHeight: "450px",
+                marginRight: 'auto',
+                marginLeft: 'auto'
+            }
+        }
+
         if(this.props.isMobile){
             const playCount = this.props.sermon.stats != null ? this.props.sermon.stats.plays : "";
             <div className={"sermonSocialStatsMobile"}></div>
@@ -55,14 +68,14 @@ class SermonBanner extends Component {
         }
         else{
             return(
-                <div className='sermonBanner'>
-                    <img className='img-fluid' src={imageURL}/>
-                    <div>{this.props.sermon.title}</div>
+                <div style={desktopStyles.wrapper}>
+                    <img className='img-fluid' style= {desktopStyles.wrapperContent} src={imageURL}/>
                 </div>
+                
             );
         }
 
     }
 }
 
-export default SermonBanner;
+export default SermonBanner
