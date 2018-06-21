@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom'
+import '../App.css'
 import Header from '../components/header'
 import SermonBanner from '../components/sermon_banner'
 import loading from '../images/ajax-loader.gif'
@@ -174,7 +175,8 @@ class SermonDetailPage extends Component{
                 </div>
                 <div style={{backgroundColor: "#fafafa"}}>
                     <div style={mobStyles.header}>More from:
-                        <span style={{fontWeight: '700'}}>&nbsp;{sermon.series}</span></div>
+                        <span style={{fontWeight: '700'}}>&nbsp;{sermon.series}</span>
+                    </div>
                     <div style={mobStyles.otherSeriesWrapper}>
                         <MiniSermonList sermons={otherSermons} isMobile={true}/>
                     </div>
@@ -196,10 +198,16 @@ class SermonDetailPage extends Component{
             },
             leftColumn: {
                 textAlign: 'left',
-                flex: 1
+                flex: 2
+            },
+            rightColumn: {
+                textAlign: 'left',
+                flex: 1,
+                borderLeft: '1px solid #f2f2f2',
+                marginLeft: '15px',
+                paddingLeft: '10px'
             },
             sermonTitle: {
-                
                 fontWeight: 500,
                 fontSize: '22px'
             },
@@ -209,47 +217,51 @@ class SermonDetailPage extends Component{
                 fontSize: '14px'
             },
             socialActionsWrapper: {
-                paddingTop: '5px',
                 display: 'flex',
-                justifyContent: 'flex-start',
-                alignItems: 'middle'
+                justifyContent: 'space-between',
+                alignItems: 'center'
             },
             socialActionsLeft:{
                 display: 'flex',
-                alignItems: 'middle'
+                alignItems: 'center',
+                paddingLeft: '3px'
             },
             socialActionsRight:{
                 display: 'flex',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',                
+            },
+            socialActionButtonLeft:{
+                fontSize: "14px",
+                color: "#999999",
             },
             socialActionButton:{
                 fontSize: "14px",
                 color: "#999999",
-                paddingTop: "5px",
                 marginLeft: '10px'
             },
             actionDescription: {
                 fontSize: "12px",
                 marginLeft: '5px'
             },
-            btn:{
-                backgroundColor: '#f2f2f2',
-                cursor: 'pointer',
-                border: 'none',
-                paddingTop: '7px',
-                paddingRight: '12px',
-                paddingBottom: '7px',
-                paddingLeft: '12px',
-                borderRadius: '4px',
-                color: '#555555',
-                marginLeft: '10px'
+            header: {
+                textAlign: 'left',
+                paddingRight: '10px',
+                marginTop: '15px',
+                borderTop: '1px solid #f2f2f2',
+                paddingTop: '15px',
+                fontSize: '18px',
+                fontWeight: 500
             },
             btnLabel: {
                 fontSize: '12px',
-                fontWeight: 400,
+                fontWeight: 500,
                 marginLeft: '7px',
-                color: "#555555"
-            }
+                color: "#888888"
+            },
+            rightHeader: {
+                fontWeight: 400,
+                fontSize: '18px'
+            },
         }
 
         const favoriteIcon = (this.props.favoriteSermons.sermons && this.props.favoriteSermons.sermons.includes(sermon.id)) ? 
@@ -260,13 +272,18 @@ class SermonDetailPage extends Component{
         console.log(sermon.stats);
         const favoriteCount = sermon.stats != null ? sermon.stats.likes : "Be the First";
         
+        let otherSermons = []
+        if(this.props.seriesDetails.series){
+            otherSermons = _.values(this.props.seriesDetails.series.sermons)
+            _.remove(otherSermons, (item) => item.id === sermon.id);
+        }
 
         return(
             <div>
                 <SermonBanner sermon={sermon} isMobile={false}/>
                 <div style={desktopStyles.bottomWrapper}>
                     <div style={desktopStyles.leftColumn}>
-                        <div style={{borderBottom: '1px solid #f2f2f2', paddingBottom: '10px'}}>
+                        <div style={{paddingBottom: '5px'}}>
                             <div style={desktopStyles.sermonTitle}>{sermon.title}</div>
                             <div style={desktopStyles.sermonSpeaker}>
                                 <div>{sermon.speaker} | {sermon.date}</div>
@@ -274,7 +291,7 @@ class SermonDetailPage extends Component{
                         </div>
                         <div style={desktopStyles.socialActionsWrapper}>
                             <div style={desktopStyles.socialActionsLeft}>
-                                <div style={desktopStyles.socialActionButton} onClick={() => this.favoriteSermonHandler(sermon.id)}>
+                                <div style={desktopStyles.socialActionButtonLeft} onClick={() => this.favoriteSermonHandler(sermon.id)}>
                                     {favoriteIcon}
                                     <span style={desktopStyles.actionDescription}>{favoriteCount}</span>
                                 </div>
@@ -285,22 +302,30 @@ class SermonDetailPage extends Component{
                             </div>
                             <div style={desktopStyles.socialActionsRight}>
                                 <div> 
-                                    <button style={desktopStyles.btn}>
-                                        <i className="fas fa-file"></i>
+                                    <button className="btn">
+                                        <i className="fas fa-file" style={{color: "#888888"}}></i>
                                         <span style={desktopStyles.btnLabel}>Sermon Notes</span>
                                     </button>
                                 </div>
                                 <div>
-                                    <button style={desktopStyles.btn}>
-                                        <i className="fas fa-download"></i>
+                                    <button className="btn">
+                                        <i className="fas fa-download" style={{color: "#888888"}} ></i>
                                         <span style={desktopStyles.btnLabel}>Audio Download</span>
                                     </button>
                                 </div>
                             </div>
 
                         </div>
+                        <div>
+                            <div style={desktopStyles.header}>More from: {sermon.series}
+                            
+                            </div>
+                            <MiniSermonList sermons={otherSermons} isMobile={true}/>
+                        </div>
                     </div>
-                    <div>Tags</div>
+                    <div style={desktopStyles.rightColumn}>
+                        <div style={desktopStyles.rightHeader}>Related Content</div>
+                    </div>
                 </div>
                 
             </div>
