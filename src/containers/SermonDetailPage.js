@@ -206,28 +206,49 @@ class SermonDetailPage extends Component{
             sermonSpeaker: {
                 paddingTop: '5px',
                 color: '#888888',
-                fontSize: '15px'
+                fontSize: '14px'
             },
             socialActionsWrapper: {
                 paddingTop: '5px',
                 display: 'flex',
-                justifyContent: 'space-between'
+                justifyContent: 'flex-start',
+                alignItems: 'middle'
             },
             socialActionsLeft:{
-                display: 'flex'
+                display: 'flex',
+                alignItems: 'middle'
             },
             socialActionsRight:{
                 display: 'flex',
+                justifyContent: 'space-between'
             },
             socialActionButton:{
-                fontSize: "16px",
+                fontSize: "14px",
                 color: "#999999",
                 paddingTop: "5px",
                 marginLeft: '10px'
             },
             actionDescription: {
-                fontSize: "16px",
+                fontSize: "12px",
                 marginLeft: '5px'
+            },
+            btn:{
+                backgroundColor: '#f2f2f2',
+                cursor: 'pointer',
+                border: 'none',
+                paddingTop: '7px',
+                paddingRight: '12px',
+                paddingBottom: '7px',
+                paddingLeft: '12px',
+                borderRadius: '4px',
+                color: '#555555',
+                marginLeft: '10px'
+            },
+            btnLabel: {
+                fontSize: '12px',
+                fontWeight: 400,
+                marginLeft: '7px',
+                color: "#555555"
             }
         }
 
@@ -264,15 +285,19 @@ class SermonDetailPage extends Component{
                             </div>
                             <div style={desktopStyles.socialActionsRight}>
                                 <div> 
-                                    <i className="fas fa-file"></i>
-                                    <span>Sernmon Notes</span>
+                                    <button style={desktopStyles.btn}>
+                                        <i className="fas fa-file"></i>
+                                        <span style={desktopStyles.btnLabel}>Sermon Notes</span>
+                                    </button>
                                 </div>
-                                <div> 
-                                    <i className="fas fa-download"></i>
-                                    <span>Audio Download</span>
+                                <div>
+                                    <button style={desktopStyles.btn}>
+                                        <i className="fas fa-download"></i>
+                                        <span style={desktopStyles.btnLabel}>Audio Download</span>
+                                    </button>
                                 </div>
                             </div>
-                            <div style={desktopStyles.socialActionsRight } ></div>
+
                         </div>
                     </div>
                     <div>Tags</div>
