@@ -140,12 +140,12 @@ class FooterPlayer extends Component {
                         <div className={"currentTime"}>{currentDisplay}</div>
                         <div className={"progressBar"}>
 
-                            <p><input ref={(slider) => {this.slider = slider}}
+                            <input ref={(slider) => {this.slider = slider}}
                                       type="range"
                                       name="points"
                                       value={this.state.currentTime}
                                       onChange={this.seekToTime.bind(this)}
-                                      min="0" max={this.state.duration || 0}/></p>
+                                      min="0" max={this.state.duration || 0}/>
                         </div>
                         <div className={"duration"}>{durationDisplay}</div>
                     </div>
@@ -160,28 +160,18 @@ class FooterPlayer extends Component {
 
         const src = this.props.audioURL;
         const imageURL = this.props.sermon.imageURI != null ? this.props.sermon.imageURI : "http://faithbibleok.com/wp-content/uploads/FB-Logo-2.png";
-        const playPauseToggle = this.state.playing ? "pause_circle_outline" : "play_circle_outline";
+        const playPauseToggle = this.state.playing ? "pause" : "play_arrow";
         const displayStyle = this.props.showAudioPlayer ? {visibility: 'visible'} : {visibility: 'hidden'};
         return (
             <div id='stickyFooter' style={displayStyle}>
 
                 <div className={"playerWrapper"}>
-                    <div className={"playerImg"}>
-                        <img className='img-fluid' src={imageURL}/>
-                    </div>
-                    <div className={"playerSermonDetails"}>
-                        <div className={'playerSeries'}>{this.props.sermon.series} ({this.props.sermon.date})</div>
-                        <div className='playerTitle'>{this.props.sermon.title}</div>
-                        <div className={'playerSpeaker'}>{this.props.sermon.speaker}</div>
-
-                    </div>
-
-                    <div className={"socialActions"}>
-
-                    </div>
-
-                    <div className={"controls"}>
-                        <i className="material-icons md-50" onClick={this.togglePlayPause}>{playPauseToggle}</i>
+                
+                <div style={{fontSize: '24px', opacity: .2, borderRight: '1px solid #272727', paddingLeft: '10px', paddingRight: '10px'}}>
+                    <i className="fas fa-headphones" aria-hidden="true"></i>
+                </div>
+                <div className={"controls"}>
+                        <i className="material-icons md-28" onClick={this.togglePlayPause}>{playPauseToggle}</i>
                     </div>
 
                     <div className={"audio"}>
@@ -193,22 +183,27 @@ class FooterPlayer extends Component {
                     <div className={"currentTime"}>{currentDisplay}</div>
                     <div className={"progressBar"}>
 
-                        <p><input ref={(slider) => {this.slider = slider}}
+                        <input ref={(slider) => {this.slider = slider}}
                                 type="range"
                                 name="points"
                                 value={this.state.currentTime}
                                 onChange={this.seekToTime.bind(this)}
-                                min="0" max={this.state.duration || 0}/></p>
+                                min="0" max={this.state.duration || 0}/>
                     </div>
                     <div className={"duration"}>{durationDisplay}</div>
+                    <div className={"playerImg"}>
+                        <img className='img-fluid' src={imageURL}/>
+                    </div>
+                    <div className={"playerSermonDetails"}>
+                        <div className='playerTitle'>{this.props.sermon.title}</div>
+                        <div className={'playerSpeaker'}>{this.props.sermon.speaker}</div>
 
+                    </div>
 
-                    <div className={"playerClose"}>
+                    <div className={"socialActions"}>
 
-                            <i className="material-icons md-18" onClick={this.handleClose}>
-                                close
-                            </i>
-                        </div>
+                    </div>
+
                 </div>
             </div>
 

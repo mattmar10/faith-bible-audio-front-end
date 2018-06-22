@@ -75,7 +75,7 @@ const MiniSermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                         <div style={styles.sermonTitle}>{title}</div>
                         <div style={styles.seriesTitleMobileWrapper}>
                             <div style={styles.seriesSpeaker}>{speaker}</div>
-                            <div style={styles.mobileSocialRow}><i className="fa fa-play" aria-hidden="true"></i> {playCount} </div>
+                            <div style={styles.mobileSocialRow}><i className="fas fa-headphones" aria-hidden="true"></i> {playCount} </div>
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@ const MiniSermonListItem = ({sermon, playSermonHandler, isMobile}) => {
 
                     <div className={"seriesSocialRow"}>
                         <div className={"sermonSocialStats"}><i className="fa fa-share " aria-hidden="true"></i>{shareCount}</div>
-                        <div className={"sermonSocialStats"}><i className="fa fa-play" aria-hidden="true"></i>{playCount}</div>
+                        <div className={"sermonSocialStats"}><i className="fas fa-headphones" aria-hidden="true"></i>{playCount}</div>
                     </div>
 
                 </div>

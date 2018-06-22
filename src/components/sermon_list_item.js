@@ -11,7 +11,7 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
         const pdfURL = sermon.pdfURI;
         const imageURL = sermon.imageURI != null ? sermon.imageURI : "https://s3.amazonaws.com/faith-bible-data/mp3-images/2017_0813_MH-FBC.mp3.jpg";
 
-        const likeCount = sermon.stats != null ? sermon.stats.likes : "";
+        const favoriteCount = sermon.stats != null ? sermon.stats.likes : "";
         const playCount = sermon.stats != null ? sermon.stats.plays : "";
         const shareCount = sermon.stats != null ? sermon.stats.shares : "";
 
@@ -78,7 +78,7 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                             <div style={styles.seriesSpeaker}>{speaker}</div>
                             <div className={"seriesMobileSocialRow"}>
 
-                                <div className={"sermonSocialStatsMobile"}><i className="fa fa-play" aria-hidden="true"></i> {playCount} </div>
+                                <div className={"sermonSocialStatsMobile"}><i className="fas fa-headphones" aria-hidden="true"></i> {playCount} </div>
                             </div>
                         </div>
 
@@ -101,8 +101,8 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                         </div>
                         
                         <div className={"seriesSocialRow"}>
-                            <div className={"sermonSocialStats"}><i className="fa fa-share " aria-hidden="true"></i>{shareCount}</div>
-                            <div className={"sermonSocialStats"}><i className="fa fa-play" aria-hidden="true"></i>{playCount}</div>
+                            
+                            <div className={"sermonSocialStats"}><i className="fas fa-headphones" aria-hidden="true"></i>{playCount}</div>
                         </div>
                         
                     </div>

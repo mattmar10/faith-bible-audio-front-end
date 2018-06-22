@@ -150,7 +150,7 @@ class SermonDetailPage extends Component{
                 <div style={{display: 'flex', justifyContent: 'space-between', paddingRight: '15px'}}>
                     <div style={mobStyles.date}>{sermon.date}</div>
                     <div style={mobStyles.date} onClick= {() => this.props.showPlayer()}>
-                        <i className="fa fa-play" aria-hidden="true"></i>
+                        <i className="fas fa-headphones" aria-hidden="true"></i>
                         <span style={{paddingLeft: '3px'}}> {playCount}</span>
                     </div>
                 </div>
@@ -233,11 +233,12 @@ class SermonDetailPage extends Component{
             socialActionButtonLeft:{
                 fontSize: "14px",
                 color: "#999999",
+                cursor: 'pointer'
             },
             socialActionButton:{
                 fontSize: "14px",
                 color: "#999999",
-                marginLeft: '10px'
+                marginLeft: '10px',
             },
             actionDescription: {
                 fontSize: "12px",
@@ -265,11 +266,10 @@ class SermonDetailPage extends Component{
         }
 
         const favoriteIcon = (this.props.favoriteSermons.sermons && this.props.favoriteSermons.sermons.includes(sermon.id)) ? 
-            <i className="fa fa-heart"></i> : 
-            <i className="fa fa-heart-o"></i>;
+            <i className="fas fa-thumbs-up"></i> : 
+            <i className="far fa-thumbs-up"></i>;
 
         const playCount = sermon.stats != null ? sermon.stats.plays : 1;
-        console.log(sermon.stats);
         const favoriteCount = sermon.stats != null ? sermon.stats.likes : "Be the First";
         
         let otherSermons = []
@@ -296,22 +296,26 @@ class SermonDetailPage extends Component{
                                     <span style={desktopStyles.actionDescription}>{favoriteCount}</span>
                                 </div>
                                 <div style={desktopStyles.socialActionButton} onClick= {() => this.props.showPlayer()}>
-                                    <i className="fa fa-play" aria-hidden="true"></i>
+                                    <i className="fas fa-headphones" aria-hidden="true"></i>
                                     <span style={desktopStyles.actionDescription}> {playCount}</span>
                                 </div>                                       
                             </div>
                             <div style={desktopStyles.socialActionsRight}>
                                 <div> 
-                                    <button className="btn">
-                                        <i className="fas fa-file" style={{color: "#888888"}}></i>
-                                        <span style={desktopStyles.btnLabel}>Sermon Notes</span>
-                                    </button>
+                                    <a href={sermon.pdfURI}>
+                                        <button className="btn">
+                                            <i className="fas fa-file" style={{color: "#888888"}}></i>
+                                            <span style={desktopStyles.btnLabel}>Sermon Notes</span>
+                                        </button>
+                                    </a>
                                 </div>
                                 <div>
-                                    <button className="btn">
-                                        <i className="fas fa-download" style={{color: "#888888"}} ></i>
-                                        <span style={desktopStyles.btnLabel}>Audio Download</span>
-                                    </button>
+                                    <a href={sermon.mp3URI} download={`${sermon.title}.mp3`} target={'blank'}>
+                                        <button className="btn">
+                                            <i className="fas fa-download" style={{color: "#888888"}} ></i>
+                                            <span style={desktopStyles.btnLabel}>Audio Download</span>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
 
