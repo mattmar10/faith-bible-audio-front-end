@@ -55,10 +55,10 @@ class SermonBanner extends Component {
                 marginLeft: 'auto'
             }
         }
+        const videoURL = 'https://vimeo.com/259408309';
 
         if(this.props.isMobile){
             const playCount = this.props.sermon.stats != null ? this.props.sermon.stats.plays : "";
-            const videoURL = 'https://vimeo.com/259408309';
             <div className={"sermonSocialStatsMobile"}></div>
             return(
                 <div className='mobSermonBanner'>
@@ -77,8 +77,13 @@ class SermonBanner extends Component {
         }
         else{
             return(
-                <div style={desktopStyles.wrapper}>
-                    <img className='img-fluid' style= {desktopStyles.wrapperContent} src={imageURL}/>
+                <div className='player-wrapper'>
+                    <ReactPlayer
+                        className='react-player'
+                        url={videoURL}
+                        width='100%'
+                        height='100%'
+                    />
                 </div>
                 
             );
