@@ -32,6 +32,11 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                 overflow: 'hidden',
                 textOverflow: 'ellipsis'
             },
+            seriesTitleWrapper: {
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end'
+            },
             seriesTitle: {
                 color: "#888",
                 fontSize: "13px",
@@ -42,7 +47,7 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                 color: "#888"
             },
             sermonTitle: {
-                fontSize: "15px",
+                fontSize: "13px",
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
@@ -94,17 +99,17 @@ const SermonListItem = ({sermon, playSermonHandler, isMobile}) => {
                         <div><img src={imageURL}/></div>
                         <div className={"sermonRowDetails"}>
                             <Link to={seriesLink}>
-                                <div style={styles.seriesTitle}>{series} - {date}</div>
+                                <div style={styles.seriesTitle}>{series}</div>
                             </Link>
                             <div style={styles.sermonTitle}>{title}</div>
                             <div style={styles.seriesSpeaker}>{speaker}</div>
                         </div>
-                        
-                        <div className={"seriesSocialRow"}>
-                            
-                            <div className={"sermonSocialStats"}><i className="fas fa-headphones" aria-hidden="true"></i>{playCount}</div>
+                        <div style={styles.seriesTitleWrapper}>
+                            <div style={styles.seriesTitle}>{date}</div>
+                            <div style={{marginTop: '20px'}}>
+                                <div className={"sermonSocialStats"}><i className="fas fa-headphones" aria-hidden="true"></i>{playCount}</div>
+                            </div>
                         </div>
-                        
                     </div>
 
                 </li>

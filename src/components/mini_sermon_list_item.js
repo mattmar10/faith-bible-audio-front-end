@@ -31,17 +31,21 @@ const MiniSermonListItem = ({sermon, playSermonHandler, isMobile}) => {
             overflow: 'hidden',
             textOverflow: 'ellipsis'
         },
+        seriesDateWrapper: {
+            display: 'flex',
+            justifyContent: 'space-between'
+        },
         seriesTitle: {
             color: "#888",
             fontSize: "13px",
             textTransform: 'uppercase'
         },
         seriesSpeaker: {
-            fontSize: "13px",
+            fontSize: "12px",
             color: "#888"
         },
         sermonTitle: {
-            fontSize: "14px",
+            fontSize: "13px",
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -61,6 +65,7 @@ const MiniSermonListItem = ({sermon, playSermonHandler, isMobile}) => {
 
     };
 
+
     if (isMobile) {
         const backgroundStyle = {background: `url(${imageURL}) 50% 50% no-repeat`, backgroundSize: 'cover', height: '40px', width: '40px'};
         return (
@@ -72,7 +77,7 @@ const MiniSermonListItem = ({sermon, playSermonHandler, isMobile}) => {
 
                     </div>
                     <div className={"sermonRowDetails"}>
-                        <div style={styles.sermonTitle}>{title}</div>
+                        <div style={styles.sermonTitle}>{title} </div>
                         <div style={styles.seriesTitleMobileWrapper}>
                             <div style={styles.seriesSpeaker}>{speaker}</div>
                             <div style={styles.mobileSocialRow}><i className="fas fa-headphones" aria-hidden="true"></i> {playCount} </div>
@@ -84,20 +89,27 @@ const MiniSermonListItem = ({sermon, playSermonHandler, isMobile}) => {
         );
     }
     else {
+
         return (
             <li className="sermon-list-item">
 
                 <div className="seriesSermonListRow" onClick={() => playSermonHandler(sermon)}>
                     <div><img src={imageURL}/></div>
                     <div className={"sermonRowDetails"}>
+
                         <Link to={seriesLink}>
-                            <div style={styles.seriesTitle}>{series} - {date}</div>
+                            <div style={styles.seriesTitle}>{series}</div>
                         </Link>
+
                         <div style={styles.sermonTitle}>{title}</div>
+
                         <div style={styles.seriesSpeaker}>{speaker}</div>
                     </div>
 
+
+
                     <div className={"seriesSocialRow"}>
+
                         <div className={"sermonSocialStats"}><i className="fa fa-share " aria-hidden="true"></i>{shareCount}</div>
                         <div className={"sermonSocialStats"}><i className="fas fa-headphones" aria-hidden="true"></i>{playCount}</div>
                     </div>

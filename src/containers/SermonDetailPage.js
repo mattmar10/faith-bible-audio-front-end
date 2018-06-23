@@ -10,6 +10,7 @@ import SermonService from '../services/sermon-service'
 import AudioSearchService from '../services/audio-search-service'
 import * as actions from "../actions";
 import _ from "lodash";
+import SharePanel from "../components/share_panel";
 
 
 class SermonDetailPage extends Component{
@@ -33,11 +34,15 @@ class SermonDetailPage extends Component{
     }
 
     componentDidUpdate(){
-        if(this.props.sermonDetails.sermon && !this.state.playing){
+
+        if(this.props.sermonDetails.sermon && ! this.props.seriesDetails.series){
+            this.props.getSeriesDetails(this.props.sermonDetails.sermon.seriesSlug);
+        }
+        /*if(this.props.sermonDetails.sermon && !this.state.playing){
             this.props.playSermon(this.props.sermonDetails.sermon);
 
             this.setState(...this.state, {playing: true});
-        }
+        }*/
     }
 
     componentWillUnmount() {
@@ -136,9 +141,9 @@ class SermonDetailPage extends Component{
             playCountText += 's'
         }
 
-        const favoriteIcon = (this.props.favoriteSermons.sermons && this.props.favoriteSermons.sermons.includes(sermon.id)) ? 
-            <i className="fa fa-heart"></i> : 
-            <i className="fa fa-heart-o"></i>;
+        const favoriteIcon = (this.props.favoriteSermons.sermons && this.props.favoriteSermons.sermons.includes(sermon.id)) ?
+            <i className="fas fa-thumbs-up"></i> :
+            <i className="far fa-thumbs-up"></i>;
 
         return(
             <div style={mobStyles.sermonDetailPage}>
@@ -161,12 +166,10 @@ class SermonDetailPage extends Component{
                         <p style={mobStyles.actionDescription}>Favorite</p>
                     </div>
                     <div style={mobStyles.socialActionButton}><i className="fas fa-share"></i><p style={mobStyles.actionDescription}>Share</p></div>
-                    <a href={sermon.mp3URI} download={`${sermon.title}.mp3`} target={'blank'}>
-                        <div style={mobStyles.socialActionButton}>
-                            <i className="fas fa-download"></i>
-                            <p style={mobStyles.actionDescription}>Audio Download</p>
-                        </div>
-                    </a>
+                    <div style={mobStyles.socialActionButton} onClick= {() => this.props.playSermon(this.props.sermonDetails.sermon)}>
+                        <i className="fas fa-headphones" aria-hidden="true"></i>
+                        <p style={mobStyles.actionDescription}>Listen</p>
+                    </div>
                     <a href={sermon.pdfURI}>
                         <div style={mobStyles.socialActionButton}>
                             <i className="fas fa-file"></i><p style={mobStyles.actionDescription}>Notes</p>
@@ -198,7 +201,7 @@ class SermonDetailPage extends Component{
             },
             leftColumn: {
                 textAlign: 'left',
-                flex: 2
+                flex: 3
             },
             rightColumn: {
                 textAlign: 'left',
@@ -261,7 +264,11 @@ class SermonDetailPage extends Component{
             },
             rightHeader: {
                 fontWeight: 400,
-                fontSize: '18px'
+                fontSize: '16px',
+                color: '#999999',
+                paddingLeft: '10px',
+                paddingRight: '10px',
+                borderBottom: '1px solid #f2f2f2'
             },
         }
 
@@ -301,7 +308,15 @@ class SermonDetailPage extends Component{
                                 </div>                                       
                             </div>
                             <div style={desktopStyles.socialActionsRight}>
-                                <div> 
+                                <div>
+
+                                    <button className="btn" onClick={() => this.props.playSermon(sermon)}>
+                                        <i className="fas fa-headphones" aria-hidden="true" style={{color: "#888888"}}></i>
+                                        <span style={desktopStyles.btnLabel}>Listen</span>
+                                    </button>
+
+                                </div>
+                                <div>
                                     <a href={sermon.pdfURI}>
                                         <button className="btn">
                                             <i className="fas fa-file" style={{color: "#888888"}}></i>
@@ -322,13 +337,14 @@ class SermonDetailPage extends Component{
                         </div>
                         <div>
                             <div style={desktopStyles.header}>More from: {sermon.series}
-                            
+
                             </div>
-                            <MiniSermonList sermons={otherSermons} isMobile={true}/>
+                            <MiniSermonList sermons={otherSermons} isMobile={false}/>
                         </div>
                     </div>
                     <div style={desktopStyles.rightColumn}>
-                        <div style={desktopStyles.rightHeader}>Related Content</div>
+                        <div style={desktopStyles.rightHeader}>Spread the Word</div>
+                        <SharePanel sermon={sermon}/>
                     </div>
                 </div>
                 
@@ -393,8 +409,9 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-    return { 
+    return {
         getSermonDetails: (sermonSlug) => dispatch(sermonService.getSermonDetailsBySlug(sermonSlug)),
+        getSeriesDetails: (seriesSlug) => dispatch(audioSearchService.getSeriesDetails(seriesSlug)),
         clear: () => dispatch(actions.clearSermonDetails()),
         playSermon: (sermon) => {
             dispatch(actions.showAudioPlayer(true));

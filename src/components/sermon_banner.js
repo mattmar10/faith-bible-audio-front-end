@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactPlayer from 'react-player'
 
 class SermonBanner extends Component {
 
@@ -57,10 +58,18 @@ class SermonBanner extends Component {
 
         if(this.props.isMobile){
             const playCount = this.props.sermon.stats != null ? this.props.sermon.stats.plays : "";
+            const videoURL = 'https://vimeo.com/259408309';
             <div className={"sermonSocialStatsMobile"}></div>
             return(
                 <div className='mobSermonBanner'>
-                    <img className='img-fluid' src={imageURL}/>
+                    <div className='player-wrapper'>
+                        <ReactPlayer
+                            className='react-player'
+                            url={videoURL}
+                            width='100%'
+                            height='100%'
+                        />
+                    </div>
 
                     <div style={styles.wrapper}>{this.props.sermon.title}</div>
                 </div>

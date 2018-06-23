@@ -100,8 +100,9 @@ class FooterPlayer extends Component {
         var displayStyle = this.props.showAudioPlayer ? {visibility: 'visible'} : {visibility: 'hidden'};
         const mergedStyle = Object.assign({}, heightStyle, displayStyle);
         const toggleText = this.state.collapsed ? "expand_less" : "expand_more";
-        const playPauseToggle = this.state.playing ? "pause_circle_outline" : "play_circle_outline";
+        const playPauseToggle = this.state.playing ? "pause" : "play_arrow";
 
+        const seriesStyle = this.state.collapsed ? {display: 'none'} : {display: 'block'};
         return(
             <div id='stickyFooterMobile' style={mergedStyle}>
                 <div>
@@ -111,7 +112,7 @@ class FooterPlayer extends Component {
                         </div>
 
                         <div className={"playerSermonDetailsMobile"}>
-                            <div className={'playerSeries'}>{this.props.sermon.series} ({this.props.sermon.date})</div>
+                            <div style={seriesStyle} className={'playerSeries'}>{this.props.sermon.series} ({this.props.sermon.date})</div>
                             <div className='playerTitle'>{title}</div>
                             <div className={'playerSpeaker'}>{this.props.sermon.speaker}</div>
 
@@ -119,7 +120,7 @@ class FooterPlayer extends Component {
 
 
                         <div className={"playerExpandToggle"}>
-                            <i className="material-icons  md-32" onClick={this.toggleFooterHeight}>
+                            <i className="material-icons  md-24" onClick={this.toggleFooterHeight}>
                                 {toggleText}
                             </i>
                             <i className="material-icons md-18" onClick={this.handleClose}>
@@ -200,10 +201,7 @@ class FooterPlayer extends Component {
 
                     </div>
 
-                    <div className={"socialActions"}>
-
-                    </div>
-
+                    
                 </div>
             </div>
 
