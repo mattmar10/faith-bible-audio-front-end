@@ -7,6 +7,8 @@ import playSermonReducer from './reducer_play_sermon_audio'
 import showAudioPlayer from './reducer_show_audio_player'
 import favoriteSermonsReducer from './reducer_favorite_sermon'
 import sermonDetailsUpdateReducer from './reducer_sermon_update'
+import allSeriesReducer from './reducer_all_series'
+import allSermonsReducer from './reducer_all_sermons'
 
 const rootReducer = combineReducers({
     mostRecentSeries: mostRecentSeriesReducer,
@@ -17,7 +19,9 @@ const rootReducer = combineReducers({
     showAudioPlayer: showAudioPlayer,
     sermonForAudio: playSermonReducer,
     sermonUpdated: sermonDetailsUpdateReducer,
-    favoriteSermons: favoriteSermonsReducer
+    favoriteSermons: favoriteSermonsReducer,
+    allSermons: allSermonsReducer,
+    allSeries: allSeriesReducer
 });
 
 export default rootReducer;

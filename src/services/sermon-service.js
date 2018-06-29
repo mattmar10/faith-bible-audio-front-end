@@ -63,7 +63,7 @@ export default class SermonService {
             return this.apiGateway.get(API_ROOT + '/sermon/slug/' + sermonSlug)
                 .then((result) => {
                     if (hasErrors(result)) {
-                        dispatch(actions.sermonDetailsLoadError(result))
+                        dispatch(actions.sermonDetailsLoadError(result));
                     } else {
                         // console.log(result);
                         dispatch(actions.sermonDetailsLoaded(result));
@@ -72,4 +72,33 @@ export default class SermonService {
                 });
         }
     }
+
+    loadAllSermons(){
+        return(dispatch: Function) => {
+            return this.apiGateway.get(API_ROOT + '/sermons')
+                .then((result) => {
+                    if(hasErrors(result)){
+                        dispatch(actions.loadSermonsError(result));
+                    } else {
+                        dispatch(actions.sermonsLoadedSuccessfully(result));
+                    }
+                    return result;
+                });
+        }
+    }
+
+    loadAllSeries(){
+        return(dispatch: Function) => {
+            return this.apiGateway.get(API_ROOT + '/series')
+                .then((result) => {
+                    if(hasErrors(result)){
+                        dispatch(actions.loadSeriesError(result));
+                    } else {
+                        dispatch(actions.seriesLoadedSuccessfully(result));
+                    }
+                    return result;
+                });
+        }
+    }
+    
 }

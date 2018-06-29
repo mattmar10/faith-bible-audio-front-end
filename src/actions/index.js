@@ -132,3 +132,31 @@ export function favoriteSermon(sermonId: string){
         payload: sermonId
     }
 }
+
+export function seriesLoadedSuccessfully(series: Array<Object>){
+    return {
+        type: actionTypes.ALL_SERIES_LOADED,
+        payload: series
+    }
+}
+
+export function loadSeriesError(errors: Array<Objec>){
+    return {
+        type: actionTypes.ALL_SERIES_LOAD_ERROR,
+        payload: errors
+    }
+}
+
+export function loadSermonsError(errors: Array<Object>){
+    return {
+        type: actionTypes.ALL_SERMONS_LOAD_ERROR,
+        payload: errors
+    }
+}
+
+export function sermonsLoadedSuccessfully(sermons: Array<Object>){
+    return {
+        type: actionTypes.ALL_SERMONS_LOADED,
+        payload: sermons
+    }
+}
