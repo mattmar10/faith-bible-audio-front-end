@@ -9,10 +9,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
+
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+
+import SermonsTable from '../components/sermons_table'
 
 const drawerWidth = 240;
 
@@ -20,7 +20,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: 1430,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -87,7 +87,7 @@ class AdminPage extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
+          <SermonsTable sermons={this.props.sermons}/>
         </main>
       </div>
     );

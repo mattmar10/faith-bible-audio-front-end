@@ -23,7 +23,7 @@ class AdminPageContainer extends Component {
 
     render(){
         return(
-            <AdminPage />
+            <AdminPage sermons={this.props.allSermons} series={this.props.allSeries}/>
         );
     }
 }
@@ -32,8 +32,8 @@ const sermonService = new SermonService();
 
 function mapStateToProps(state) {
     return {
-        allSermons: state.allSermons,
-        allSeries: state.allSeries
+        allSermons: state.allSermons.sermons,
+        allSeries: state.allSeries.series
     };
 }
 
