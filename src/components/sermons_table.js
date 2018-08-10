@@ -20,6 +20,13 @@ import EditIcon from '@material-ui/icons/Edit';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import _ from 'lodash';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -52,11 +59,7 @@ class EnhancedTableHead extends React.Component {
       <TableHead>
         <TableRow>
           <TableCell padding="checkbox">
-            <Checkbox
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={numSelected === rowCount}
-              onChange={onSelectAllClick}
-            />
+
           </TableCell>
           {columnData.map(column => {
             return (
@@ -197,11 +200,16 @@ class SermonsTable extends React.Component {
       order: 'asc',
       orderBy: 'title',
       selected: [],
+      open: false,
 
       page: 0,
       rowsPerPage: 15,
     };
   }
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
@@ -242,7 +250,7 @@ class SermonsTable extends React.Component {
 
     console.log(newSelected);
 
-    this.setState({ selected: newSelected });
+    this.setState({ selected: newSelected, open: true});
   };
 
   handleChangePage = (event, page) => {
@@ -296,7 +304,6 @@ class SermonsTable extends React.Component {
                       selected={isSelected}
                     >
                       <TableCell padding="checkbox">
-                        <Checkbox checked={isSelected} />
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
                         {n.title}
@@ -329,7 +336,37 @@ class SermonsTable extends React.Component {
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              To subscribe to this website, please enter your email address here. We will send
+              updates occasionally.
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Email Address"
+              type="email"
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleClose} color="primary">
+              Subscribe
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Paper>
+      
     );
   }
 }
