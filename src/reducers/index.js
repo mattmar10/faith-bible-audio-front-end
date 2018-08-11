@@ -10,6 +10,8 @@ import sermonDetailsUpdateReducer from './reducer_sermon_update'
 import allSeriesReducer from './reducer_all_series'
 import allSermonsReducer from './reducer_all_sermons'
 
+import { reducer as formReducer } from 'redux-form';
+
 const rootReducer = combineReducers({
     mostRecentSeries: mostRecentSeriesReducer,
     searchResults: searchResultsReducer,
@@ -21,7 +23,8 @@ const rootReducer = combineReducers({
     sermonUpdated: sermonDetailsUpdateReducer,
     favoriteSermons: favoriteSermonsReducer,
     allSermons: allSermonsReducer,
-    allSeries: allSeriesReducer
+    allSeries: allSeriesReducer,
+    form: formReducer
 });
 
 export default rootReducer;

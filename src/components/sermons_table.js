@@ -28,6 +28,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+
+import AddEditSermonContainer from '../containers/add_edit_sermon_container'
+
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
   counter += 1;
@@ -231,7 +234,10 @@ class SermonsTable extends React.Component {
   };
 
   handleClick = (event, id) => {
-    const { selected } = this.state;
+
+    console.log(this.props.sermons.find( (sermon) => sermon.id === id ));
+
+    /*const { selected } = this.state;
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
@@ -248,9 +254,9 @@ class SermonsTable extends React.Component {
       );
     }
 
-    console.log(newSelected);
-
-    this.setState({ selected: newSelected, open: true});
+    console.log(selected);
+    */
+    this.setState({open: true});
   };
 
   handleChangePage = (event, page) => {
@@ -273,6 +279,51 @@ class SermonsTable extends React.Component {
     if(!this.props.sermons){
       return('Loading');
     }
+
+    const series = this.props.sermons.map( (sermon) => {
+      return {
+          seriesTitle: sermon.series,
+          seriesSlug: sermon.seriesSlug
+      }
+    });
+
+    let uniqueSeriesMap = series.reduce((res, series) => {
+        if(! res[series.seriesSlug]) {
+            res[series.seriesSlug] = series;
+        }
+        return res;
+    }, {});
+
+
+    const uniqueSeries = Object.keys(uniqueSeriesMap).map(e => uniqueSeriesMap[e]);
+
+
+    uniqueSeries.sort(function(a, b) {
+      let result = 0;
+      if(a.seriesTitle > b.seriesTitle){
+        result = 1;
+      }
+      else if(a.seriesTitle < b.seriesTitle){
+        result = -1;
+      }
+      return result;
+    });
+
+
+    let speakerCounts = this.props.sermons.reduce((res, sermon) => {
+        if(res[sermon.speaker]) {
+            res[sermon.speaker]++;
+        } else {
+            res[sermon.speaker] = 1;
+        }
+        return res;
+    }, {});
+
+
+    let sortedSpeakers = Object.entries(speakerCounts)
+        .sort((a, b) => b[1]-a[1])
+        .map(val => val[0]);
+
 
     return (
       <Paper className={classes.root}>
@@ -341,20 +392,12 @@ class SermonsTable extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogTitle id="form-dialog-title">Add/Edit Sermon</DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address here. We will send
-              updates occasionally.
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
-            />
+
+              <AddEditSermonContainer speakers={sortedSpeakers}
+                                      series={uniqueSeries}/>
+
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">

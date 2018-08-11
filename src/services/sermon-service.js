@@ -23,7 +23,6 @@ export default class SermonService {
                     return result;
                 });
         }
-        14
     }
 
     incrementFavoriteCount(sermonId: int) {
