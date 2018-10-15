@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider'
 
 import Typography from '@material-ui/core/Typography';
 
@@ -60,18 +61,19 @@ class AdminPage extends React.Component {
     const menuItems = 
         <div>
             <ListItem button>
-                <ListItemText primary="Sermons" />
+                <ListItemText primary="Add" />
             </ListItem>
             <ListItem button>
-                <ListItemText primary="Series" />
+                <ListItemText primary="Edit" />
             </ListItem>
+            <Divider />
         </div>
-
+    
     return (
         <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h4" color="inherit" noWrap>
               Admin Dashboard
             </Typography>
           </Toolbar>

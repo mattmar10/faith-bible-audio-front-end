@@ -160,3 +160,17 @@ export function sermonsLoadedSuccessfully(sermons: Array<Object>){
         payload: sermons
     }
 }
+
+export function umappedSermonsLoadedSuccessfully(sermons: Array<Object>){
+    return {
+        type: actionTypes.UNMAPPED_SERMONS_LOADED,
+        payload: sermons
+    }
+}
+
+export function unmappedSermonsLoadError(errors: Array<Object>){
+    return {
+        type: actionTypes.UNMAPPED_SERMONS_LOAD_ERROR,
+        payload: errors
+    }
+}

@@ -139,12 +139,12 @@ let EnhancedTableToolbar = props => {
     >
       <div className={classes.title}>
         {numSelected > 0 ? (
-          <Typography color="inherit" variant="subheading">
+          <Typography color="inherit" variant="h6">
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography variant="title" id="tableTitle">
-            Nutrition
+          <Typography variant="h6" id="tableTitle">
+            Sermons
           </Typography>
         )}
       </div>
@@ -388,6 +388,7 @@ class SermonsTable extends React.Component {
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
         <Dialog
+          fullWidth={true}
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
@@ -404,7 +405,7 @@ class SermonsTable extends React.Component {
               Cancel
             </Button>
             <Button onClick={this.handleClose} color="primary">
-              Subscribe
+              Save
             </Button>
           </DialogActions>
         </Dialog>
