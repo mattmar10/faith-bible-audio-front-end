@@ -14,8 +14,18 @@ const addEditStyles = {
         fontWeight: 'bold',
         marginTop: '30px'
     },
+    sublabel: {
+        paddingRight: '10px',
+        fontWeight: 'bold',
+    },
     inputFullWidth: {
-        width: '100%',
+        width: '98%',
+        border: 'none',
+        padding: '10px',
+        backgroundColor: '#f2f2f2',
+    },
+    inputRight: {
+        width: '90%',
         border: 'none',
         padding: '10px',
         backgroundColor: '#f2f2f2',
@@ -37,6 +47,8 @@ class AddEditSermon extends Component{
         this.renderSeriesField = this.renderSeriesField.bind(this);
         this.renderTitleField = this.renderTitleField.bind(this);
         this.renderAudioURLField = this.renderAudioURLField.bind(this);
+        this.renderNewSpeakerField = this.renderNewSpeakerField.bind(this);
+        this.renderNewSeriesField = this.renderNewSeriesField.bind(this);
 
     }
 
@@ -58,8 +70,6 @@ class AddEditSermon extends Component{
     }
 
     renderAudioURLField(field) {
-
-        console.log(this.props.sermon);
 
         return(
             <div>
@@ -129,12 +139,18 @@ class AddEditSermon extends Component{
     }
 
     renderNewSpeakerField(field) {
+
         return(
             <div>
-                <label htmlFor="newSpeaker">or Add a New Speaker</label>
-                <input type="textarea"
-                       {...field.input}
-                />
+                <p style={{paddingTop:'10px'}}>or</p>
+                
+                <div style={{paddingLeft:'5%'}}>
+                    <label style={addEditStyles.sublabel}  htmlFor="newSpeaker">Add a New Speaker</label>
+                    <input type="textarea"
+                        {...field.input}
+                        style={addEditStyles.inputFullWidth}
+                    />
+                </div>
             </div>
         )
     }
@@ -165,8 +181,24 @@ class AddEditSermon extends Component{
         )
     }
 
+    renderNewSeriesField(field) {
+
+        return(
+            <div>
+                <p style={{paddingTop:'10px'}}>or</p>
+                
+                <div style={{paddingLeft:'5%'}}>
+                    <label style={addEditStyles.sublabel}  htmlFor="newSeries">Add a New Series</label>
+                    <input type="textarea"
+                        {...field.input}
+                        style={addEditStyles.inputFullWidth}
+                    />
+                </div>
+            </div>
+        )
+    }
+
     render() {
-        
 
         return (
             <div style={addEditStyles.addEditForm}>
@@ -174,6 +206,8 @@ class AddEditSermon extends Component{
                     <Field name="title" component={this.renderTitleField}
                     />
                     <Field name="series" component={this.renderSeriesField}
+                    />
+                    <Field name="newSeries" component={this.renderNewSeriesField}
                     />
                     <Field name="speaker" component={this.renderSpeakerField}
                     />

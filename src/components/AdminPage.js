@@ -45,9 +45,23 @@ const styles = theme => ({
 
 
 class AdminPage extends React.Component {
-  state = {
-    anchor: 'left',
-  };
+
+  constructor(props){
+    super(props);
+    this.state = {
+      anchor: 'left',
+      openDialog: false
+    };
+
+    this.toggleDialog = this.toggleDialog.bind(this);
+  }
+  
+  toggleDialog() {
+    this.setState(state => ({
+      openDialog: !state.openDialog,
+      anchor: state.anchor
+    }));
+  }
 
   handleChange = event => {
     this.setState({
@@ -59,13 +73,12 @@ class AdminPage extends React.Component {
 
     const { classes } = this.props;
 
+    const value = this.state.openDialog ? "OPEN" : "CLOSED";
+
     const menuItems = 
         <div>
             <ListItem button>
-                <ListItemText primary="Add" />
-            </ListItem>
-            <ListItem button>
-                <ListItemText primary="Edit" />
+                <ListItemText primary="Add" onClick={(e) => this.toggleDialog()} />
             </ListItem>
             <Divider />
         </div>
