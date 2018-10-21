@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminPage from '../components/AdminPage'
 import SermonService from '../services/sermon-service'
+import AudioFileService from "../services/audio-file-service";
 
 class AdminPageContainer extends Component {
 
@@ -19,7 +20,7 @@ class AdminPageContainer extends Component {
     componentWillMount() {
         this.props.loadSeries();
         this.props.loadSermons();
-        this.props.loadUnmapped();
+        this.props.loadAudioFiles();
     }
 
     render(){
@@ -27,18 +28,22 @@ class AdminPageContainer extends Component {
             <AdminPage 
                 sermons={this.props.allSermons} 
                 series={this.props.allSeries}
-                unmappedSermons={this.props.unmappedSermons} />
+                unmappedSermons={this.props.unmappedSermons}
+                audioFiles={this.props.allAudioFiles} />
         );
     }
 }
 
 const sermonService = new SermonService();
+const audioFilesService = new AudioFileService();
 
 function mapStateToProps(state) {
     return {
         allSermons: state.allSermons.sermons,
         allSeries: state.allSeries.series,
+        allAudioFiles: state.allAudioFiles.audioFiles,
         unmappedSermons: state.unmappedSermons.sermons
+
     };
 }
 
@@ -47,6 +52,7 @@ function mapDispatchToProps(dispatch) {
     return {
         loadSermons: () => dispatch(sermonService.loadAllSermons()),
         loadSeries: () => dispatch(sermonService.loadAllSeries()),
+        loadAudioFiles: () => dispatch(audioFilesService.loadAllAudioFiles()),
         loadUnmapped: () => dispatch(sermonService.loadUnmappedSermons())
     };
 }

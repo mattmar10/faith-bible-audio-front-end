@@ -9,6 +9,7 @@ import favoriteSermonsReducer from './reducer_favorite_sermon'
 import sermonDetailsUpdateReducer from './reducer_sermon_update'
 import allSeriesReducer from './reducer_all_series'
 import allSermonsReducer from './reducer_all_sermons'
+import allAudioFilesReducer from './reducer_all_audioFiles'
 import allUnmappedReducer from './reducer_all_unmapped'
 
 import { reducer as formReducer } from 'redux-form';
@@ -25,7 +26,7 @@ const rootReducer = combineReducers({
     favoriteSermons: favoriteSermonsReducer,
     allSermons: allSermonsReducer,
     allSeries: allSeriesReducer,
-    unmappedSermons: allUnmappedReducer,
+    allAudioFiles: allAudioFilesReducer,
     form: formReducer
 });
 
