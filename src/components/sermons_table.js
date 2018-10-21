@@ -235,7 +235,7 @@ class SermonsTable extends React.Component {
 
   handleClick = (event, id) => {
 
-    console.log(this.props.sermons.find( (sermon) => sermon.id === id ));
+    let found = this.props.sermons.find( (sermon) => sermon.id === id );
 
     /*const { selected } = this.state;
     const selectedIndex = selected.indexOf(id);
@@ -256,7 +256,7 @@ class SermonsTable extends React.Component {
 
     console.log(selected);
     */
-    this.setState({open: true});
+    this.setState({open: true, selected: [found]});
   };
 
   handleChangePage = (event, page) => {
@@ -397,7 +397,8 @@ class SermonsTable extends React.Component {
           <DialogContent>
 
               <AddEditSermonContainer speakers={sortedSpeakers}
-                                      series={uniqueSeries}/>
+                                      series={uniqueSeries}
+                                      sermon={this.state.selected[0]}/>
 
           </DialogContent>
           <DialogActions>

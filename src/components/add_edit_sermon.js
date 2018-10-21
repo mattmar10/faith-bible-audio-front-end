@@ -35,14 +35,21 @@ class AddEditSermon extends Component{
 
         this.renderSpeakerField = this.renderSpeakerField.bind(this);
         this.renderSeriesField = this.renderSeriesField.bind(this);
+        this.renderTitleField = this.renderTitleField.bind(this);
+        this.renderAudioURLField = this.renderAudioURLField.bind(this);
+
     }
 
     renderTitleField(field) {
+
+        let title =  (this.props.sermon) ? this.props.sermon.title : 'title';
+
         return(
             <div style={addEditStyles.fieldWrapper}>
                 <label style={addEditStyles.label} htmlFor="title">Title</label>
                 <input type="text" 
                        style={addEditStyles.inputFullWidth}
+                       placeholder={title}
                 />
                 
 
@@ -51,6 +58,9 @@ class AddEditSermon extends Component{
     }
 
     renderAudioURLField(field) {
+
+        console.log(this.props.sermon);
+
         return(
             <div>
                 <label style={addEditStyles.label} htmlFor="audioURL">Audio URL</label>
@@ -98,18 +108,20 @@ class AddEditSermon extends Component{
 
         const options = this.props.speakers.map((speaker) => {
             return (
-                <option key={speaker.seriesSlug}
-                        value={speaker.seriesTitle}
+                <option key={speaker}
+                        value={speaker}
                         style={addEditStyles.selectBox}>
                     {speaker}
                 </option>
             )
         });
 
+        const value = (this.props.sermon) ? this.props.sermon.speaker : null;
+
         return(
             <div>
                 <label style={addEditStyles.label} htmlFor="speaker">Speaker</label>
-                <select {...field.input} style={addEditStyles.selectBox}>
+                <select {...field.input} value={value} style={addEditStyles.selectBox}>
                     {options}
                 </select>
             </div>
@@ -126,13 +138,16 @@ class AddEditSermon extends Component{
                     {series.seriesTitle}
                 </option>
             )
-        });
+        }); 
+        
+        const value = (this.props.sermon) ? this.props.sermon.series : null;
 
         return(
             <div>
                 <label style={addEditStyles.label} htmlFor="series">Series</label>
                 <select {...field.input} 
-                        style={addEditStyles.selectBox}>
+                        style={addEditStyles.selectBox}
+                        value={value}>
                     {options}
                 </select>
             </div>
@@ -147,7 +162,6 @@ class AddEditSermon extends Component{
                 <form>
                     <Field name="title" component={this.renderTitleField}
                     />
-
                     <Field name="series" component={this.renderSeriesField}
                     />
                     <Field name="speaker" component={this.renderSpeakerField}

@@ -16,7 +16,8 @@ class AddEditSermonContainer extends Component {
 
         return(
           <AddEditSermon speakers={this.props.speakers}
-                         series={this.props.series}/>
+                         series={this.props.series}
+                         sermon={this.props.sermon}/>
         );
     }
 }
