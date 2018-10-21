@@ -161,7 +161,6 @@ export function sermonsLoadedSuccessfully(sermons: Array<Object>){
     }
 }
 
-<<<<<<< HEAD
 export function audioFilesLoadedSuccessfully(audioFiles: Array<Object>){
     return {
         type: actionTypes.AUDIO_FILES_LOADED,
@@ -172,7 +171,10 @@ export function audioFilesLoadedSuccessfully(audioFiles: Array<Object>){
 export function audioFilesLoadError(errors: Array<Object>){
     return {
         type: actionTypes.AUDIO_FILES_LOAD_ERROR,
-=======
+        payload: errors
+    }
+}
+
 export function umappedSermonsLoadedSuccessfully(sermons: Array<Object>){
     return {
         type: actionTypes.UNMAPPED_SERMONS_LOADED,
@@ -183,7 +185,6 @@ export function umappedSermonsLoadedSuccessfully(sermons: Array<Object>){
 export function unmappedSermonsLoadError(errors: Array<Object>){
     return {
         type: actionTypes.UNMAPPED_SERMONS_LOAD_ERROR,
->>>>>>> d895acacc3a4a948953b9cd76580b758d0e0266c
         payload: errors
     }
 }
