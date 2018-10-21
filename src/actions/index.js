@@ -160,3 +160,17 @@ export function sermonsLoadedSuccessfully(sermons: Array<Object>){
         payload: sermons
     }
 }
+
+export function audioFilesLoadedSuccessfully(audioFiles: Array<Object>){
+    return {
+        type: actionTypes.AUDIO_FILES_LOADED,
+        payload: audioFiles
+    }
+}
+
+export function audioFilesLoadError(errors: Array<Object>){
+    return {
+        type: actionTypes.AUDIO_FILES_LOAD_ERROR,
+        payload: errors
+    }
+}

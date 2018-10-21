@@ -87,6 +87,17 @@ class AddEditSermon extends Component{
         )
     }
 
+    renderNewSpeakerField(field) {
+        return(
+            <div>
+                <label htmlFor="newSpeaker">or Add a New Speaker</label>
+                <input type="textarea"
+                       {...field.input}
+                />
+            </div>
+        )
+    }
+
     renderSeriesField(field) {
 
         const options = this.props.series.map((series) => {
@@ -119,6 +130,8 @@ class AddEditSermon extends Component{
                     <Field name="series" component={this.renderSeriesField}
                     />
                     <Field name="speaker" component={this.renderSpeakerField}
+                    />
+                    <Field name="newSpeaker" component={this.renderNewSpeakerField}
                     />
                     <Field name="audioURL" component={this.renderAudioURLField}
                     />
