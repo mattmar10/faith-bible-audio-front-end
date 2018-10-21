@@ -10,6 +10,7 @@ import sermonDetailsUpdateReducer from './reducer_sermon_update'
 import allSeriesReducer from './reducer_all_series'
 import allSermonsReducer from './reducer_all_sermons'
 import allAudioFilesReducer from './reducer_all_audioFiles'
+import allUnmappedReducer from './reducer_all_unmapped'
 
 import { reducer as formReducer } from 'redux-form';
 

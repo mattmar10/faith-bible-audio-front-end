@@ -77,14 +77,7 @@ class SermonBanner extends Component {
         }
         else{
             return(
-                <div className='player-wrapper'>
-                    <ReactPlayer
-                        className='react-player'
-                        url={videoURL}
-                        width='100%'
-                        height='100%'
-                    />
-                </div>
+                <div><img src={imageURL} /></div>
                 
             );
         }

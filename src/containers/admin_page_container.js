@@ -25,7 +25,11 @@ class AdminPageContainer extends Component {
 
     render(){
         return(
-            <AdminPage sermons={this.props.allSermons} series={this.props.allSeries} audioFiles={this.props.allAudioFiles}/>
+            <AdminPage 
+                sermons={this.props.allSermons} 
+                series={this.props.allSeries}
+                unmappedSermons={this.props.unmappedSermons}
+                audioFiles={this.props.allAudioFiles} />
         );
     }
 }
@@ -37,7 +41,8 @@ function mapStateToProps(state) {
     return {
         allSermons: state.allSermons.sermons,
         allSeries: state.allSeries.series,
-        allAudioFiles: state.allAudioFiles.audioFiles
+        allAudioFiles: state.allAudioFiles.audioFiles,
+        unmappedSermons: state.unmappedSermons.sermons
 
     };
 }
@@ -47,7 +52,8 @@ function mapDispatchToProps(dispatch) {
     return {
         loadSermons: () => dispatch(sermonService.loadAllSermons()),
         loadSeries: () => dispatch(sermonService.loadAllSeries()),
-        loadAudioFiles: () => dispatch(audioFilesService.loadAllAudioFiles())
+        loadAudioFiles: () => dispatch(audioFilesService.loadAllAudioFiles()),
+        loadUnmapped: () => dispatch(sermonService.loadUnmappedSermons())
     };
 }
 

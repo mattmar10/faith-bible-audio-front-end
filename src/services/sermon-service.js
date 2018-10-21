@@ -99,5 +99,19 @@ export default class SermonService {
                 });
         }
     }
+
+    loadUnmappedSermons(){
+        return(dispatch: Function) => {
+            return this.apiGateway.get(API_ROOT + '/audiofiles/unmapped')
+                .then((result) => {
+                    if(hasErrors(result)){
+                        dispatch(actions.unmappedSermonsLoadError(result));
+                    } else {
+                        dispatch(actions.umappedSermonsLoadedSuccessfully(result));
+                    }
+                    return result;
+                });
+        }
+    }
     
 }
