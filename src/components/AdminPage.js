@@ -10,8 +10,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider'
-
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 import SermonsTable from '../components/sermons_table'
 
@@ -63,6 +68,11 @@ class AdminPage extends React.Component {
     }));
   }
 
+  handleClose = () => {
+    this.setState({ openDialog: false });
+  };
+
+
   handleChange = event => {
     this.setState({
       anchor: event.target.value,
@@ -72,8 +82,6 @@ class AdminPage extends React.Component {
   render() {
 
     const { classes } = this.props;
-
-    const value = this.state.openDialog ? "OPEN" : "CLOSED";
 
     const menuItems = 
         <div>
@@ -105,6 +113,26 @@ class AdminPage extends React.Component {
           <div className={classes.toolbar} />
           <SermonsTable sermons={this.props.sermons}/>
         </main>
+        <Dialog
+          fullWidth={true}
+          open={this.state.openDialog}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Add Sermon</DialogTitle>
+          <DialogContent>
+              content
+
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleClose} color="primary">
+              Save
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }
