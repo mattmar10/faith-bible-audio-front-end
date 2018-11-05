@@ -12,12 +12,19 @@ export default function (state: Array<Object> = {}, action: Object) {
                 sermons: null
             }
         case actionTypes.ALL_SERMONS_LOADED:
+            
+            const allSermons = action.payload.data.body;
+
+            const mapped = allSermons.map(s => s.speaker);
+            const uniqueSpeakers = Array.from(new Set(mapped));
+
             return {
                 ...state,
                 isFetching: false,
                 error: false,
                 errorMessage: null,
-                sermons: action.payload.data.body
+                sermons: allSermons,
+                speakers: uniqueSpeakers
             }
         case actionTypes.ALL_SERMONS_LOAD_ERROR:
             return {

@@ -5,6 +5,7 @@ import SermonDetailPage from '../containers/SermonDetailPage'
 import SeriesDetailPage from '../containers/SeriesDetailPage'
 import SearchResultsPage from '../containers/SearchResultsPage'
 import AdminPageContainer from '../containers/admin_page_container'
+import SermonEditorPage from '../containers/SermonEditorPage'
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -21,6 +22,7 @@ class Main extends Component {
                         <Route path='/search' component={SearchResultsPage} />
                         <Route path='/sermon/:sermonSlug' component={SermonDetailPage} />
                         <Route path='/series/:seriesId' component={SeriesDetailPage} />
+                        <Route path='/admin/:sermonSlug' component={SermonEditorPage} />
                         <Route path='/admin' component={AdminPageContainer} />
                         <Route exact path='/' component={Homepage} />
                     </Switch>

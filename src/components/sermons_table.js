@@ -402,6 +402,9 @@ class SermonsTable extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Save
             </Button>
+            <Button onClick={this.handleClose} color="primary">
+              Save and Archive
+            </Button>
           </DialogActions>
         </Dialog>
       </Paper>

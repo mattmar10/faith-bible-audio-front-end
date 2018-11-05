@@ -5,7 +5,8 @@ const addEditStyles = {
     addEditForm:{
         textAlign: 'left',
         fontFamily: 'Roboto',
-        fontSize: '14px'
+        fontSize: '14px',
+        padding: '7%'
     },
     fieldWrapper: {
     },
@@ -42,13 +43,14 @@ class AddEditSermon extends Component{
 
     constructor(props){
         super(props);
-
+        
         this.renderSpeakerField = this.renderSpeakerField.bind(this);
         this.renderSeriesField = this.renderSeriesField.bind(this);
         this.renderTitleField = this.renderTitleField.bind(this);
         this.renderAudioURLField = this.renderAudioURLField.bind(this);
         this.renderNewSpeakerField = this.renderNewSpeakerField.bind(this);
         this.renderNewSeriesField = this.renderNewSeriesField.bind(this);
+        this.renderNotesURLField = this.renderNotesURLField.bind(this);
 
     }
 
@@ -61,7 +63,7 @@ class AddEditSermon extends Component{
                 <label style={addEditStyles.label} htmlFor="title">Title</label>
                 <input type="text" 
                        style={addEditStyles.inputFullWidth}
-                       placeholder={title}
+                       value={title}
                 />
                 
 
@@ -71,17 +73,21 @@ class AddEditSermon extends Component{
 
     renderAudioURLField(field) {
 
+        let mp3URI = (this.props.sermon) ? this.props.sermon.mp3URI : '';
+
         return(
             <div>
                 <label style={addEditStyles.label} htmlFor="audioURL">Audio URL</label>
                 <input type="text" style={addEditStyles.inputFullWidth}
                        {...field.input}
+                       value={mp3URI}
                 />
             </div>
         )
     }
 
     renderVideoURLField(field) {
+
         return(
             <div>
                 <label style={addEditStyles.label} htmlFor="videoURL">Video URL</label>
@@ -93,11 +99,15 @@ class AddEditSermon extends Component{
     }
 
     renderNotesURLField(field) {
+
+        let pdfURL = (this.props.sermon) ? this.props.sermon.pdfURI : '';
+
         return(
             <div>
                 <label style={addEditStyles.label} htmlFor="notesPDFURL">Sermon Notes URL</label>
                 <input type="text" style={addEditStyles.inputFullWidth}
                        {...field.input}
+                       value={pdfURL}
                 />
             </div>
         )
@@ -198,11 +208,20 @@ class AddEditSermon extends Component{
         )
     }
 
-    render() {
+    renderMarkAsSanitized(field){
+        return(
+            <div>
+                <label style={addEditStyles.label} htmlFor="Mapped">Mark as Sanitized</label>
+                <input type="checkbox" name="sanitized" checked={true}/>
+                
+            </div>
+        )
+    }
 
+    render() {
         return (
             <div style={addEditStyles.addEditForm}>
-                <form>
+                <form onSubmit={this.props.handleSubmit}>
                     <Field name="title" component={this.renderTitleField}
                     />
                     <Field name="series" component={this.renderSeriesField}
@@ -221,6 +240,31 @@ class AddEditSermon extends Component{
                     />
                     <Field name="tags" component={this.renderTagsField}
                     />
+                    <Field name="sanitized" component={this.renderMarkAsSanitized} />
+                    <label style={addEditStyles.label} htmlFor="Mapped">Mark as Sanitized</label>
+
+                    <div>
+                        <Field
+                            name="sanitized"
+                            type="checkbox"
+                            component="input"
+                        />                    
+                    </div>
+
+                    <label>Last Name</label>
+                    <div>
+                    <Field
+                        name="lastName"
+                        component="input"
+                        type="text"
+                        placeholder="Last Name"
+                    />
+                    </div>
+                    <div>
+                        <button type="submit">
+                         Submit
+                        </button>
+                    </div>
                 </form>
             </div>
         );
