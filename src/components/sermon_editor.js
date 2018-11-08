@@ -18,8 +18,17 @@ class SermonEditor extends React.Component {
       }
 
     render() {
+
+        const myInitialValues = {
+            initialValues: {
+              pdfURL: this.props.sermon.pdfURI,
+              audioURL: this.props.sermon.mp3URI
+            }
+          }
+
         return(
-            <AddEditSermon speakers={this.props.speakers}
+            <AddEditSermon {...myInitialValues} 
+                         speakers={this.props.speakers}
                          series={this.props.allSeries}
                          sermon={this.props.sermon}
                          onSubmit={this.handleSubmit.bind(this)}/>

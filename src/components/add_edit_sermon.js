@@ -71,33 +71,6 @@ class AddEditSermon extends Component{
         )
     }
 
-    renderAudioURLField(field) {
-
-        let mp3URI = (this.props.sermon) ? this.props.sermon.mp3URI : '';
-
-        return(
-            <div>
-                <label style={addEditStyles.label} htmlFor="audioURL">Audio URL</label>
-                <input type="text" style={addEditStyles.inputFullWidth}
-                       {...field.input}
-                       value={mp3URI}
-                />
-            </div>
-        )
-    }
-
-    renderVideoURLField(field) {
-
-        return(
-            <div>
-                <label style={addEditStyles.label} htmlFor="videoURL">Video URL</label>
-                <input type="text" style={addEditStyles.inputFullWidth}
-                       {...field.input}
-                />
-            </div>
-        )
-    }
-
     renderNotesURLField(field) {
 
         let pdfURL = (this.props.sermon) ? this.props.sermon.pdfURI : '';
@@ -108,17 +81,6 @@ class AddEditSermon extends Component{
                 <input type="text" style={addEditStyles.inputFullWidth}
                        {...field.input}
                        value={pdfURL}
-                />
-            </div>
-        )
-    }
-
-    renderTagsField(field) {
-        return(
-            <div>
-                <label style={addEditStyles.label} htmlFor="Tags">Tags (separate with ',')</label>
-                <input type="textarea" style={addEditStyles.inputFullWidth}
-                       {...field.input}
                 />
             </div>
         )
@@ -208,15 +170,7 @@ class AddEditSermon extends Component{
         )
     }
 
-    renderMarkAsSanitized(field){
-        return(
-            <div>
-                <label style={addEditStyles.label} htmlFor="Mapped">Mark as Sanitized</label>
-                <input type="checkbox" name="sanitized" checked={true}/>
-                
-            </div>
-        )
-    }
+
 
     render() {
         return (
@@ -232,18 +186,58 @@ class AddEditSermon extends Component{
                     />
                     <Field name="newSpeaker" component={this.renderNewSpeakerField}
                     />
-                    <Field name="audioURL" component={this.renderAudioURLField}
-                    />
-                    <Field name="videoURL" component={this.renderVideoURLField}
-                    />
-                    <Field name="notesPDFURL" component={this.renderNotesURLField}
-                    />
-                    <Field name="tags" component={this.renderTagsField}
-                    />
-                    <Field name="sanitized" component={this.renderMarkAsSanitized} />
-                    <label style={addEditStyles.label} htmlFor="Mapped">Mark as Sanitized</label>
 
                     <div>
+                        <label style={addEditStyles.label} htmlFor="audioURL">Audio URL</label>
+                        <Field name="audioURL"
+                            type="text"
+                            component="input"
+                            style={addEditStyles.inputFullWidth}
+                        />
+                    </div>
+                    <div>
+                        <label style={addEditStyles.label} htmlFor="videoURL">Video URL</label>
+                        <Field name="videoURL"
+                            type="text"
+                            component="input"
+                            style={addEditStyles.inputFullWidth}
+                        />
+                    </div>
+                   
+                    <div>
+                        <label style={addEditStyles.label} htmlFor="pdfURL">Sermon Notes URL</label>
+                        <Field name="pdfURL"
+                            type="text"
+                            component="input"
+                            style={addEditStyles.inputFullWidth}
+                        />
+                    </div>
+
+                    <div>
+                        <label style={addEditStyles.label} htmlFor="tags">Tags (separate with ',')</label>
+
+                        <Field name="tags"
+                            type="text"
+                            component="input"
+                            style={addEditStyles.inputFullWidth}
+                        />
+                       
+                    </div>
+
+                    <div>
+                        <label style={addEditStyles.label} htmlFor="tags">Tags (separate with ',')</label>
+
+                        <Field name="tags"
+                            type="text"
+                            component="input"
+                            style={addEditStyles.inputFullWidth}
+                        />
+                       
+                    </div>
+
+                    <div>
+                        <label style={addEditStyles.label} htmlFor="Mapped">Mark as Sanitized</label>
+
                         <Field
                             name="sanitized"
                             type="checkbox"
@@ -251,15 +245,6 @@ class AddEditSermon extends Component{
                         />                    
                     </div>
 
-                    <label>Last Name</label>
-                    <div>
-                    <Field
-                        name="lastName"
-                        component="input"
-                        type="text"
-                        placeholder="Last Name"
-                    />
-                    </div>
                     <div>
                         <button type="submit">
                          Submit
@@ -273,5 +258,6 @@ class AddEditSermon extends Component{
 }
 
 export default reduxForm({
-    form: 'AddEditSermonForm'
+    form: 'AddEditSermonForm',
+
 })(AddEditSermon);
