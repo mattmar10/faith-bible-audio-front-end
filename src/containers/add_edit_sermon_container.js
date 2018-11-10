@@ -13,11 +13,23 @@ class AddEditSermonContainer extends Component {
 
     render(){
 
+        const series = (this.props.sermon) ? this.props.sermon.series : null;
+        const speaker = (this.props.sermon) ? this.props.sermon.speaker : null;
+        let pdfURL = (this.props.sermon) ? this.props.sermon.pdfURI : '';
+        let audioURL = (this.props.sermon) ? this.props.sermon.mp3URI : '';
+        let title =  (this.props.sermon) ? this.props.sermon.title : 'title';
+
+        console.log(this.props.sermon);
 
         return(
           <AddEditSermon speakers={this.props.speakers}
                          series={this.props.series}
-                         sermon={this.props.sermon}/>
+                         sermon={this.props.sermon}
+                         speaker={speaker}
+                         series={series}
+                         pdfURL={pdfURL}
+                         title={title}
+          />
         );
     }
 }

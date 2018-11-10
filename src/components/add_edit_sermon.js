@@ -43,52 +43,11 @@ class AddEditSermon extends Component{
 
     constructor(props){
         super(props);
-        
-        this.renderSpeakerField = this.renderSpeakerField.bind(this);
-        this.renderSeriesField = this.renderSeriesField.bind(this);
-        this.renderTitleField = this.renderTitleField.bind(this);
-        this.renderAudioURLField = this.renderAudioURLField.bind(this);
-        this.renderNewSpeakerField = this.renderNewSpeakerField.bind(this);
-        this.renderNewSeriesField = this.renderNewSeriesField.bind(this);
-        this.renderNotesURLField = this.renderNotesURLField.bind(this);
-
     }
 
-    renderTitleField(field) {
+    render() {
 
-        let title =  (this.props.sermon) ? this.props.sermon.title : 'title';
-
-        return(
-            <div style={addEditStyles.fieldWrapper}>
-                <label style={addEditStyles.label} htmlFor="title">Title</label>
-                <input type="text" 
-                       style={addEditStyles.inputFullWidth}
-                       value={title}
-                />
-                
-
-            </div>
-        )
-    }
-
-    renderNotesURLField(field) {
-
-        let pdfURL = (this.props.sermon) ? this.props.sermon.pdfURI : '';
-
-        return(
-            <div>
-                <label style={addEditStyles.label} htmlFor="notesPDFURL">Sermon Notes URL</label>
-                <input type="text" style={addEditStyles.inputFullWidth}
-                       {...field.input}
-                       value={pdfURL}
-                />
-            </div>
-        )
-    }
-
-    renderSpeakerField(field) {
-
-        const options = this.props.speakers.map((speaker) => {
+        const speakerOptions = this.props.speakers.map((speaker) => {
             return (
                 <option key={speaker}
                         value={speaker}
@@ -98,38 +57,7 @@ class AddEditSermon extends Component{
             )
         });
 
-        const value = (this.props.sermon) ? this.props.sermon.speaker : null;
-
-        return(
-            <div>
-                <label style={addEditStyles.label} htmlFor="speaker">Speaker</label>
-                <select {...field.input} value={value} style={addEditStyles.selectBox}>
-                    {options}
-                </select>
-            </div>
-        )
-    }
-
-    renderNewSpeakerField(field) {
-
-        return(
-            <div>
-                <p style={{paddingTop:'10px'}}>or</p>
-                
-                <div style={{paddingLeft:'5%'}}>
-                    <label style={addEditStyles.sublabel}  htmlFor="newSpeaker">Add a New Speaker</label>
-                    <input type="textarea"
-                        {...field.input}
-                        style={addEditStyles.inputFullWidth}
-                    />
-                </div>
-            </div>
-        )
-    }
-
-    renderSeriesField(field) {
-
-        const options = this.props.series.map((series) => {
+        const seriesOptions = this.props.series.map((series) => {
             return (
                 <option key={series.seriesSlug}
                         value={series.seriesTitle}
@@ -137,55 +65,66 @@ class AddEditSermon extends Component{
                     {series.seriesTitle}
                 </option>
             )
-        }); 
-        
-        const value = (this.props.sermon) ? this.props.sermon.series : null;
+        });
 
-        return(
-            <div>
-                <label style={addEditStyles.label} htmlFor="series">Series</label>
-                <select {...field.input} 
-                        style={addEditStyles.selectBox}
-                        value={value}>
-                    {options}
-                </select>
-            </div>
-        )
-    }
-
-    renderNewSeriesField(field) {
-
-        return(
-            <div>
-                <p style={{paddingTop:'10px'}}>or</p>
-                
-                <div style={{paddingLeft:'5%'}}>
-                    <label style={addEditStyles.sublabel}  htmlFor="newSeries">Add a New Series</label>
-                    <input type="textarea"
-                        {...field.input}
-                        style={addEditStyles.inputFullWidth}
-                    />
-                </div>
-            </div>
-        )
-    }
-
-
-
-    render() {
         return (
             <div style={addEditStyles.addEditForm}>
                 <form onSubmit={this.props.handleSubmit}>
-                    <Field name="title" component={this.renderTitleField}
-                    />
-                    <Field name="series" component={this.renderSeriesField}
-                    />
-                    <Field name="newSeries" component={this.renderNewSeriesField}
-                    />
-                    <Field name="speaker" component={this.renderSpeakerField}
-                    />
-                    <Field name="newSpeaker" component={this.renderNewSpeakerField}
-                    />
+
+
+                    <div style={addEditStyles.fieldWrapper}>
+                        <label style={addEditStyles.label} htmlFor="title">Title</label>
+                        <Field name="title"
+                               type="text"
+                               component="input"
+                               style={addEditStyles.inputFullWidth}
+                        />
+
+                    </div>
+
+                    <div>
+                        <label style={addEditStyles.label} htmlFor="series">Series</label>
+                        <Field name="series"
+                               style={addEditStyles.selectBox}
+                               component="select">
+                            {seriesOptions}
+                        </Field>
+                    </div>
+
+                    <div>
+                        <p style={{paddingTop:'10px'}}>or</p>
+
+                        <div style={{paddingLeft:'5%'}}>
+                            <label style={addEditStyles.sublabel}  htmlFor="newSeries">Add a New Series</label>
+                            <Field name="newSeries"
+                                   type="text"
+                                   component="input"
+                                   style={addEditStyles.inputFullWidth}
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style={addEditStyles.label} htmlFor="speaker">Speaker</label>
+                        <Field name="speaker"
+                               style={addEditStyles.selectBox}
+                               component="select">
+                            {speakerOptions}
+                        </Field>
+                    </div>
+
+                    <div>
+                        <p style={{paddingTop:'10px'}}>or</p>
+
+                        <div style={{paddingLeft:'5%'}}>
+                            <label style={addEditStyles.sublabel}  htmlFor="newSpeaker">Add a New Speaker</label>
+                            <Field name="newSpeaker"
+                                   type="text"
+                                   component="input"
+                                   style={addEditStyles.inputFullWidth}
+                            />
+                        </div>
+                    </div>
 
                     <div>
                         <label style={addEditStyles.label} htmlFor="audioURL">Audio URL</label>
