@@ -27,7 +27,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import { withRouter, Link} from "react-router-dom";
 
 import AddEditSermonContainer from '../containers/add_edit_sermon_container'
 
@@ -320,6 +320,7 @@ class SermonsTable extends React.Component {
         .map(val => val[0]);
 
 
+
     return (
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
@@ -338,10 +339,11 @@ class SermonsTable extends React.Component {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
                   const isSelected = this.isSelected(n.id);
+                  let link = '/admin/' + n.slug
                   return (
                     <TableRow
                       hover
-                      onClick={event => this.handleClick(event, n.id)}
+                      //onClick={event => this.handleClick(event, n.id)}
                       role="checkbox"
                       aria-checked={isSelected}
                       tabIndex={-1}
@@ -351,7 +353,7 @@ class SermonsTable extends React.Component {
                       <TableCell padding="checkbox">
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
-                        {n.title}
+                          <Link to={link}>{n.title}</Link>
                       </TableCell>
                       <TableCell numeric>{n.date}</TableCell>
                       <TableCell numeric>{n.series}</TableCell>

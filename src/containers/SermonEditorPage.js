@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import SermonEditor from '../components/sermon_editor'
 import SermonService from '../services/sermon-service'
 import AudioFileService from "../services/audio-file-service";
-
+import {initialize} from 'redux-form';
 
 class SermonEditorPage extends Component {
 
@@ -17,7 +17,7 @@ class SermonEditorPage extends Component {
         
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const sermonSlug = this.props.match.params['sermonSlug']
         
         this.props.loadSeries();
@@ -28,9 +28,22 @@ class SermonEditorPage extends Component {
 
     }
 
+    componentDidUpdate(prevProps) {
+
+        const sermonSlug = this.props.match.params['sermonSlug']
+        //this.props.getSermonDetails(sermonSlug);
+
+        if(prevProps && prevProps.sermonDetails && prevProps.sermonDetails.sermon){
+            const previousSlug = prevProps.sermonDetails.sermon.slug;
+            if(previousSlug != sermonSlug){
+                this.props.getSermonDetails(sermonSlug);
+            }
+        }
+
+    }
+
 
     render(){
-
         let doneLoading = this.props.sermonDetails && this.props.allSeries && this.props.allSpeakers;
 
         if(!doneLoading){
@@ -64,7 +77,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 
     return {
-        getSermonDetails: (sermonSlug) => dispatch(sermonService.getSermonDetailsBySlug(sermonSlug)),
+        getSermonDetails: (sermonSlug) => {
+            dispatch(sermonService.getSermonDetailsBySlug(sermonSlug));
+        },
         loadSermons: () => dispatch(sermonService.loadAllSermons()),
         loadSeries: () => dispatch(sermonService.loadAllSeries()),
         loadAudioFiles: () => dispatch(audioFilesService.loadAllAudioFiles()),

@@ -19,8 +19,6 @@ class AddEditSermonContainer extends Component {
         let audioURL = (this.props.sermon) ? this.props.sermon.mp3URI : '';
         let title =  (this.props.sermon) ? this.props.sermon.title : 'title';
 
-        console.log(this.props.sermon);
-
         return(
           <AddEditSermon speakers={this.props.speakers}
                          series={this.props.series}

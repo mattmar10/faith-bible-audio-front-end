@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import {Field, reduxForm} from 'redux-form';
+import {connect} from "react-redux";
 
 const addEditStyles = {
     addEditForm:{
         textAlign: 'left',
         fontFamily: 'Roboto',
         fontSize: '14px',
-        padding: '7%'
+        paddingLeft: '5%',
+        paddingRight: '7%',
+        paddingBottom: '7%',
+        paddingTop: '3%'
     },
     fieldWrapper: {
     },
@@ -32,9 +36,9 @@ const addEditStyles = {
         backgroundColor: '#f2f2f2',
     },
     selectBox: {
-        padding: '5px',
+        padding: '15px',
         border: 'none',
-        width: '100%',
+        width: '50%',
     }
 
 };
@@ -49,26 +53,28 @@ class AddEditSermon extends Component{
 
         const speakerOptions = this.props.speakers.map((speaker) => {
             return (
+
                 <option key={speaker}
                         value={speaker}
-                        style={addEditStyles.selectBox}>
+                        >
                     {speaker}
                 </option>
             )
         });
 
         const seriesOptions = this.props.series.map((series) => {
+
+            const title = series.title;
             return (
-                <option key={series.seriesSlug}
-                        value={series.seriesTitle}
-                        style={addEditStyles.selectBox}>
-                    {series.seriesTitle}
+                <option value={title} key={title}>
+                    {title}
                 </option>
             )
         });
 
-        return (
+        return(
             <div style={addEditStyles.addEditForm}>
+                <h3>Sermon Editor</h3>
                 <form onSubmit={this.props.handleSubmit}>
 
 
@@ -134,6 +140,16 @@ class AddEditSermon extends Component{
                             style={addEditStyles.inputFullWidth}
                         />
                     </div>
+
+                    <div>
+                        <label style={addEditStyles.label} htmlFor="imageURL">Image URL</label>
+                        <Field name="imageURL"
+                               type="text"
+                               component="input"
+                               style={addEditStyles.inputFullWidth}
+                        />
+                    </div>
+
                     <div>
                         <label style={addEditStyles.label} htmlFor="videoURL">Video URL</label>
                         <Field name="videoURL"
@@ -150,17 +166,6 @@ class AddEditSermon extends Component{
                             component="input"
                             style={addEditStyles.inputFullWidth}
                         />
-                    </div>
-
-                    <div>
-                        <label style={addEditStyles.label} htmlFor="tags">Tags (separate with ',')</label>
-
-                        <Field name="tags"
-                            type="text"
-                            component="input"
-                            style={addEditStyles.inputFullWidth}
-                        />
-                       
                     </div>
 
                     <div>
@@ -196,7 +201,36 @@ class AddEditSermon extends Component{
 
 }
 
-export default reduxForm({
-    form: 'AddEditSermonForm',
+function mapStateToProps(state) {
 
-})(AddEditSermon);
+
+    const series = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.series : null;
+    const speaker = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.speaker : null;
+    let pdfURL = (state.sermonDetails.sermon) ? state.sermonDetails.pdfURI : '';
+    let audioURL = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.mp3URI : '';
+    let title =  (state.sermonDetails.sermon) ? state.sermonDetails.sermon.title : 'title';
+    let imageURL = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.imageURI : null;
+
+    return {
+        initialValues: {
+            pdfURL: pdfURL,
+            audioURL: audioURL,
+            title: title,
+            series: series,
+            speaker: speaker,
+            imageURL: imageURL
+
+        }
+    };
+
+}
+
+AddEditSermon = reduxForm({
+    form: 'AddEditSermonForm',
+    enableReinitialize : true // this is needed!!
+
+})(AddEditSermon)
+
+export default connect(
+    mapStateToProps
+)(AddEditSermon);
