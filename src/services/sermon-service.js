@@ -10,10 +10,13 @@ export default class SermonService {
     }
 
     updateSermon(sermonId: int, sermon: Object){
+        console.log('updating ' + sermonId);
+
         return (dispatch: Function) => {
             return this.apiGateway.patch(API_ROOT + `/sermon/${sermonId}`, sermon)
 
                 .then((result) => {
+                    console.log(result);
                     if (hasErrors(result)) {
                         dispatch(actions.sermonDetailsUpdateFailed(result));
                     } else {

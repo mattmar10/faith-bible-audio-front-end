@@ -38,6 +38,7 @@ const response400 = {
 */
 
 function executeRequest(finalUrl: string, request: Object) {
+    console.log(request);
     return axios(finalUrl, request)
         .then(response => {
             if (response.status === 404) {
@@ -85,7 +86,7 @@ export default class ApiGateway {
         return executeRequest(
             url,
             {
-                body: generateBodyJsonString(body),
+                data: generateBodyJsonString(body),
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include', method: 'POST'
             });
@@ -95,17 +96,18 @@ export default class ApiGateway {
         return executeRequest(
             url,
             {
-                body: generateBodyJsonString(body),
+                data: generateBodyJsonString(body),
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include', method: 'PUT'
             });
     }
 
     patch(url: string, body: Object) {
+
         return executeRequest(
             url,
             {
-                body: generateBodyJsonString(body),
+                data: generateBodyJsonString(body),
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include', method: 'PATCH'
             });

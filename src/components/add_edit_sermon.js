@@ -43,11 +43,24 @@ const addEditStyles = {
 
 };
 
+
+const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+    <div>
+      <label style={addEditStyles.label}>{label}</label>
+      <div>
+        <input {...input} placeholder={label} type={type} className="form-control" style={addEditStyles.inputFullWidth}/>
+        {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
+      </div>
+    </div>
+  )
+
 class AddEditSermon extends Component{
 
     constructor(props){
         super(props);
     }
+
+    
 
     render() {
 
@@ -78,14 +91,8 @@ class AddEditSermon extends Component{
                 <form onSubmit={this.props.handleSubmit}>
 
 
-                    <div style={addEditStyles.fieldWrapper}>
-                        <label style={addEditStyles.label} htmlFor="title">Title</label>
-                        <Field name="title"
-                               type="text"
-                               component="input"
-                               style={addEditStyles.inputFullWidth}
-                        />
-
+                    <div style={addEditStyles.fieldWrapper}>                        
+                       <Field name="title" type="text" component={renderField} label="Title"/>
                     </div>
 
                     <div>
@@ -202,8 +209,6 @@ class AddEditSermon extends Component{
 }
 
 function mapStateToProps(state) {
-
-
     const series = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.series : null;
     const speaker = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.speaker : null;
     let pdfURL = (state.sermonDetails.sermon) ? state.sermonDetails.pdfURI : '';
@@ -225,8 +230,40 @@ function mapStateToProps(state) {
 
 }
 
+const validate = values => {
+    const errors = {};
+
+    if (!values.title) {
+        console.log('title is required');
+        errors.title = 'Required';
+    }
+
+    if (!values.speaker && !values.newSpeaker) {
+        console.log('a speaker is required');
+        errors.speaker = 'Required';
+    }
+
+    if (!values.series && !values.newSeries) {
+        console.log('series is required');
+        errors.speaker = 'Required';
+    }
+
+    if (!values.audioURL) {
+        console.log('audioURL is required');
+        errors.audioURL = 'Required';
+    }
+
+    if (!values.imageURL) {
+        console.log('imageURL is required');
+        errors.imageURL = 'Required';
+    }
+
+    return errors;
+};
+
 AddEditSermon = reduxForm({
     form: 'AddEditSermonForm',
+    validate,
     enableReinitialize : true // this is needed!!
 
 })(AddEditSermon)
