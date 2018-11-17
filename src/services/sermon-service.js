@@ -9,6 +9,21 @@ export default class SermonService {
         this.apiGateway = new ApiGateway();
     }
 
+    updateSermon(sermonId: int, sermon: Object){
+        return (dispatch: Function) => {
+            return this.apiGateway.patch(API_ROOT + `/sermon/${sermonId}`, sermon)
+
+                .then((result) => {
+                    if (hasErrors(result)) {
+                        dispatch(actions.sermonDetailsUpdateFailed(result));
+                    } else {
+                        dispatch(actions.sermonDetailsUpdatedSuccessfully(result));
+                    }
+                    return result;
+                });
+        }
+    }
+
     incrementPlayCount(sermonId: int) {
 
         return (dispatch: Function) => {
