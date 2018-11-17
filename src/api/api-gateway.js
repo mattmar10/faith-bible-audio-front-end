@@ -38,7 +38,6 @@ const response400 = {
 */
 
 function executeRequest(finalUrl: string, request: Object) {
-    console.log(request);
     return axios(finalUrl, request)
         .then(response => {
             if (response.status === 404) {

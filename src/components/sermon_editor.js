@@ -18,26 +18,27 @@ class SermonEditor extends React.Component {
 
 
     handleSubmit(data) {
-        console.log(this.props.sermon.id);
         console.log(JSON.stringify(data, null, 2));
         
         const tags = (data.tags) ? data.tags.split(",") : this.props.sermon.tags;
         const pdfURI = (data.pdfURL) ? data.pdfURL : this.props.sermon.pdfURI;
+        const series = this.props.allSeries.find(s => s.title == data.series);
         
 
         let sermonToUpdate = {
             id: this.props.sermon.id,
             slug: this.props.sermon.slug,
-            series: data.series,
+            series: series.title,
+            seriesSlug: series.slug,
             mp3URI: data.audioURL,
             imageURI: data.imageURL,
             pdfURI: pdfURI,
             title: data.title,
-            tags: tags
+            tags: tags,
+            stats: this.props.sermon.stats
         }
 
         this.props.updateSermon(this.props.sermon.id, sermonToUpdate);
-
     }
 
     render() {
@@ -48,7 +49,6 @@ class SermonEditor extends React.Component {
         let audioURL = (this.props.sermon) ? this.props.sermon.mp3URI : '';
         let title = (this.props.sermon) ? this.props.sermon.title : 'title';
         let imageURL = (this.props.sermon) ? this.props.sermon.imageURI : null;
-
 
         const myInitialValues = {
             initialValues: {

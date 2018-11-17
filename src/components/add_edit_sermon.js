@@ -79,7 +79,7 @@ class AddEditSermon extends Component{
 
             const title = series.title;
             return (
-                <option value={title} key={title}>
+                <option value={series.slug} key={title}>
                     {title}
                 </option>
             )
