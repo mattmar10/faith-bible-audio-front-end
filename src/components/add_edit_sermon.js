@@ -140,50 +140,23 @@ class AddEditSermon extends Component{
                     </div>
 
                     <div>
-                        <label style={addEditStyles.label} htmlFor="audioURL">Audio URL</label>
-                        <Field name="audioURL"
-                            type="text"
-                            component="input"
-                            style={addEditStyles.inputFullWidth}
-                        />
+                        <Field name="audioURL" type="text" component={renderField} label="Audio URL"/>
                     </div>
 
                     <div>
-                        <label style={addEditStyles.label} htmlFor="imageURL">Image URL</label>
-                        <Field name="imageURL"
-                               type="text"
-                               component="input"
-                               style={addEditStyles.inputFullWidth}
-                        />
+                        <Field name="imageURL" type="text" component={renderField} label="Image URL"/>
                     </div>
 
                     <div>
-                        <label style={addEditStyles.label} htmlFor="videoURL">Video URL</label>
-                        <Field name="videoURL"
-                            type="text"
-                            component="input"
-                            style={addEditStyles.inputFullWidth}
-                        />
+                        <Field name="videoURL" type="text" component={renderField} label="Video URL"/>
                     </div>
                    
                     <div>
-                        <label style={addEditStyles.label} htmlFor="pdfURL">Sermon Notes URL</label>
-                        <Field name="pdfURL"
-                            type="text"
-                            component="input"
-                            style={addEditStyles.inputFullWidth}
-                        />
+                        <Field name="pdfURL" type="text" component={renderField} label="Sermon Notes URL"/>
                     </div>
 
                     <div>
-                        <label style={addEditStyles.label} htmlFor="tags">Tags (separate with ',')</label>
-
-                        <Field name="tags"
-                            type="text"
-                            component="input"
-                            style={addEditStyles.inputFullWidth}
-                        />
-                       
+                        <Field name="tags" type="text" component={renderField} label="Tags"/>
                     </div>
 
                     <div>
