@@ -44,7 +44,7 @@ class SermonEditorPage extends Component {
 
 
     render(){
-        let doneLoading = this.props.sermonDetails && this.props.allSeries && this.props.allSpeakers;
+        let doneLoading = this.props.sermonDetails && this.props.allSeries  && this.props.allSpeakers;
 
         if(!doneLoading){
             return(<div>Loading</div>);
@@ -66,10 +66,11 @@ const sermonService = new SermonService();
 const audioFilesService = new AudioFileService();
 
 function mapStateToProps(state) {
-    return {
-        sermonDetails: state.sermonDetails,
-        allSpeakers: state.allSermons.speakers,
-        allSeries: state.allSeries.series.sort((s1, s2) => {
+
+    const theSeries = state.allSeries;
+
+    if(theSeries.series){
+        theSeries.series.sort((s1, s2) => {
             if(s1.title < s2.title){
                 return  -1;
             }
@@ -77,7 +78,13 @@ function mapStateToProps(state) {
                 return 1;
             }
             return 0;
-        }),
+        })
+    }
+    
+    return {
+        sermonDetails: state.sermonDetails,
+        allSpeakers: state.allSermons.speakers,
+        allSeries: theSeries.series,
         allAudioFiles: state.allAudioFiles.audioFiles,
     };
 }

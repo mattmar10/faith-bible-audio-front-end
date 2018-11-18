@@ -5,7 +5,7 @@ export default function (state: Array<Object> = {}, action: Object) {
     switch (action.type) {
         case actionTypes.SERMON_DETAILS_UPDATED_SUCCESSFULLY:
             return {
-                sermon: action.payload.data
+                sermon: action.payload.data.body
             }
         case actionTypes.SERMON_DETAILS_UPDATE_FAILED:
             return {

@@ -60,8 +60,6 @@ class AddEditSermon extends Component{
         super(props);
     }
 
-    
-
     render() {
 
         const speakerOptions = this.props.speakers.map((speaker) => {
@@ -175,6 +173,12 @@ class AddEditSermon extends Component{
                         </button>
                     </div>
                 </form>
+                {
+                    this.props.updatedSermon && this.props.updatedSermon.id == this.props.sermon.id &&
+                    <div style={{paddingTop: '15px', fontWeight: 'bold'}}>
+                        <p>{this.props.sermon.title}  has been updated successfully.</p>
+                    </div>
+                }
             </div>
         );
     }
@@ -188,6 +192,7 @@ function mapStateToProps(state) {
     let audioURL = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.mp3URI : '';
     let title =  (state.sermonDetails.sermon) ? state.sermonDetails.sermon.title : 'title';
     let imageURL = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.imageURI : null;
+    let tags = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.tags.join(', '): null;
 
     return {
         initialValues: {
@@ -196,9 +201,10 @@ function mapStateToProps(state) {
             title: title,
             series: series,
             speaker: speaker,
-            imageURL: imageURL
-
-        }
+            imageURL: imageURL,
+            tags: tags
+        },
+        updatedSermon: state.sermonUpdated.sermon
     };
 
 }

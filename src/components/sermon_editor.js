@@ -17,9 +17,7 @@ class SermonEditor extends React.Component {
     }
 
 
-    handleSubmit(data) {
-        console.log(JSON.stringify(data, null, 2));
-        
+    handleSubmit(data) {        
         const tags = (data.tags) ? data.tags.split(",") : this.props.sermon.tags;
         const pdfURI = (data.pdfURL) ? data.pdfURL : this.props.sermon.pdfURI;
         const series = this.props.allSeries.find(s => s.title == data.series);
@@ -43,25 +41,6 @@ class SermonEditor extends React.Component {
 
     render() {
 
-        const series = (this.props.sermon) ? this.props.sermon.series : null;
-        const speaker = (this.props.sermon) ? this.props.sermon.speaker : null;
-        let pdfURL = (this.props.sermon) ? this.props.sermon.pdfURI : '';
-        let audioURL = (this.props.sermon) ? this.props.sermon.mp3URI : '';
-        let title = (this.props.sermon) ? this.props.sermon.title : 'title';
-        let imageURL = (this.props.sermon) ? this.props.sermon.imageURI : null;
-
-        const myInitialValues = {
-            initialValues: {
-                pdfURL: pdfURL,
-                audioURL: audioURL,
-                title: title,
-                series: series,
-                speaker: speaker,
-                imageURL: imageURL
-
-            }
-        }
-
         return (
             <AddEditSermon
                 speakers={this.props.speakers}
@@ -78,7 +57,9 @@ const sermonService = new SermonService();
 
 function mapStateToProps(state) {
     
-    return {}
+    return {
+
+    };
 } 
 
 function mapDispatchToProps(dispatch) {
