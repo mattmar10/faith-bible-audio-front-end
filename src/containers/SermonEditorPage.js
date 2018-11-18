@@ -69,7 +69,15 @@ function mapStateToProps(state) {
     return {
         sermonDetails: state.sermonDetails,
         allSpeakers: state.allSermons.speakers,
-        allSeries: state.allSeries.series,
+        allSeries: state.allSeries.series.sort((s1, s2) => {
+            if(s1.title < s2.title){
+                return  -1;
+            }
+            if(s1.title > s2.title){
+                return 1;
+            }
+            return 0;
+        }),
         allAudioFiles: state.allAudioFiles.audioFiles,
     };
 }
