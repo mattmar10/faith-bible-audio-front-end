@@ -192,7 +192,7 @@ function mapStateToProps(state) {
     let audioURL = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.mp3URI : '';
     let title =  (state.sermonDetails.sermon) ? state.sermonDetails.sermon.title : 'title';
     let imageURL = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.imageURI : null;
-    let tags = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.tags.join(', '): null;
+    let tags = (state.sermonDetails.sermon) && (state.sermonDetails.sermon.tags) ? state.sermonDetails.sermon.tags.join(', '): null;
 
     return {
         initialValues: {
