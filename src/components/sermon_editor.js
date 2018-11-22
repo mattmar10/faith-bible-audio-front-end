@@ -39,6 +39,20 @@ class SermonEditor extends React.Component {
         this.props.updateSermon(this.props.sermon.id, sermonToUpdate);
     }
 
+    handleNewSeriesSubmit(data){
+        const tags = (data.seriesTags) ? data.seriesTags.split(",") : [];
+        const slug = data.seriesTitle.replace(/\s/g, "+").toLowerCase();
+
+        const series = {
+            title: data.seriesTitle,
+            imageURL: data.seriesImage,
+            tags: data.seriesTags
+        }
+
+        console.log(series);
+
+    }
+
     render() {
 
         return (
@@ -46,7 +60,8 @@ class SermonEditor extends React.Component {
                 speakers={this.props.speakers}
                 series={this.props.allSeries}
                 sermon={this.props.sermon}
-                onSubmit={this.handleSubmit.bind(this)} />
+                onSubmit={this.handleSubmit.bind(this)}
+                onNewSeriesSubmit={this.handleNewSeriesSubmit.bind(this)} />
         )
     }
 

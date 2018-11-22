@@ -65,6 +65,21 @@ export function seriesDetailsLoaded(result: Object){
     }
 }
 
+export function seriesCreatedSuccessfully(result: Object){
+    return {
+        type: actionTypes.SERIES_CREATED_SUCCESSFULLY,
+        payload: result
+    }
+}
+
+export function seriesCreatedError(errors: Array<Object>){
+    return {
+        type: actionTypes.SERIES_CREATE_ERROR,
+        payload: errors
+    }
+}
+
+
 export function clearSeriesDetails(){
     return {
         type: actionTypes.CLEAR_SERIES_DETAILS

@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import {Field, reduxForm} from 'redux-form';
-import {connect} from "react-redux";
+import { Field, reduxForm } from 'redux-form';
+import { connect } from "react-redux";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import NewSeriesForm from './add_series_form';
+
 
 const addEditStyles = {
-    addEditForm:{
+    addEditForm: {
         textAlign: 'left',
         fontFamily: 'Roboto',
         fontSize: '14px',
@@ -46,18 +54,42 @@ const addEditStyles = {
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
     <div>
-      <label style={addEditStyles.label}>{label}</label>
-      <div>
-        <input {...input} placeholder={label} type={type} className="form-control" style={addEditStyles.inputFullWidth}/>
-        {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
-      </div>
+        <label style={addEditStyles.label}>{label}</label>
+        <div>
+            <input {...input} placeholder={label} type={type} className="form-control" style={addEditStyles.inputFullWidth} />
+            {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
+        </div>
     </div>
-  )
+)
 
-class AddEditSermon extends Component{
+class AddEditSermon extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+
+        this.state = {
+            openDialog: false
+        };
+
+        this.handleNewSeriesClick = this.handleNewSeriesClick.bind(this);
+        this.toggleDialog = this.toggleDialog.bind(this);
+
+    }
+
+    handleNewSeriesClick() {
+        console.log('new series');
+        this.setState({openDialog: true});
+    }
+
+    handleClose = () => {
+        this.setState({ openDialog: false });
+    };
+
+    toggleDialog() {
+        this.setState(state => ({
+            openDialog: !state.openDialog,
+            anchor: state.anchor
+        }));
     }
 
     render() {
@@ -66,8 +98,8 @@ class AddEditSermon extends Component{
             return (
 
                 <option key={speaker}
-                        value={speaker}
-                        >
+                    value={speaker}
+                >
                     {speaker}
                 </option>
             )
@@ -83,78 +115,72 @@ class AddEditSermon extends Component{
             )
         });
 
-        return(
+        return (
             <div style={addEditStyles.addEditForm}>
                 <h3>Sermon Editor</h3>
                 <form onSubmit={this.props.handleSubmit}>
 
 
-                    <div style={addEditStyles.fieldWrapper}>                        
-                       <Field name="title" type="text" component={renderField} label="Title"/>
+                    <div style={addEditStyles.fieldWrapper}>
+                        <Field name="title" type="text" component={renderField} label="Title" />
                     </div>
 
                     <div>
                         <label style={addEditStyles.label} htmlFor="series">Series</label>
                         <Field name="series"
-                               style={addEditStyles.selectBox}
-                               component="select">
+                            style={addEditStyles.selectBox}
+                            component="select">
                             {seriesOptions}
                         </Field>
                     </div>
 
                     <div>
-                        <p style={{paddingTop:'10px'}}>or</p>
-
-                        <div style={{paddingLeft:'5%'}}>
-                            <label style={addEditStyles.sublabel}  htmlFor="newSeries">Add a New Series</label>
-                            <Field name="newSeries"
-                                   type="text"
-                                   component="input"
-                                   style={addEditStyles.inputFullWidth}
-                            />
-                        </div>
+                        <p style={{ paddingTop: '15px' }}>or
+                        <span
+                                style={{ fontWeight: 'bold', cursor: 'pointer', paddingLeft: '10px' }}
+                                onClick={this.handleNewSeriesClick}>Add a New Series</span></p>
                     </div>
 
                     <div>
                         <label style={addEditStyles.label} htmlFor="speaker">Speaker</label>
                         <Field name="speaker"
-                               style={addEditStyles.selectBox}
-                               component="select">
+                            style={addEditStyles.selectBox}
+                            component="select">
                             {speakerOptions}
                         </Field>
                     </div>
 
                     <div>
-                        <p style={{paddingTop:'10px'}}>or</p>
+                        <p style={{ paddingTop: '10px' }}>or</p>
 
-                        <div style={{paddingLeft:'5%'}}>
-                            <label style={addEditStyles.sublabel}  htmlFor="newSpeaker">Add a New Speaker</label>
+                        <div style={{ paddingLeft: '5%' }}>
+                            <label style={addEditStyles.sublabel} htmlFor="newSpeaker">Add a New Speaker</label>
                             <Field name="newSpeaker"
-                                   type="text"
-                                   component="input"
-                                   style={addEditStyles.inputFullWidth}
+                                type="text"
+                                component="input"
+                                style={addEditStyles.inputFullWidth}
                             />
                         </div>
                     </div>
 
                     <div>
-                        <Field name="audioURL" type="text" component={renderField} label="Audio URL"/>
+                        <Field name="audioURL" type="text" component={renderField} label="Audio URL" />
                     </div>
 
                     <div>
-                        <Field name="imageURL" type="text" component={renderField} label="Image URL"/>
+                        <Field name="imageURL" type="text" component={renderField} label="Image URL" />
                     </div>
 
                     <div>
-                        <Field name="videoURL" type="text" component={renderField} label="Video URL"/>
-                    </div>
-                   
-                    <div>
-                        <Field name="pdfURL" type="text" component={renderField} label="Sermon Notes URL"/>
+                        <Field name="videoURL" type="text" component={renderField} label="Video URL" />
                     </div>
 
                     <div>
-                        <Field name="tags" type="text" component={renderField} label="Tags"/>
+                        <Field name="pdfURL" type="text" component={renderField} label="Sermon Notes URL" />
+                    </div>
+
+                    <div>
+                        <Field name="tags" type="text" component={renderField} label="Tags" />
                     </div>
 
                     <div>
@@ -164,21 +190,40 @@ class AddEditSermon extends Component{
                             name="sanitized"
                             type="checkbox"
                             component="input"
-                        />                    
+                        />
                     </div>
 
                     <div>
                         <button type="submit">
-                         Submit
+                            Submit
                         </button>
                     </div>
                 </form>
                 {
                     this.props.updatedSermon && this.props.updatedSermon.id == this.props.sermon.id &&
-                    <div style={{paddingTop: '15px', fontWeight: 'bold'}}>
+                    <div style={{ paddingTop: '15px', fontWeight: 'bold' }}>
                         <p>{this.props.sermon.title}  has been updated successfully.</p>
                     </div>
                 }
+                <Dialog
+                    fullWidth={true}
+                    open={this.state.openDialog}
+                    onClose={this.handleClose}
+                    aria-labelledby="form-dialog-title"
+                >
+                    <DialogTitle id="form-dialog-title">Add Series</DialogTitle>
+                    <DialogContent>
+                        <NewSeriesForm onSubmit={(e) => {
+                            this.props.onNewSeriesSubmit(e);
+                            this.handleClose();}}/>
+          
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                            Cancel
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         );
     }
@@ -190,9 +235,9 @@ function mapStateToProps(state) {
     const speaker = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.speaker : null;
     let pdfURL = (state.sermonDetails.sermon) ? state.sermonDetails.pdfURI : '';
     let audioURL = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.mp3URI : '';
-    let title =  (state.sermonDetails.sermon) ? state.sermonDetails.sermon.title : 'title';
+    let title = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.title : 'title';
     let imageURL = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.imageURI : null;
-    let tags = (state.sermonDetails.sermon) && (state.sermonDetails.sermon.tags) ? state.sermonDetails.sermon.tags.join(', '): null;
+    let tags = (state.sermonDetails.sermon) && (state.sermonDetails.sermon.tags) ? state.sermonDetails.sermon.tags.join(', ') : null;
 
     return {
         initialValues: {
@@ -243,7 +288,7 @@ const validate = values => {
 AddEditSermon = reduxForm({
     form: 'AddEditSermonForm',
     validate,
-    enableReinitialize : true // this is needed!!
+    enableReinitialize: true // this is needed!!
 
 })(AddEditSermon)
 
