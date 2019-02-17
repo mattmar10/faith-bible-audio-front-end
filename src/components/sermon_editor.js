@@ -33,7 +33,8 @@ class SermonEditor extends React.Component {
             pdfURI: pdfURI,
             title: data.title,
             tags: tags,
-            stats: this.props.sermon.stats
+            stats: this.props.sermon.stats,
+            sanitized: data.sanitized
         }
 
         this.props.updateSermon(this.props.sermon.id, sermonToUpdate);

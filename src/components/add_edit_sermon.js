@@ -184,7 +184,7 @@ class AddEditSermon extends Component {
                     </div>
 
                     <div>
-                        <label style={addEditStyles.label} htmlFor="Mapped">Mark as Sanitized</label>
+                        <label style={addEditStyles.label} htmlFor="sanitized">Mark as Sanitized</label>
 
                         <Field
                             name="sanitized"
@@ -238,6 +238,7 @@ function mapStateToProps(state) {
     let title = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.title : 'title';
     let imageURL = (state.sermonDetails.sermon) ? state.sermonDetails.sermon.imageURI : null;
     let tags = (state.sermonDetails.sermon) && (state.sermonDetails.sermon.tags) ? state.sermonDetails.sermon.tags.join(', ') : null;
+    let sanitized = (state.sermonDetails.sermon) && (state.sermonDetails.sermon.sanitized) ? state.sermonDetails.sermon.sanitized : null;
 
     return {
         initialValues: {
@@ -247,7 +248,8 @@ function mapStateToProps(state) {
             series: series,
             speaker: speaker,
             imageURL: imageURL,
-            tags: tags
+            tags: tags,
+            sanitized: sanitized
         },
         updatedSermon: state.sermonUpdated.sermon
     };
